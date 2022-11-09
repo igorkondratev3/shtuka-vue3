@@ -1,69 +1,123 @@
 <script setup>
-  import { computed } from 'vue';
-  import { lessonInformation } from '@/stores/lessonInformation';
-  import { lessonNum } from '@/stores/lessonNum';
+  import { computed, watch } from 'vue';
   import { useRouter } from 'vue-router';
-  const props = defineProps({ changedCircleAndGrade: Object });
-  const storeLessonInformation = lessonInformation();
-  const headings = computed(() => {
-    return storeLessonInformation.lessons[
-      'circle' + props.changedCircleAndGrade.circle
-    ]['grade' + props.changedCircleAndGrade.grade];
+  import { lessonsCollection } from '@/stores/lessonsCollection';
+  import { lessonNum } from '@/stores/lessonNum';
+  import { getLessons } from '../../generalFunctions/functions';
+
+  const props = defineProps({ circleAndGrade: Object });
+  const storeLessonsCollection = lessonsCollection();
+  const circleAndGradeArr = computed(() => {
+    //переработать, вроде нужно для watch
+    return [props.circleAndGrade.circle, props.circleAndGrade.grade];
   });
+
+  setLessons();
+  watch(circleAndGradeArr, () => {
+    setLessons();
+  });
+
+  async function setLessons() {
+    if (
+      !storeLessonsCollection.isFull[
+        `circle${circleAndGradeArr.value[0]}grade${circleAndGradeArr.value[1]}`
+      ]
+    ) {
+      storeLessonsCollection.setLessons(
+        await getLessons(
+          circleAndGradeArr.value[0],
+          circleAndGradeArr.value[1],
+          storeLessonsCollection
+        )
+      );
+    }
+  }
+
   const storeLessonNum = lessonNum();
   const router = useRouter();
+
   function chooseLesson(lessonNumber) {
-    storeLessonNum.circleNumber = props.changedCircleAndGrade.circle;
-    storeLessonNum.gradeNumber = props.changedCircleAndGrade.grade;
+    storeLessonNum.circleNumber = props.circleAndGrade.circle;
+    storeLessonNum.gradeNumber = props.circleAndGrade.grade;
     storeLessonNum.lessonNumber = lessonNumber;
     router.push({ path: '/lessonLayout' });
   }
+
   function excludeLessonNumber(content, contentIndex) {
     if (contentIndex > 0) {
       return content;
     }
   }
+
+  const lessons = computed(() => {
+    return storeLessonsCollection.lessons[
+      'circle' + props.circleAndGrade.circle
+    ]['grade' + props.circleAndGrade.grade];
+  });
 </script>
 
 <template>
-  <div class="lessons-list__box-lessons box-lessons">
+  <div class="lessons-list__lessons lessons">
     <div
-      class="box-lessons__lesson lesson"
-      v-for="heading in headings"
-      :key="heading.id"
-      @click="chooseLesson(parseInt(heading.headings[0]))"
+      class="lessons__lesson lesson"
+      v-for="numberOfLesson in Object.keys(lessons).length"
+      :key="numberOfLesson.id"
+      @click="
+        chooseLesson(
+          parseInt(
+            lessons[
+              `lesson${
+                numberOfLesson + props.circleAndGrade.addForNumberOfLesson
+              }`
+            ].headings[0]
+          )
+        )
+      "
     >
+      <!--перебираем номера так как объекты записываются не по порядку, не хочу записывать в массив чтобы не было разреженных и вообще так больше нравится-->
       <div class="lesson__number">
-        {{ heading.headings[0] }}
+        {{
+          lessons[
+            `lesson${
+              numberOfLesson + props.circleAndGrade.addForNumberOfLesson
+            }`
+          ]?.headings[0]
+        }}
       </div>
-      <div class="lesson__content">
-        <template v-for="(head, headIndex) in heading.headings">
-          {{ excludeLessonNumber(head, headIndex) }} </template
-        ><!--template чтобы не запихивало в див и не переносило на новую строку-->
+      <div class="lesson__theme">
+        <template
+          v-for="(head, headIndex) in lessons[
+            `lesson${
+              numberOfLesson + props.circleAndGrade.addForNumberOfLesson
+            }`
+          ]?.headings"
+        >
+          {{ excludeLessonNumber(head, headIndex) }} {{ ' ' }}
+        </template>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-  .box-lessons {
+<style lang="scss">
+  .lessons-list__lessons {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
   }
 
-  .box-lessons {
+  .lessons {
     &__lesson {
-      margin: 10px;
-      padding: 5px;
+      font: oblique 16px 'Times New Roman';
+      text-align: center;
+      user-select: none;
       border: 0.5px dotted black;
       border-radius: 30px;
-      user-select: none;
-      font: oblique 16px Times New Roman;
-      text-align: center;
-      width: 320px;
-      height: 90px;
+      width: 330px;
+      height: 95px;
+      margin: 10px;
+      padding: 5px;
     }
 
     &__lesson:hover {
@@ -81,9 +135,5 @@
   .lesson__number {
     color: rgb(255, 115, 0);
     font-weight: bold;
-  }
-
-  .links {
-    cursor: default;
   }
 </style>

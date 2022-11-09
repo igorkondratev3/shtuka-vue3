@@ -8,7 +8,7 @@ export function drawLines(lines, width, height) {
   lines.lineTo(26, 16);
   lines.moveTo(6, 22);
   lines.lineTo(26, 22);
-  lines.strokeStyle = '#0064A9';
+  lines.strokeStyle = 'black';
   lines.stroke();
 }
 
@@ -20,6 +20,6 @@ export function drawCross(cross, width, height) {
   cross.lineTo(25, 25);
   cross.moveTo(7, 25);
   cross.lineTo(25, 7);
-  cross.strokeStyle = '#0064A9';
+  cross.strokeStyle = 'black';
   cross.stroke();
 }

@@ -7,39 +7,35 @@
 </script>
 
 <template>
-  <p class="theory__p theory__p_align-p5">Еще три раздела физики:</p>
-  <ul class="other-themes-of-physic ul">
-    <li
-      v-for="theme in OtherThemesOfPhysic"
-      :key="theme.id"
-    >
-      {{ theme }}
-    </li>
-  </ul>
+  <div class="theory-content__other-themes-of-physic other-themes-of-physic">
+    <p class="other-themes-of-physic__title"><b>Еще три раздела физики:</b></p>
+    <ul class="other-themes-of-physic__content">
+      <li
+        v-for="theme in OtherThemesOfPhysic"
+        :key="theme.id"
+      >
+        {{ theme }}
+      </li>
+    </ul>
+  </div>
 </template>
 
-<style scoped lang="scss">
-  .theory {
-    &__p {
+<style lang="scss">
+  .other-themes-of-physic {
+    &__title {
       text-align: left;
       padding: 0px 5px 0px 16px;
       color: black;
-      font: oblique 16px Times New Roman;
-      line-height: 17px;
+      font: oblique 18px Times New Roman;
+      margin-top: 15px;
     }
 
-    &__p {
-      &_align-p5 {
-        margin-top: 17px;
-      }
+    &__content {
+      font: oblique 18px Times New Roman;
+      text-align: left;
+      list-style: Circle inside;
+      padding-left: 16px;
+      color: black;
     }
-  }
-  .ul {
-    list-style: Circle inside;
-    text-align: left;
-    padding-left: 16px;
-    color: black;
-    font: oblique 16px Times New Roman;
-    line-height: 16.5px;
   }
 </style>

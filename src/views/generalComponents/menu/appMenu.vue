@@ -9,12 +9,11 @@
   <MenuButton
     @changeMenuContentSeen="menuContentSeen = !menuContentSeen"
     :menuContentSeen="menuContentSeen"
-  ></MenuButton>
+  />
   <MenuContent
     v-show="menuContentSeen"
     @closeMenu="menuContentSeen = false"
-  >
-  </MenuContent>
+  />
 </template>
 
-<style scoped></style>
+<style></style>

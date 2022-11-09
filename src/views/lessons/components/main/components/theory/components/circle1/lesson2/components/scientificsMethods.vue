@@ -1,31 +1,62 @@
 <script setup></script>
 
 <template>
-  <p class="theory__p theory__p_align-p1">
-    Научные методы изучения природы:<br />
-    <b>Наблюдение</b> – исследование явления без создания для этого специальных
-    условий;<br />
-    <b>Эксперимент</b> – исследование явления в специально созданных
-    условиях;<br />
-    <b>Гипотеза</b> – предположение, выдвигаемое по результатам наблюдения или
-    эксперимента.<br />
-  </p>
+  <div class="theory-content__scientifics-methods scientifics-methods">
+    <h3 class="scientifics-methods__title">Научные методы изучения природы</h3>
+    <div class="scientifics-methods__methods">
+      <p>
+        <b>Наблюдение</b><br />исследование явления без создания для этого
+        специальных условий
+      </p>
+      <p>
+        <b>Эксперимент</b><br />исследование явления в специально созданных
+        условиях
+      </p>
+      <p>
+        <b>Гипотеза</b><br />предположение, выдвигаемое по результатам
+        наблюдения или эксперимента
+      </p>
+    </div>
+    <p class="scientifics-methods__example">
+      Научные методы изучения природы позволяют исключить условия, при которых
+      существует вероятность получения ложных данных (например, из-за обмана
+      зрения(см. пример)).
+    </p>
+  </div>
 </template>
 
-<style scoped lang="scss">
-  .theory {
-    &__p {
-      text-align: left;
-      padding: 0px 5px 0px 16px;
-      color: black;
-      font: oblique 16px Times New Roman;
-      line-height: 17px;
+<style lang="scss">
+  .scientifics-methods {
+    font: oblique 18px 'Times New Roman';
+    text-align: left;
+    color: black;
+    margin: 5px;
+    padding: 0px 5px 0px 16px;
+  }
+
+  .scientifics-methods {
+    &__title {
+      text-align: center;
     }
-    &__p {
-      &_align-p1 {
-        margin-top: 19px;
-        margin-bottom: 17px;
-      }
+
+    &__methods {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    &__methods p {
+      max-width: 300px;
+      margin: 0 5px;
+      margin-bottom: 5px;
+      border: 1px dotted black;
+      border-radius: 30px;
+    }
+    &__example {
+      max-width: 800px;
     }
   }
 </style>

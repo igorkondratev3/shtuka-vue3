@@ -1,9 +1,12 @@
 <script setup>
-  import ButtonShowNotes from './components/buttonShowNotes/buttonShowNotes.vue';
-  import AppNotes from './components/notes/appNotes.vue';
-  import { ref, computed } from 'vue';
+  import ButtonShowCreateNotes from './components/buttonShowCreateNotes/buttonShowCreateNotes.vue';
+  import CreateNotes from './components/createNotes/CreateNotes.vue';
+  import NeedAuth from '@/views/generalComponents/needAuth/needAuth.vue';
+  import { ref, computed, watch } from 'vue';
   import { lessonNum } from '@/stores/lessonNum';
   import { defineAsyncComponent } from 'vue';
+  import { authContext } from '@/stores/authContext';
+
   const Circle1Lesson1 = defineAsyncComponent(() =>
     import(`./components/circle1/lesson1/lesson1Vue.vue`)
   );
@@ -14,50 +17,54 @@
     Circle1Lesson1,
     Circle1Lesson2,
   };
+
   const storeLessonNum = lessonNum();
   const theoryComponent = computed(() => {
     return componentsList[storeLessonNum.theoryComponentName];
   });
+
   const notesSeen = ref(false);
+  const needAuthSeen = ref(false);
+  const storeAuthContext = authContext();
+
+  watch(storeAuthContext, () => {
+    if (!storeAuthContext.user) {
+      notesSeen.value = false;
+    }
+  });
 </script>
 
 <template>
-  <div class="shell-theory-and-notes">
-    <div class="shell-theory">
-      <Suspense>
-        <component :is="theoryComponent">
-          <template #buttonShowNotes>
-            <ButtonShowNotes @click="notesSeen = !notesSeen" />
-          </template>
-        </component>
-
-        <template #fallback>
-          <div class="suspense">Загрузка теории...</div>
-        </template>
-      </Suspense>
-    </div>
-    <AppNotes v-show="notesSeen" />
+  <div class="main__theory lesson-theory">
+    <Suspense>
+      <component :is="theoryComponent"></component>
+      <template #fallback>
+        <div class="suspense">Загрузка теории...</div>
+      </template>
+    </Suspense>
+    <ButtonShowCreateNotes
+      @click="
+        storeAuthContext.user ? (notesSeen = !notesSeen) : (needAuthSeen = true)
+      "
+    />
+    <CreateNotes v-show="notesSeen" />
+    <NeedAuth
+      v-if="needAuthSeen"
+      allowedAction="оставлять пометки."
+      @closeNeedAuth="needAuthSeen = false"
+    />
   </div>
 </template>
 
-<style scoped>
-  .shell-theory-and-notes {
-    order: 1;
+<style>
+  .lesson-theory {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    order: 1;
   }
 
-  .shell-theory {
-    max-width: 600px;
-    border: 0.5px solid black;
-    border-radius: 30px;
-    background: linear-gradient(#bbb 0px, transparent 1px),
-      linear-gradient(90deg, #bbb 0px, #f9f1fd 1px);
-    background-size: 17px 17px;
-  }
-
-  .suspense {
+  .lesson-theory__suspense {
     color: red;
     padding: 100px 100px;
   }

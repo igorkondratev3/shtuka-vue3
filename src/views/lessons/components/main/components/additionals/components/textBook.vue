@@ -1,70 +1,61 @@
 <script setup>
-  import { lessonInformation } from '@/stores/lessonInformation';
+  import { lessonsCollection } from '@/stores/lessonsCollection';
   import { lessonNum } from '@/stores/lessonNum';
   import { computed } from 'vue';
-  const storeLessonInformation = lessonInformation();
+
+  const storeLessonsCollection = lessonsCollection();
   const storeLessonNum = lessonNum();
   const textBook = computed(() => {
-    return storeLessonInformation.lessons[storeLessonNum.circle][
+    return storeLessonsCollection.lessons[storeLessonNum.circle][
       storeLessonNum.grade
-    ][storeLessonNum.lesson].textBook;
+    ][storeLessonNum.lesson]?.textBook;
+  });
+  const bookUrl = computed(() => {
+    return storeLessonsCollection.lessons[storeLessonNum.circle][
+      storeLessonNum.grade
+    ][storeLessonNum.lesson]?.bookUrl;
   });
 </script>
 
 <template>
   <a
-    class="a a_margin"
-    href=" "
+    class="additionals__link additionals__text-book additionals-link"
+    :href="bookUrl"
     target="_blank"
   >
-    <div class="additionals__content">
-      {{ textBook }}
+    <div
+      class="additionals-link__content"
+      :title="textBook"
+    >
+      Учебник
     </div>
-    <!--попробовать через nth-child-->
   </a>
 </template>
 
-<style scoped lang="scss">
-  .a {
+<style lang="scss">
+  .additionals__link {
+    margin-top: 10px;
     text-decoration: none;
-    cursor: default;
   }
-  .a {
-    &_margin {
-      margin-top: 10px;
-    }
-  }
-  .additionals {
+
+  .additionals-link {
     &__content {
+      font: oblique 18px Times New Roman;
       text-align: center;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
       color: black;
-      font: oblique 16px Times New Roman;
+      cursor: default;
       border: 0.5px dashed black;
       border-radius: 30px;
       padding: 5px;
-      cursor: default;
-      width: 155px;
+      width: 170px;
       transition-property: border, background;
       transition-duration: 6s, 3s;
     }
-
     &__content:hover {
       border: 0.5px solid black;
       background: radial-gradient(transparent 50%, #8695a5);
-    }
-  }
-
-  @media (max-width: 1172px) {
-    .a_margin {
-      margin-left: 10px;
-      margin-top: 0px;
-    }
-  }
-
-  @media (max-width: 532px) {
-    .a_margin {
-      margin-left: 0px;
-      margin-top: 10px;
     }
   }
 </style>

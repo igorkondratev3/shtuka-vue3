@@ -1,20 +1,29 @@
 <script setup>
-  import AppTitel from './components/appTitel.vue';
   import AppMenu from '@/views/generalComponents/menu/appMenu.vue';
+  import AppNavigation from './components/navigation/appNavigation.vue';
+  import AuthNav from '@/views/generalComponents/authNav/authNav.vue';
 </script>
 
 <template>
-  <header class="header">
-    <AppTitel />
+  <header class="lesson-layout__header header">
+    <AuthNav />
+    <AppNavigation class="header__navigation"></AppNavigation>
     <AppMenu />
   </header>
 </template>
 
-<style scoped>
+<style lang="scss">
   .header {
-    margin: 5px 9px 5px 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    margin: 5px 9px;
+    height: 34px; /*так как все элементы абсолютно спозиционированы задаем высоту вручную*/
+  }
+
+  .header {
+    &__navigation {
+      position: fixed;
+      z-index: 100;
+      left: calc(50% - 34px);
+      top: 5px;
+    }
   }
 </style>

@@ -5,18 +5,11 @@
   margin: 0;
   padding: 0;
   position: relative;
-  /*font-weight: normal;*/
-  /*color: black;*/
 }
 
-body {
-  min-height: 100vh;
-  background: radial-gradient(#F9F9FB 50%, #F2F2F2);
-  /*проверить работает ли или нужнро задать в апп*/
-}
 
 /* color palette from <https://github.com/vuejs/theme>
-:root { /*задание текстовых стилей
+:root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;

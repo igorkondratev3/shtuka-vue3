@@ -1,29 +1,42 @@
 <script setup>
-  import PhysicsAndNature from './components/physicsAndNature.vue';
-  import MatterAndBody from './components/matterAndBody.vue';
-  import PhenomenonOnly from './components/phenomenonOnly.vue';
+  import PhysicDefinition from './components/physicDefinition.vue';
+  import PhenomenonVue from './components/phenomenonVue.vue';
+  import NatureVue from './components/natureVue.vue';
   import HeadThemesOfPhysic from './components/headThemesOfPhysic.vue';
   import OtherThemesOfPhysic from './components/otherThemesOfPhysic.vue';
 </script>
 
 <template>
-  <div class="theory">
-    <PhysicsAndNature />
-    <MatterAndBody />
-    <PhenomenonOnly />
-    <HeadThemesOfPhysic />
-    <OtherThemesOfPhysic />
-    <slot name="buttonShowNotes"></slot
-    ><!--сделано чтобы пропадпло вместе с компонентом
-    который еще незадан. Когда будут все уроки просто в апптеори обычным компонентом,
-    а из всех уроков убрать-->
+  <div class="lesson-theory__content theory-content">
+    <PhysicDefinition />
+    <div class="theory-content__blocks theory-content__phenomenon-and-nature">
+      <PhenomenonVue />
+      <NatureVue />
+    </div>
+    <div class="theory-content__blocks theory-content__themes-of-physic">
+      <HeadThemesOfPhysic />
+      <OtherThemesOfPhysic />
+    </div>
   </div>
 </template>
 
-<style scoped>
-  .theory {
+<style>
+  .lesson-theory__content {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    background-color: rgba(231, 229, 229, 0.548);
+    padding: 0px 5px;
+    border-radius: 30px;
+  }
+  .theory-content__blocks {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .theory-content__phenomenon-and-nature {
+    justify-content: center;
   }
 </style>

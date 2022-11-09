@@ -9,41 +9,40 @@
 </script>
 
 <template>
-  <p class="theory__p theory__p_align-p4">
-    Физические явления и изучающие их разделы физики:
-  </p>
-  <ul class="head-themes-of-physic ul">
-    <li
-      v-for="theme in headThemesOfPhysic"
-      :key="theme.id"
-    >
-      {{ theme }}
-    </li>
-  </ul>
+  <div class="theory-content__head-themes-of-physic head-themes-of-physic">
+    <h3 class="head-themes-of-physic__title">
+      <b>Физические явления и изучающие их разделы физики:</b>
+    </h3>
+    <ul class="head-themes-of-physic__content">
+      <li
+        v-for="theme in headThemesOfPhysic"
+        :key="theme.id"
+      >
+        {{ theme }}
+      </li>
+    </ul>
+  </div>
 </template>
 
-<style scoped lang="scss">
-  .theory {
-    &__p {
+<style lang="scss">
+  .head-themes-of-physic {
+    margin-right: 15px;
+    margin-top: 15px;
+  }
+  .head-themes-of-physic {
+    &__title {
       text-align: left;
       padding: 0px 5px 0px 16px;
       color: black;
-      font: oblique 16px Times New Roman;
-      line-height: 17px;
+      font: oblique 18px Times New Roman;
     }
-    &__p {
-      &_align-p4 {
-        margin-top: 17px;
-      }
-    }
-  }
 
-  .ul {
-    list-style: Circle inside;
-    text-align: left;
-    padding-left: 16px;
-    color: black;
-    font: oblique 16px Times New Roman;
-    line-height: 16.5px;
+    &__content {
+      font: oblique 18px Times New Roman;
+      text-align: left;
+      list-style: Circle inside;
+      padding-left: 16px;
+      color: black;
+    }
   }
 </style>

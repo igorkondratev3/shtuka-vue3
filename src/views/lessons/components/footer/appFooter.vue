@@ -1,18 +1,13 @@
-<script setup>
-  import PreviousLessonButton from './components/previousLessonButton.vue';
-  import NextLessonButton from './components/nextLessonButton.vue';
-</script>
+<script setup></script>
 
 <template>
-  <footer class="footer">
-    <PreviousLessonButton />
-    <NextLessonButton /><!--очень похожие компоненты-поработать над объединением в один-->
-  </footer>
+  <footer class="lesson-layout__footer footer"></footer>
 </template>
 
-<style scoped>
+<style>
   .footer {
     margin: 10px 16px;
+    height: 34px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

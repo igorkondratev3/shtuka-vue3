@@ -1,8 +1,12 @@
 <script setup>
   import { useRouter } from 'vue-router';
+  import { authContext } from '@/stores/authContext';
+
+  const router = useRouter();
+  const storeAuthContext = authContext();
   const emits = defineEmits(['closeMenu']);
   const sections = [
-    '',
+    `${storeAuthContext.user?.email ?? ''}`,
     'Главная',
     'Список уроков',
     'Библиотека',
@@ -10,7 +14,7 @@
     'Справочники',
     'Контакты',
   ];
-  const router = useRouter();
+
   function chooseSection(section) {
     switch (section) {
       case 'Главная':
@@ -30,70 +34,82 @@
       @pointerleave="emits('closeMenu')"
     >
       <div
+        class="menu__sections"
         v-for="section in sections"
         :key="section.id"
+        @click="chooseSection(section)"
       >
-        <div
-          class="menu__sections"
-          @click="chooseSection(section)"
-        >
-          {{ section }}
-        </div>
+        {{ section }}
       </div>
     </div>
   </transition>
 </template>
 
-<style scoped lang="scss">
-  .changeSeenMenu-enter-from,
+<style lang="scss">
   .changeSeenMenu-leave-to {
     opacity: 0;
   }
-  .changeSeenMenu-enter-active,
   .changeSeenMenu-leave-active {
     transition: opacity 1s;
   }
-  .changeSeenMenu-enter-to,
   .changeSeenMenu-leave-from {
     opacity: 100;
   }
+
+  @keyframes anim {
+    from {
+      margin-top: -40px;
+    }
+    to {
+      margin-top: 5px;
+    }
+  }
+
   .menu {
-    position: absolute;
-    top: 0px;
-    right: 0px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border: 0.5px solid black;
-    border-radius: 30px 30px 32px 32px;
-    z-index: 7;
-    background-color: #f0f0f4;
+    position: absolute;
+    background-color: transparent;
+    top: -5px;
+    right: -5px;
+    z-index: 8;
   }
+
   .menu {
     &__sections {
-      width: 130px;
-      height: 30px;
-      border: 0.5px solid black;
+      font: 18px 'Times New Roman';
       text-align: center;
-      padding-top: 12px;
-      font: 16px Times New Roman;
-      transition: background-color 1s linear;
-      cursor: default;
-      color: black;
-      background-color: white;
       box-sizing: content-box;
+      cursor: default;
+      color: white;
+      background-color: rgb(
+        89,
+        90,
+        97
+      ); // не делать прозрачность - контекст наложения
+      border: 0.5px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 5px;
+      animation: anim 1s linear forwards;
+      transition: background-color 1s linear;
     }
+
     &__sections:hover {
-      background-color: #8d8d8d;
+      background-color: white;
+      color: black;
     }
 
-    div:first-child .menu__sections {
-      border-radius: 30px 30px 0px 0px;
+    &__sections:first-child {
+      text-align: left;
+      overflow-x: hidden;
+      color: black;
       background-color: transparent;
-    }
-
-    div:last-child .menu__sections {
-      border-radius: 0px 0px 30px 30px;
+      border: 0;
+      min-height: 15px;
+      max-width: 80px;
+      padding-left: 3px;
     }
   }
 </style>

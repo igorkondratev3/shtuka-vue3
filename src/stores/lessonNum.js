@@ -3,9 +3,9 @@ import { defineStore } from 'pinia';
 export const lessonNum = defineStore({
   id: 'lessonNum',
   state: () => ({
-    circleNumber: 1,
-    gradeNumber: 7,
-    lessonNumber: 1,
+    circleNumber: 0,
+    gradeNumber: 0,
+    lessonNumber: 0,
   }),
   getters: {
     circle: (state) => 'circle' + state.circleNumber,
