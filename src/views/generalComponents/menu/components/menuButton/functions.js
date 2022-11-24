@@ -1,4 +1,4 @@
-export function drawLines(lines, width, height) {
+export const drawLines = (lines, width, height) => {
   lines.clearRect(0, 0, width, height);
   lines.beginPath();
   lines.moveTo(6, 10);
@@ -12,7 +12,7 @@ export function drawLines(lines, width, height) {
   lines.stroke();
 }
 
-export function drawCross(cross, width, height) {
+export const drawCross = (cross, width, height) => {
   cross.clearRect(0, 0, width, height);
   cross.beginPath();
   cross.moveTo(7, 7);

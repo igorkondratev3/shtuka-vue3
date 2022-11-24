@@ -1,14 +1,13 @@
 <script setup>
-  import PreviousLessonButton from './components/previousLessonButton.vue';
-  import NextLessonButton from './components/nextLessonButton.vue';
   import LessonsListButton from './components/lessonsListButton.vue';
+  import LessonsButton from './components/lessonsButton.vue';
 </script>
 
 <template>
   <nav class="header__navigation_flex navigation">
-    <PreviousLessonButton />
+    <LessonsButton where="previous" />
     <LessonsListButton />
-    <NextLessonButton />
+    <LessonsButton where="next" />
   </nav>
 </template>
 

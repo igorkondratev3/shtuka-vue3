@@ -26,21 +26,28 @@
   let offsetWidthNotesContent = ref(0);
   let offsetHeightNotesContent = ref(0);
   const notesContent = ref(null);
+  const error = ref(null);
 
-  function calucalateWidthAndHeightForNote() {
+  const calucalateWidthAndHeightForNote = () => {
     offsetWidthNotesContent.value = notesContent.value.offsetWidth;
     offsetHeightNotesContent.value = notesContent.value.offsetHeight;
+    console.log(notesContent.value);
   }
 
-  function clearTextAndStyleForNotesContent() {
+  const clearTextAndStyleForNotesContent = () => {
     textNotes.value = '';
     emits('clearStyleForNotesContent');
+  }
+
+  function showError(errorValue) {
+    error.value = errorValue;
+    setTimeout(() => error.value = null, 5000);
   }
 </script>
 
 <template>
   <textarea
-    v-model="textNotes"
+    v-model="textNotes" 
     class="notes__content"
     :style="styleForNotesContent"
     ref="notesContent"
@@ -51,7 +58,14 @@
     :widthAndHeightForNote="widthAndHeightForNote"
     @calucalateWidthAndHeightForNote="calucalateWidthAndHeightForNote"
     @clearTextAndStyleForNotesContent="clearTextAndStyleForNotesContent"
+    @showError="showError"
   />
+  <div
+    class="notes__error error"
+    v-show="error"
+  >
+    {{ error }}
+  </div>
 </template>
 
 <style>
@@ -73,5 +87,9 @@
     .notes__content {
       max-width: 400px;
     }
+  }
+
+  .notes__error {
+    max-width: 350px;
   }
 </style>

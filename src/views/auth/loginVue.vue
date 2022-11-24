@@ -8,14 +8,10 @@
   const storeAuthContext = authContext();
   const email = ref('');
   const password = ref('');
-  const error = ref(null);
+  const error = ref(null); 
   const isLoading = ref(null);
 
-  async function handleLogin() {
-    await login(email.value, password.value);
-  }
-
-  async function login(email, password) {
+  const login = async (email, password) => {
     isLoading.value = true;
     error.value = null;
 
@@ -62,7 +58,7 @@
     <button
       class="form-auth__button"
       :disabled="isLoading"
-      @click.prevent="handleLogin()"
+      @click.prevent="login(email, password)"
     >
       Войти
     </button>

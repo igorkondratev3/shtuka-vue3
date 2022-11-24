@@ -11,7 +11,7 @@
     isGrade11: false,
   });
 
-  function changeCircle() {
+  const changeCircle = () => {
     isCircleOne.value = !isCircleOne.value;
     if (isCircleOne.value) {
       isGrade.value.isGrade7 = true;
@@ -26,7 +26,7 @@
     }
   }
 
-  function changeGrade(chooseGradeNumber) {
+  const changeGrade = (chooseGradeNumber) => {
     isGrade.value.isGrade7 = false;
     isGrade.value.isGrade8 = false;
     isGrade.value.isGrade9 = false;

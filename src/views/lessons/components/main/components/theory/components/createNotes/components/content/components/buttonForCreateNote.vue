@@ -11,6 +11,7 @@
   const emits = defineEmits([
     'clearTextAndStyleForNotesContent',
     'calucalateWidthAndHeightForNote',
+    'showError'
   ]);
   const props = defineProps({
     textNotes: String,
@@ -20,8 +21,15 @@
 
   const isCreate = ref(false);
 
-  async function createNote() {
+  const createNote = async () => {
     isCreate.value = true;
+
+    if (!props.textNotes.trim().length) {
+      emits('showError', 'Поле для пометок должно быть заполнено');
+      isCreate.value = false;
+      return;
+    }
+
     emits('calucalateWidthAndHeightForNote');
     const note = {
       circle: storeLessonNum.circleNumber,
@@ -50,7 +58,7 @@
     const payload = await response.json();
 
     if (!response.ok) {
-      console.log(payload.error);
+      emits('showError', payload.error);
       isCreate.value = false;
     }
 

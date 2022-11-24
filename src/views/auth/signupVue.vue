@@ -11,11 +11,7 @@
   const error = ref(null);
   const isLoading = ref(null);
 
-  async function handleSignup() {
-    await signup(email.value, password.value);
-  }
-
-  async function signup(email, password) {
+  const signup = async (email, password) => {
     isLoading.value = true;
     error.value = null;
 
@@ -60,7 +56,7 @@
       class="form-auth__input"
     />
     <button
-      @click.prevent="handleSignup()"
+      @click.prevent="signup(email, password)"
       :disabled="isLoading"
       class="form-auth__button"
     >

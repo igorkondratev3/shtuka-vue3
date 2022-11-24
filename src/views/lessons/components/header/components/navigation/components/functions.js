@@ -1,4 +1,4 @@
-export function drawArrowLeft(left) {
+export const drawArrowLeft = (left) => {
   left.beginPath();
   left.moveTo(3, 16);
   left.lineTo(15, 3);
@@ -13,7 +13,7 @@ export function drawArrowLeft(left) {
   left.stroke();
 }
 
-export function drawArrowRight(right) {
+export const drawArrowRight = (right) => {
   right.beginPath();
   right.moveTo(29, 16);
   right.lineTo(17, 3);

@@ -1,4 +1,4 @@
-export function drawLighting(lighting, x, y) {
+export const drawLighting = (lighting, x, y) => {
   x = x + 117;
   y = y + 68;
   lighting.beginPath();

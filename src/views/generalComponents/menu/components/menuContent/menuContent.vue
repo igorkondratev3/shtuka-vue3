@@ -1,21 +1,26 @@
 <script setup>
+  import { ref, computed} from 'vue'
   import { useRouter } from 'vue-router';
   import { authContext } from '@/stores/authContext';
 
   const router = useRouter();
   const storeAuthContext = authContext();
   const emits = defineEmits(['closeMenu']);
-  const sections = [
-    `${storeAuthContext.user?.email ?? ''}`,
+
+  const userName = computed(() => {
+    return storeAuthContext.user?.email;
+  });
+
+  const sections = ref([
     'Главная',
     'Список уроков',
     'Библиотека',
     'Формулы',
     'Справочники',
     'Контакты',
-  ];
+  ]);
 
-  function chooseSection(section) {
+  const chooseSection = (section) => {
     switch (section) {
       case 'Главная':
         router.push({ path: '/' });
@@ -33,9 +38,12 @@
       class="menu"
       @pointerleave="emits('closeMenu')"
     >
+      <div class="menu__sections menu__user-name"> 
+        {{ userName }}
+      </div>
       <div
         class="menu__sections"
-        v-for="section in sections"
+        v-for="section in sections" 
         :key="section.id"
         @click="chooseSection(section)"
       >

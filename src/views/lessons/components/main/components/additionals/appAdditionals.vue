@@ -53,9 +53,9 @@
     }
   }
 
-  async function getAdditionals(circleNum, gradeNum, lessonNum) {
+  async function getAdditionals(circleNumber, gradeNumber, lessonNumber) {
     const response = await fetch(
-      `http://localhost:4000/lesson/additionals/${circleNum}/${gradeNum}/${lessonNum}`,
+      `http://localhost:4000/lesson/additionals/${circleNumber}/${gradeNumber}/${lessonNumber}`,
       {
         headers: {
           authorization: `Bearer ${storeAuthContext.user?.token}`,

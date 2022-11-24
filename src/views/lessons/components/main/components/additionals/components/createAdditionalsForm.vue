@@ -12,16 +12,24 @@
   const name = ref('');
   const description = ref('');
   const isCreate = ref(false);
+  const error = ref(null)
 
-  async function addAdditional() {
+   const addAdditional = async () => {
     isCreate.value = true;
+
+    if (!address.value.trim().length) {
+      showError('Поле c адресом ресурса должно быть заполнено');
+      isCreate.value = false;
+      return;
+    }
+
     const additional = {
       circle: storeLessonNum.circleNumber,
       grade: storeLessonNum.gradeNumber,
       lesson: storeLessonNum.lessonNumber,
       address: address.value,
       name: name.value,
-      description: description.value,
+      description: description.value, 
     };
 
     const response = await fetch('http://localhost:4000/lesson/additionals', {
@@ -36,7 +44,7 @@
     const payload = await response.json();
 
     if (!response.ok) {
-      console.log(payload.error);
+      showError(payload.error);
       isCreate.value = false;
     }
 
@@ -48,6 +56,11 @@
       emit('closeCreateAdditionalForm');
       isCreate.value = false;
     }
+  }
+
+  const showError = (errorValue) => {
+    error.value = errorValue;
+    setTimeout(() => error.value = null, 5000);
   }
 </script>
 
@@ -87,6 +100,12 @@
       >
         Создать дополнение
       </button>
+      <div
+        class="create-additionals__error error"
+        v-show="error"
+      >
+        {{ error }}
+      </div>
     </div>
   </div>
 </template>

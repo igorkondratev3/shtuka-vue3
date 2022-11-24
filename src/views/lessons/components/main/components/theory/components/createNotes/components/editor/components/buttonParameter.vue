@@ -41,12 +41,12 @@
 <template>
   <div
     class="editor__button"
-    @pointerover="parameterOver(parameterTuningValues)"
-    @pointerout="parameterOut(parameterTuningValues)"
+    @pointerover="parameterOver(parameterTuningValues, parameterPressed)"
+    @pointerout="parameterOut(parameterTuningValues, parameterPressed)"
     @click="
       emits(
         'changeStyleForNotesContent',
-        changeButtonParameterValue(parameterTuningValues)
+        changeButtonParameterValue(parameterTuningValues, parameterPressed)
       )
     "
     :style="parameterTuningValues"

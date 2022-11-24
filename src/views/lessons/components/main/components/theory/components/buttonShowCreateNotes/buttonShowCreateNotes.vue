@@ -1,6 +1,6 @@
 <script setup>
   import { ref, onMounted } from 'vue';
-  import { changeColor } from '@/views/generalFunctions/functions.js';
+  import { changeColor } from '@/views/generalFunctions/changeColor.js';
   import { drawPen } from './functions.js';
 
   const pen = ref(null);

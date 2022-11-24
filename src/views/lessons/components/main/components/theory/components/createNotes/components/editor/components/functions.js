@@ -1,11 +1,11 @@
-export function closeListOfPararmeterValues(parameterTuningValues) {
+export const closeListOfPararmeterValues = (parameterTuningValues) => {
   parameterTuningValues.listOfValuesSeen = false;
   parameterTuningValues.choosenValueSeen = true;
   parameterTuningValues.arrowOpenListOfValues = true;
   parameterTuningValues.borderValue = '0.5px solid black';
 }
 
-export async function changeSeenOfListOfParameterValues(parameterTuningValues) {
+export const changeSeenOfListOfParameterValues = async(parameterTuningValues) => {
   let changeSeen = new Promise((resolve) => {
     // убрать промис
     parameterTuningValues.listOfValuesSeen =
@@ -26,10 +26,10 @@ export async function changeSeenOfListOfParameterValues(parameterTuningValues) {
   }
 }
 
-export function changeListParameterValue(
+export const changeListParameterValue = (
   parameterTuningValues,
   eventChangeParameter
-) {
+) => {
   parameterTuningValues.choosenValueText =
     eventChangeParameter.target.textContent;
   changeSeenOfListOfParameterValues(parameterTuningValues);
@@ -99,7 +99,7 @@ export function changeListParameterValue(
   }
 }
 
-export function letterParameterDefinition(parameter) {
+export const letterParameterDefinition = (parameter) => {
   switch (parameter) {
     case 'fontWeight':
       return 'ж';
@@ -110,7 +110,7 @@ export function letterParameterDefinition(parameter) {
   }
 }
 
-export function drawArrowDown(arrow) {
+export const drawArrowDown = (arrow) => {
   arrow.beginPath();
   arrow.moveTo(6, 11);
   arrow.lineTo(10, 7);
@@ -122,23 +122,23 @@ export function drawArrowDown(arrow) {
   arrow.stroke();
 }
 
-export function parameterOver(parameterTuningValues) {
-  if (this.parameterPressed) {
+export const parameterOver = (parameterTuningValues, parameterPressed) => {
+  if (parameterPressed) {
     parameterTuningValues.backgroundColor = '#C5C8CB';
   } else {
     parameterTuningValues.backgroundColor = '#8795A5';
   }
 }
 
-export function parameterOut(parameterTuningValues) {
-  if (this.parameterPressed) {
+export const parameterOut = (parameterTuningValues, parameterPressed) => {
+  if (parameterPressed) {
     parameterTuningValues.backgroundColor = '#8795A5';
   } else {
     parameterTuningValues.backgroundColor = '#C5C8CB';
   }
 }
 
-export function changeButtonParameterValue(parameterTuningValues) {
+export function changeButtonParameterValue(parameterTuningValues, parameterPressed) {
   //переработать
   this.parameterPressed = !this.parameterPressed;
   if (this.parameterPressed) {
@@ -176,7 +176,7 @@ export function changeButtonParameterValue(parameterTuningValues) {
   }
 }
 
-export function drawClip(clip) {
+export const drawClip = (clip) => {
   clip.moveTo(11, 2);
   clip.lineTo(2, 11);
   clip.bezierCurveTo(1, 17, 6, 17, 9, 15);

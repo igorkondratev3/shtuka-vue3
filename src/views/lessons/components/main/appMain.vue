@@ -69,9 +69,9 @@
     }
   }
 
-  async function getTheoryNotes(circleNum, gradeNum, lessonNum) {
+  async function getTheoryNotes(circleNumber, gradeNumber, lessonNumber) {
     const response = await fetch(
-      `http://localhost:4000/lesson/theory-notes/${circleNum}/${gradeNum}/${lessonNum}`,
+      `http://localhost:4000/lesson/theory-notes/${circleNumber}/${gradeNumber}/${lessonNumber}`,
       {
         headers: {
           authorization: `Bearer ${storeAuthContext.user?.token}`,
@@ -85,7 +85,7 @@
     return theoryNotes;
   }
 
-  function changeVisibility(element) {
+  const changeVisibility = (element) => {
     visibilityControl.value[element] = !visibilityControl.value[element];
   }
 </script>
@@ -146,6 +146,7 @@
       align-items: center;
       flex-wrap: wrap;
       order: 4;
+      overflow-x: auto; //уменьшает блок при уменьшении экрана
     }
   }
 

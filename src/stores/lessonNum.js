@@ -14,4 +14,11 @@ export const lessonNum = defineStore({
     theoryComponentName: (state) =>
       `Circle${state.circleNumber}Lesson${state.lessonNumber}`,
   },
+  actions: {
+    changeLessonNumber(circleNumber, gradeNumber, lessonNumber) {
+      this.circleNumber = circleNumber;
+      this.gradeNumber = gradeNumber;
+      this.lessonNumber = lessonNumber;
+    }
+  }
 });

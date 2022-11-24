@@ -6,12 +6,12 @@
   const storeLessonsCollection = lessonsCollection();
   const storeLessonNum = lessonNum();
   const textBook = computed(() => {
-    return storeLessonsCollection.lessons[storeLessonNum.circle][
+    return storeLessonsCollection[storeLessonNum.circle][
       storeLessonNum.grade
     ][storeLessonNum.lesson]?.textBook;
   });
   const bookUrl = computed(() => {
-    return storeLessonsCollection.lessons[storeLessonNum.circle][
+    return storeLessonsCollection[storeLessonNum.circle][
       storeLessonNum.grade
     ][storeLessonNum.lesson]?.bookUrl;
   });
@@ -50,6 +50,7 @@
       border-radius: 30px;
       padding: 5px;
       width: 170px;
+      height: 33px;
       transition-property: border, background;
       transition-duration: 6s, 3s;
     }

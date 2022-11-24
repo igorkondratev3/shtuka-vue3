@@ -4,7 +4,7 @@
   import LastViewedLesson from './components/lastViewedLesson.vue';
   import LessonsList from './components/lessonsList.vue';
   import { useRouter } from 'vue-router';
-  import { goToChoosenLesson } from '@/views/generalFunctions/functions';
+  import { goToChoosenLesson } from '@/views/generalFunctions/goToChoosenLesson';
   import { lessonNum } from '@/stores/lessonNum';
 
   const router = useRouter();

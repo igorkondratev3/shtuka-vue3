@@ -1,4 +1,4 @@
-export function drawArrow(arrow) {
+export const drawArrow = (arrow) => {
   arrow.beginPath();
   arrow.moveTo(0, 5);
   arrow.lineTo(20, 5);

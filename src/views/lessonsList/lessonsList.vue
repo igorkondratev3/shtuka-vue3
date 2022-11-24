@@ -12,7 +12,7 @@
     addForNumberOfLesson: 0,
   });
 
-  function changeCircle(circle) {
+  const changeCircle = (circle) => {
     circleAndGrade.value.circle = circle;
     if (circle == 1) {
       circleAndGrade.value.grade = 7;
@@ -22,37 +22,37 @@
     changeAddForNumberOfLesson();
   }
 
-  function changeGrade(grade) {
+  const changeGrade = (grade) => {
     circleAndGrade.value.grade = grade;
     changeAddForNumberOfLesson();
   }
 
-  function changeAddForNumberOfLesson() {
+  const changeAddForNumberOfLesson = () => {
     switch (circleAndGrade.value.grade) {
       case 7:
         circleAndGrade.value.addForNumberOfLesson = 0;
         break;
       case 8:
         circleAndGrade.value.addForNumberOfLesson =
-          storeLessonsCollection.numberOfGrade7Lessons;
+          storeLessonsCollection.numberOf.grade7Lessons;
         break;
       case 9:
         if (circleAndGrade.value.circle == 1) {
           circleAndGrade.value.addForNumberOfLesson =
-            storeLessonsCollection.numberOfGrade7Lessons +
-            storeLessonsCollection.numberOfGrade8Lessons;
+            storeLessonsCollection.numberOf.grade7Lessons +
+            storeLessonsCollection.numberOf.grade8Lessons;
         } else {
           circleAndGrade.value.addForNumberOfLesson = 0;
         }
         break;
       case 10:
         circleAndGrade.value.addForNumberOfLesson =
-          storeLessonsCollection.numberOfCircle2Grade9Lessons;
+          storeLessonsCollection.numberOf.circle2Grade9Lessons;
         break;
       case 11:
         circleAndGrade.value.addForNumberOfLesson =
-          storeLessonsCollection.numberOfCircle2Grade9Lessons +
-          storeLessonsCollection.numberOfGrade10Lessons;
+          storeLessonsCollection.numberOf.circle2Grade9Lessons +
+          storeLessonsCollection.numberOf.grade10Lessons;
         break;
     }
   }

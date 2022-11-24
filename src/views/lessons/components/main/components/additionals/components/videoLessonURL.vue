@@ -6,7 +6,7 @@
   const storeLessonsCollection = lessonsCollection();
   const storeLessonNum = lessonNum();
   const videoLessonURL = computed(() => {
-    return storeLessonsCollection.lessons[storeLessonNum.circle][
+    return storeLessonsCollection[storeLessonNum.circle][
       storeLessonNum.grade
     ][storeLessonNum.lesson]?.videoLessonURL;
   });

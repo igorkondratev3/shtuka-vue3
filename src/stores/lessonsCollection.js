@@ -3,7 +3,6 @@ import { defineStore } from 'pinia';
 export const lessonsCollection = defineStore({
   id: 'lessonsCollection',
   state: () => ({
-    lessons: {
       circle1: {
         grade7: {},
         grade8: {},
@@ -14,14 +13,15 @@ export const lessonsCollection = defineStore({
         grade10: {},
         grade11: {},
       },
+    
+    numberOf: {
+      grade7Lessons: 50,
+      grade8Lessons: 62,
+      circle1Grade9Lessons: 20,
+      circle2Grade9Lessons: 18,
+      grade10Lessons: 5,
+      grade11Lessons: 6,
     },
-
-    numberOfGrade7Lessons: 50,
-    numberOfGrade8Lessons: 62,
-    numberOfCircle1Grade9Lessons: 20,
-    numberOfCircle2Grade9Lessons: 18,
-    numberOfGrade10Lessons: 5,
-    numberOfGrade11Lessons: 6,
 
     isFull: {
       circle1Grade7: false,
@@ -35,7 +35,7 @@ export const lessonsCollection = defineStore({
   actions: {
     setLesson(lesson) {
       if (lesson) {
-        this.lessons[`circle${lesson.circle}`][`grade${lesson.grade}`][
+        this[`circle${lesson.circle}`][`grade${lesson.grade}`][
           `lesson${lesson.lesson}`
         ] = lesson;
       }
@@ -43,7 +43,7 @@ export const lessonsCollection = defineStore({
     setLessons(lessons) {
       if (lessons) {
         for (let lesson of lessons) {
-          this.lessons[`circle${lesson.circle}`][`grade${lesson.grade}`][
+          this[`circle${lesson.circle}`][`grade${lesson.grade}`][
             `lesson${lesson.lesson}`
           ] = lesson;
         }
@@ -52,5 +52,16 @@ export const lessonsCollection = defineStore({
         ] = true;
       }
     },
+    isThereLesson(circleNumber, gradeNumber, lessonNumber) {
+      if (
+        this[`circle${circleNumber}`][
+          `grade${gradeNumber}`
+        ][`lesson${lessonNumber}`]
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
 });

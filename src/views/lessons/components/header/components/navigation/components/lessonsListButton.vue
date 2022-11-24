@@ -1,7 +1,7 @@
 <script setup>
   import { ref, onMounted } from 'vue';
   import { RouterLink } from 'vue-router';
-  import { changeColor } from '@/views/generalFunctions/functions.js';
+  import { changeColor } from '@/views/generalFunctions/changeColor.js';
 
   const lessonsList = ref(null);
   onMounted(() => {

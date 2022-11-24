@@ -1,6 +1,6 @@
 <script setup>
   import { ref, onMounted, watch } from 'vue';
-  import { changeColor } from '@/views/generalFunctions/functions.js';
+  import { changeColor } from '@/views/generalFunctions/changeColor.js';
   import { drawLines, drawCross } from './functions.js';
 
   const emits = defineEmits(['changeMenuContentSeen']);

@@ -1,4 +1,4 @@
-export function drawPen(pen) {
+export const drawPen = (pen) => {
   pen.beginPath();
   pen.moveTo(26, 4);
   pen.lineWidth = 0.5;

@@ -8,7 +8,7 @@
   const storeTheoryNotesCollection = theoryNotesCollection();
   const storeAdditionalsCollection = additionalsCollection();
 
-  function logout() {
+  const logout = () => {
     localStorage.removeItem('user');
     storeAuthContext.logout();
     storeTheoryNotesCollection.clearTheoryNotes();

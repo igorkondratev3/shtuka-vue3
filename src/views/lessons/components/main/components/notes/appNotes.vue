@@ -8,7 +8,7 @@
     note: Object,
   });
 
-  async function deleteNote() {
+   const deleteNote = async () => {
     const response = await fetch(
       'http://localhost:4000/lesson/theory-notes/' + props.note._id,
       {
@@ -36,14 +36,13 @@
       class="note__delete-button"
       @click="deleteNote"
     >
-      <span class="material-symbols-outlined">delete_forever</span>
+      <span class="material-symbols-outlined ghty">delete_forever</span>
     </div>
   </div>
 </template>
 
 <style>
   .lessons-main__note {
-    display: inline-block;
     overflow-wrap: break-word;
     white-space: pre-line;
     overflow-y: auto;

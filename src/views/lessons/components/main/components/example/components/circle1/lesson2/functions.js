@@ -1,4 +1,4 @@
-export function drawDeception(deception) {
+export const drawDeception = (deception) => {
   deception.beginPath();
   deception.moveTo(30, 30);
   deception.lineWidth = 4;

@@ -11,7 +11,7 @@
 
   const isOverDeleteButton = ref(false);
 
-  async function deleteAdditional() {
+  const deleteAdditional = async () => {
     const response = await fetch(
       'http://localhost:4000/lesson/additionals/' + props.additional._id,
       {

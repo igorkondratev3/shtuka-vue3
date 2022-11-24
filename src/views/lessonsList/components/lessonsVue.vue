@@ -3,7 +3,7 @@
   import { useRouter } from 'vue-router';
   import { lessonsCollection } from '@/stores/lessonsCollection';
   import { lessonNum } from '@/stores/lessonNum';
-  import { getLessons } from '../../generalFunctions/functions';
+  import { getLessons } from '../../generalFunctions/requestsToBackend';
 
   const props = defineProps({ circleAndGrade: Object });
   const storeLessonsCollection = lessonsCollection();
@@ -36,21 +36,19 @@
   const storeLessonNum = lessonNum();
   const router = useRouter();
 
-  function chooseLesson(lessonNumber) {
-    storeLessonNum.circleNumber = props.circleAndGrade.circle;
-    storeLessonNum.gradeNumber = props.circleAndGrade.grade;
-    storeLessonNum.lessonNumber = lessonNumber;
+  const chooseLesson = (lessonNumber) => {
+    storeLessonNum.changeLessonNumber(props.circleAndGrade.circle, props.circleAndGrade.grade, lessonNumber);
     router.push({ path: '/lessonLayout' });
   }
 
-  function excludeLessonNumber(content, contentIndex) {
+  const excludeLessonNumber = (content, contentIndex) => {
     if (contentIndex > 0) {
       return content;
     }
   }
 
   const lessons = computed(() => {
-    return storeLessonsCollection.lessons[
+    return storeLessonsCollection[
       'circle' + props.circleAndGrade.circle
     ]['grade' + props.circleAndGrade.grade];
   });

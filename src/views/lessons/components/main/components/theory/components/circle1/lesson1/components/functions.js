@@ -1,8 +1,8 @@
-export function calculateCoordinatesForLine(
+export const calculateCoordinatesForLine = (
   areaForLinesBetweenWords,
   beginPoint,
   endPoint
-) {
+) => {
   let coordinatesAreaForLinesBetweenWords =
     areaForLinesBetweenWords.value.getBoundingClientRect();
   return {
@@ -17,18 +17,18 @@ export function calculateCoordinatesForLine(
   };
 }
 
-export function drawLinesBetweenWords(areaForLines, coordinates) {
+export const drawLinesBetweenWords = (areaForLines, coordinates) => {
   areaForLines.beginPath();
   areaForLines.moveTo(coordinates.x1, coordinates.y1);
   areaForLines.lineTo(coordinates.x2, coordinates.y2);
   areaForLines.stroke();
 }
 
-export function setWidthAreaForLinesBetweenWords(
+export const setWidthAreaForLinesBetweenWords = (
   AreaForLinesBetweenWords,
   leftPoint,
   rightPoint
-) {
+) => {
   AreaForLinesBetweenWords.value.width =
     rightPoint.value.getBoundingClientRect().right -
     leftPoint.value.getBoundingClientRect().x;

@@ -1,7 +1,10 @@
 <script setup>
-  import { drawCross } from '@/views/generalComponents/menu/components/menuButton/functions';
   import { ref, onMounted } from 'vue';
-
+  import { useRouter } from 'vue-router';
+  import { drawCross } from '@/views/generalComponents/menu/components/menuButton/functions';
+  
+  const router = useRouter();
+  
   const cross = ref(null);
   onMounted(() => {
     drawCross(
@@ -11,8 +14,12 @@
     );
   });
 
-  function goToBack() {
-    window.history.back();
+  const goToBack = () => {
+    if (window.history.state.back) {
+      window.history.back();
+    } else {
+      router.push({ path: '/' });
+    }
   }
 </script>
 

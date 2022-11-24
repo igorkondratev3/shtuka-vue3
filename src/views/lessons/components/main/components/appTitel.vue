@@ -6,7 +6,7 @@
   const storeLessonsCollection = lessonsCollection();
   const storeLessonNum = lessonNum();
   const heading = computed(() => {
-    return storeLessonsCollection.lessons[storeLessonNum.circle][
+    return storeLessonsCollection[storeLessonNum.circle][
       storeLessonNum.grade
     ][storeLessonNum.lesson]?.headings;
   });

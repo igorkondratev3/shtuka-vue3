@@ -12,7 +12,7 @@
     textDecoration: '',
   });
 
-  function changeStyleForNotesContent(changedParameter) {
+  const changeStyleForNotesContent = (changedParameter) => {
     for (let key in changedParameter) {
       styleForNotesContent.value[key] = changedParameter[key];
     }
@@ -22,7 +22,7 @@
     param: 1,
   }); //переделать
 
-  function clearStyleForNotesContent() {
+  const clearStyleForNotesContent = () => {
     styleForNotesContent.value.color = '';
     styleForNotesContent.value.fontSize = '16px';
     styleForNotesContent.value.fontFamily = 'Times New Roman';
