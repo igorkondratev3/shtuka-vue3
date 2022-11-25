@@ -31,7 +31,6 @@
   const calucalateWidthAndHeightForNote = () => {
     offsetWidthNotesContent.value = notesContent.value.offsetWidth;
     offsetHeightNotesContent.value = notesContent.value.offsetHeight;
-    console.log(notesContent.value);
   }
 
   const clearTextAndStyleForNotesContent = () => {

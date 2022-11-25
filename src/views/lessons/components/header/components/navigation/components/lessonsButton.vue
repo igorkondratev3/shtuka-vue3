@@ -47,6 +47,8 @@
         title = title + head + ' ';
       }
     }
+    if (props.where === "next") {title = title + "(ctrl+right)"}
+    if (props.where === "previous") {title = title + "(ctrl+left)"}
     return title;
   });
 

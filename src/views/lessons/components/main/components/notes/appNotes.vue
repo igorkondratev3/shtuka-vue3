@@ -36,7 +36,12 @@
       class="note__delete-button"
       @click="deleteNote"
     >
-      <span class="material-symbols-outlined ghty">delete_forever</span>
+      <span 
+        class="material-symbols-outlined ghty"
+        style="font-size: 20px"  
+      >
+        delete_forever
+      </span>
     </div>
   </div>
 </template>

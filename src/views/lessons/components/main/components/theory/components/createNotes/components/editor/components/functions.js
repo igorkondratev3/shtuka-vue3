@@ -138,40 +138,39 @@ export const parameterOut = (parameterTuningValues, parameterPressed) => {
   }
 }
 
-export function changeButtonParameterValue(parameterTuningValues, parameterPressed) {
-  //переработать
-  this.parameterPressed = !this.parameterPressed;
-  if (this.parameterPressed) {
-    parameterTuningValues.backgroundColor = '#C5C8CB';
-    parameterTuningValues.boxShadow = 'none';
+export function changeButtonParameterValue(parameter, parameterTuningValues, parameterPressed) {
+  parameterPressed.value = !parameterPressed.value;
+  if (parameterPressed.value) {
+    parameterTuningValues.value.backgroundColor = '#C5C8CB';
+    parameterTuningValues.value.boxShadow = 'none';
   } else {
-    parameterTuningValues.backgroundColor = '#8795A5';
-    parameterTuningValues.boxShadow = '2px 0px 1px #454B4E';
+    parameterTuningValues.value.backgroundColor = '#8795A5';
+    parameterTuningValues.value.boxShadow = '2px 0px 1px #454B4E';
   }
-  switch (this.props.parameter) {
+  switch (parameter) {
     case 'fontWeight': {
-      if (this.parameterPressed) {
-        parameterTuningValues.fontWeight = 'bold';
+      if (parameterPressed.value) {
+        parameterTuningValues.value.fontWeight = 'bold';
       } else {
-        parameterTuningValues.fontWeight = 'normal';
+        parameterTuningValues.value.fontWeight = 'normal';
       }
-      return { fontWeight: parameterTuningValues.fontWeight };
+      return { fontWeight: parameterTuningValues.value.fontWeight };
     }
     case 'fontStyle': {
-      if (this.parameterPressed) {
-        parameterTuningValues.fontStyle = 'oblique';
+      if (parameterPressed.value) {
+        parameterTuningValues.value.fontStyle = 'oblique';
       } else {
-        parameterTuningValues.fontStyle = 'normal';
+        parameterTuningValues.value.fontStyle = 'normal';
       }
-      return { fontStyle: parameterTuningValues.fontStyle };
+      return { fontStyle: parameterTuningValues.value.fontStyle };
     }
     case 'textDecoration': {
-      if (this.parameterPressed) {
-        parameterTuningValues.textDecoration = 'underline';
+      if (parameterPressed.value) {
+        parameterTuningValues.value.textDecoration = 'underline';
       } else {
-        parameterTuningValues.textDecoration = 'none';
+        parameterTuningValues.value.textDecoration = 'none';
       }
-      return { textDecoration: parameterTuningValues.textDecoration };
+      return { textDecoration: parameterTuningValues.value.textDecoration };
     }
   }
 }

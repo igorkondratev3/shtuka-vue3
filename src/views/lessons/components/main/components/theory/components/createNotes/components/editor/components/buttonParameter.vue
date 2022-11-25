@@ -36,6 +36,13 @@
     }
     parameterTuningValues.value.backgroundColor = '#C5C8CB';
   });
+
+  const changeStyleForNotesContent = () => {
+    emits(
+        'changeStyleForNotesContent',
+        changeButtonParameterValue(props.parameter, parameterTuningValues, parameterPressed)
+      )
+  }
 </script>
 
 <template>
@@ -43,12 +50,7 @@
     class="editor__button"
     @pointerover="parameterOver(parameterTuningValues, parameterPressed)"
     @pointerout="parameterOut(parameterTuningValues, parameterPressed)"
-    @click="
-      emits(
-        'changeStyleForNotesContent',
-        changeButtonParameterValue(parameterTuningValues, parameterPressed)
-      )
-    "
+    @click="changeStyleForNotesContent"
     :style="parameterTuningValues"
   >
     {{ letterParameterDefinition(props.parameter) }}

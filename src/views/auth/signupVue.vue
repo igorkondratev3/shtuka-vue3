@@ -8,12 +8,19 @@
   const storeAuthContext = authContext();
   const email = ref('');
   const password = ref('');
+  const repeatPassword = ref('');
   const error = ref(null);
   const isLoading = ref(null);
 
-  const signup = async (email, password) => {
+  const signup = async (email, password, repeatPassword) => {
     isLoading.value = true;
     error.value = null;
+
+    if (password !== repeatPassword) {
+      isLoading.value = false;
+      error.value = "Пароль и подтверждение не свопадают";
+      return
+    }
 
     const response = await fetch('http://localhost:4000/user/signup', {
       method: 'POST',
@@ -55,8 +62,14 @@
       v-model="password"
       class="form-auth__input"
     />
+    <label>Подтвердите пароль:</label>
+    <input
+      type="password"
+      v-model="repeatPassword"
+      class="form-auth__input"
+    />
     <button
-      @click.prevent="signup(email, password)"
+      @click.prevent="signup(email, password, repeatPassword)"
       :disabled="isLoading"
       class="form-auth__button"
     >

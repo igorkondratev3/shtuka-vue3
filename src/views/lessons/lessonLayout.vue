@@ -2,7 +2,7 @@
   import AppHeader from './components/header/appHeader.vue';
   import AppMain from './components/main/appMain.vue';
   import AppFooter from './components/footer/appFooter.vue';
-  import { watch } from 'vue';
+  import { watch, onMounted, onBeforeUnmount} from 'vue';
   import { getLesson } from '../generalFunctions/requestsToBackend';
   import {
     calculateLessonNumberForPreviousLesson,
@@ -58,6 +58,34 @@
       );
     }
   }
+
+  let calculateLessonNumber;
+
+  const handleGoToLesson = (event) => {
+      if (event.code==="ArrowLeft" && event.ctrlKey) {
+        calculateLessonNumber = calculateLessonNumberForPreviousLesson;
+        goToLesson();
+      }
+      if (event.code==="ArrowRight" && event.ctrlKey) {
+        calculateLessonNumber = calculateLessonNumberForNextLesson;
+        goToLesson();
+      }   
+    }
+
+  const goToLesson = () => {
+    const [circleNumber, gradeNumber, lessonNumber] = calculateLessonNumber(
+      storeLessonNum,
+      storeLessonsCollection
+    );
+    storeLessonNum.changeLessonNumber(circleNumber, gradeNumber, lessonNumber);
+  }
+
+  onMounted(() => {
+    document.addEventListener('keydown', handleGoToLesson)
+  })
+  onBeforeUnmount(() => {
+    document.removeEventListener('keydown', handleGoToLesson);
+  })
 </script>
 
 <template>

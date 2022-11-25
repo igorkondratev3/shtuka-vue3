@@ -12,7 +12,7 @@
   const name = ref('');
   const description = ref('');
   const isCreate = ref(false);
-  const error = ref(null)
+  const error = ref(null);
 
    const addAdditional = async () => {
     isCreate.value = true;

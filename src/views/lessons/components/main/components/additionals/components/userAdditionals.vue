@@ -8,10 +8,17 @@
   const props = defineProps({
     additional: Object,
   });
+  const emit = defineEmits(['showError']);
 
   const isOverDeleteButton = ref(false);
+  const isDelete = ref(false);
 
   const deleteAdditional = async () => {
+    if (isDelete.value) { return; }
+      // вместо disabled на элементе, так как в таком случае не отрабатывается обработчик и соответственно stop, а тогда осуществляется переход по ссылке
+
+    isDelete.value = true;
+
     const response = await fetch(
       'http://localhost:4000/lesson/additionals/' + props.additional._id,
       {
@@ -23,8 +30,14 @@
     );
     const payload = await response.json();
 
+    if (!response.ok) {
+      emit('showError', payload.error);
+      isDelete.value = false;
+    }
+
     if (response.ok) {
       storeAdditionalsCollection.deleteAdditional(payload);
+      isDelete.value = false;
     }
   }
 </script>
@@ -40,7 +53,7 @@
       :title="props.additional.description"
     >
       {{ additional.name }}
-      <div
+      <button
         class="additionals-link__delete-button"
         title="удалить"
         @click.stop.prevent="deleteAdditional"
@@ -49,7 +62,7 @@
       >
         <svg class="crossSVG">
           <line
-            :class="{ line_red: isOverDeleteButton }"
+            :class="{ line_red: isOverDeleteButton, 'disabled-delete': isDelete }"
             x1="0"
             y1="0"
             x2="10"
@@ -58,7 +71,7 @@
             stroke="rgb(0,0,0)"
           />
           <line
-            :class="{ line_red: isOverDeleteButton }"
+            :class="{ line_red: isOverDeleteButton, 'disabled-delete': isDelete }"
             x1="0"
             y1="10"
             x2="10"
@@ -67,7 +80,7 @@
             stroke="rgb(0,0,0)"
           />
         </svg>
-      </div>
+      </button>
     </div>
   </a>
 </template>
@@ -78,12 +91,10 @@
     right: 5px;
     top: 2px;
     color: black;
+    background-color: transparent;
     cursor: default;
     line-height: 0;
-  }
-
-  .additionals-link__delete-button:hover {
-    color: red;
+    border: 0;
   }
 
   .crossSVG {
@@ -93,6 +104,11 @@
 
   .line_red {
     stroke: red;
+  }
+
+  .disabled-delete,
+  .disabled-delete:hover {
+    stroke: rgb(212, 208, 208);
   }
 
   @media (max-width: 1600px) {

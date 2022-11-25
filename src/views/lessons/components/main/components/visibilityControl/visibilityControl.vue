@@ -43,6 +43,7 @@
   }
 
   .visibility-control__button {
+    font: 16px 'Times New Roman';
     user-select: none;
     background-color: rgba(218, 210, 210, 0.795);
     border: 1px solid black;
@@ -62,7 +63,7 @@
     color: white;
   }
 
-  @media (max-width: 520px) {
+  @media (max-width: 444px) {
     .visibility-control {
       padding-left: 75px; /*при появлении скролла первый блок обрезается*/
     }

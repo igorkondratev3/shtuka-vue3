@@ -52,6 +52,14 @@
       'circle' + props.circleAndGrade.circle
     ]['grade' + props.circleAndGrade.grade];
   });
+
+  const getLessonHeadings = (numberOfLesson) => {
+    return lessons.value[
+      `lesson${
+        numberOfLesson + props.circleAndGrade.addForNumberOfLesson
+      }`
+    ]?.headings
+  }
 </script>
 
 <template>
@@ -60,35 +68,15 @@
       class="lessons__lesson lesson"
       v-for="numberOfLesson in Object.keys(lessons).length"
       :key="numberOfLesson.id"
-      @click="
-        chooseLesson(
-          parseInt(
-            lessons[
-              `lesson${
-                numberOfLesson + props.circleAndGrade.addForNumberOfLesson
-              }`
-            ].headings[0]
-          )
-        )
-      "
+      @click="chooseLesson(numberOfLesson + props.circleAndGrade.addForNumberOfLesson)"
     >
       <!--перебираем номера так как объекты записываются не по порядку, не хочу записывать в массив чтобы не было разреженных и вообще так больше нравится-->
       <div class="lesson__number">
-        {{
-          lessons[
-            `lesson${
-              numberOfLesson + props.circleAndGrade.addForNumberOfLesson
-            }`
-          ]?.headings[0]
-        }}
+        {{ getLessonHeadings(numberOfLesson)[0] }}
       </div>
       <div class="lesson__theme">
         <template
-          v-for="(head, headIndex) in lessons[
-            `lesson${
-              numberOfLesson + props.circleAndGrade.addForNumberOfLesson
-            }`
-          ]?.headings"
+          v-for="(head, headIndex) in getLessonHeadings(numberOfLesson)"
         >
           {{ excludeLessonNumber(head, headIndex) }} {{ ' ' }}
         </template>

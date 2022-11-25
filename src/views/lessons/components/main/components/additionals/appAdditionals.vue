@@ -15,6 +15,7 @@
   const storeAuthContext = authContext();
   const createAdditionasFormSeen = ref(false);
   const needAuthSeen = ref(false);
+  const error = ref(null);
   const additionals = computed(() => {
     return storeAdditionalsCollection[storeLessonNum.circle][
       storeLessonNum.grade
@@ -68,6 +69,11 @@
     }
     return additionals;
   }
+
+  const showError = (errorValue) => {
+    error.value = errorValue;
+    setTimeout(() => error.value = null, 5000);
+  }
 </script>
 
 <template>
@@ -82,6 +88,7 @@
         v-for="additional in additionals"
         :key="additional.id"
         :additional="additional"
+        @showError="showError"
       />
     </div>
     <ButtonForCreateAdditional
@@ -91,6 +98,12 @@
           : (needAuthSeen = true)
       "
     />
+    <div
+      class="additionals__error error"
+      v-show="error"
+    >
+      {{ error }}
+    </div>
     <CreateAdditionalsForm
       v-show="createAdditionasFormSeen"
       @closeCreateAdditionalForm="createAdditionasFormSeen = false"
@@ -131,6 +144,9 @@
       margin-bottom: 10px;
       max-width: 150px;
     }
+  }
+  .additionals__error {
+    width: 170px;
   }
 
   @media (max-width: 1600px) {
