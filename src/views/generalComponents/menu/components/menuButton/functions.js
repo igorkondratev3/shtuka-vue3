@@ -10,7 +10,7 @@ export const drawLines = (lines, width, height) => {
   lines.lineTo(26, 22);
   lines.strokeStyle = 'black';
   lines.stroke();
-}
+};
 
 export const drawCross = (cross, width, height) => {
   cross.clearRect(0, 0, width, height);
@@ -22,4 +22,4 @@ export const drawCross = (cross, width, height) => {
   cross.lineTo(25, 7);
   cross.strokeStyle = 'black';
   cross.stroke();
-}
+};

@@ -1,4 +1,4 @@
-export const getLesson = async(circleNumber, gradeNumber, lessonNumber) => {
+export const getLesson = async (circleNumber, gradeNumber, lessonNumber) => {
   const response = await fetch(
     `http://localhost:4000/lesson/${circleNumber}/${gradeNumber}/${lessonNumber}`
   );
@@ -7,9 +7,9 @@ export const getLesson = async(circleNumber, gradeNumber, lessonNumber) => {
     return false;
   }
   return lesson;
-}
+};
 
-export const getLessons = async(circleNumber, gradeNumber) => {
+export const getLessons = async (circleNumber, gradeNumber) => {
   const response = await fetch(
     `http://localhost:4000/lesson/${circleNumber}/${gradeNumber}`
   );
@@ -18,4 +18,4 @@ export const getLessons = async(circleNumber, gradeNumber) => {
     return false;
   }
   return lesson;
-}
+};

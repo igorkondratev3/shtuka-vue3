@@ -6,14 +6,14 @@
   const storeLessonsCollection = lessonsCollection();
   const storeLessonNum = lessonNum();
   const textBook = computed(() => {
-    return storeLessonsCollection[storeLessonNum.circle][
-      storeLessonNum.grade
-    ][storeLessonNum.lesson]?.textBook;
+    return storeLessonsCollection[storeLessonNum.circle][storeLessonNum.grade][
+      storeLessonNum.lesson
+    ]?.textBook;
   });
   const bookUrl = computed(() => {
-    return storeLessonsCollection[storeLessonNum.circle][
-      storeLessonNum.grade
-    ][storeLessonNum.lesson]?.bookUrl;
+    return storeLessonsCollection[storeLessonNum.circle][storeLessonNum.grade][
+      storeLessonNum.lesson
+    ]?.bookUrl;
   });
 </script>
 

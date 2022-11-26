@@ -1,28 +1,24 @@
 export const calculateLessonNumberForNextLesson = (
   storeLessonNum,
-  storeLessonsCollection
+  numberOf
 ) => {
   if (
     storeLessonNum.circleNumber == 2 &&
     storeLessonNum.lessonNumber ==
-      storeLessonsCollection.numberOf.circle2Grade9Lessons +
-        storeLessonsCollection.numberOf.grade10Lessons +
-        storeLessonsCollection.numberOf.grade11Lessons
+      numberOf.circle2Grade9Lessons +
+        numberOf.grade10Lessons +
+        numberOf.grade11Lessons
   ) {
     return [1, 7, 1];
   } else if (
     (storeLessonNum.circleNumber == 1 &&
-      (storeLessonNum.lessonNumber ==
-        storeLessonsCollection.numberOf.grade7Lessons ||
+      (storeLessonNum.lessonNumber == numberOf.grade7Lessons ||
         storeLessonNum.lessonNumber ==
-          storeLessonsCollection.numberOf.grade7Lessons +
-            storeLessonsCollection.numberOf.grade8Lessons)) ||
+          numberOf.grade7Lessons + numberOf.grade8Lessons)) ||
     (storeLessonNum.circleNumber == 2 &&
-      (storeLessonNum.lessonNumber ==
-        storeLessonsCollection.numberOf.circle2Grade9Lessons ||
+      (storeLessonNum.lessonNumber == numberOf.circle2Grade9Lessons ||
         storeLessonNum.lessonNumber ==
-          storeLessonsCollection.numberOf.circle2Grade9Lessons +
-            storeLessonsCollection.numberOf.grade10Lessons))
+          numberOf.circle2Grade9Lessons + numberOf.grade10Lessons))
   ) {
     return [
       storeLessonNum.circleNumber,
@@ -32,9 +28,9 @@ export const calculateLessonNumberForNextLesson = (
   } else if (
     storeLessonNum.circleNumber == 1 &&
     storeLessonNum.lessonNumber ==
-      storeLessonsCollection.numberOf.grade7Lessons +
-        storeLessonsCollection.numberOf.grade8Lessons +
-        storeLessonsCollection.numberOf.circle1Grade9Lessons
+      numberOf.grade7Lessons +
+        numberOf.grade8Lessons +
+        numberOf.circle1Grade9Lessons
   ) {
     return [2, storeLessonNum.gradeNumber, 1];
   } else {
@@ -44,11 +40,11 @@ export const calculateLessonNumberForNextLesson = (
       storeLessonNum.lessonNumber + 1,
     ];
   }
-}
+};
 
 export const calculateLessonNumberForPreviousLesson = (
   storeLessonNum,
-  storeLessonsCollection
+  numberOf
 ) => {
   if (storeLessonNum.lessonNumber == 1) {
     switch (storeLessonNum.gradeNumber) {
@@ -56,34 +52,28 @@ export const calculateLessonNumberForPreviousLesson = (
         return [
           2,
           11,
-          storeLessonsCollection.numberOf.circle2Grade9Lessons +
-            storeLessonsCollection.numberOf.grade10Lessons +
-            storeLessonsCollection.numberOf.grade11Lessons,
+          numberOf.circle2Grade9Lessons +
+            numberOf.grade10Lessons +
+            numberOf.grade11Lessons,
         ];
       case 9:
         return [
           1,
           storeLessonNum.gradeNumber,
-          storeLessonsCollection.numberOf.circle1Grade9Lessons +
-            storeLessonsCollection.numberOf.grade7Lessons +
-            storeLessonsCollection.numberOf.grade8Lessons,
+          numberOf.circle1Grade9Lessons +
+            numberOf.grade7Lessons +
+            numberOf.grade8Lessons,
         ];
     }
   } else if (
     (storeLessonNum.circleNumber == 1 &&
-      (storeLessonNum.lessonNumber ==
-        storeLessonsCollection.numberOf.grade7Lessons + 1 ||
+      (storeLessonNum.lessonNumber == numberOf.grade7Lessons + 1 ||
         storeLessonNum.lessonNumber ==
-          storeLessonsCollection.numberOf.grade7Lessons +
-            storeLessonsCollection.numberOf.grade8Lessons +
-            1)) ||
+          numberOf.grade7Lessons + numberOf.grade8Lessons + 1)) ||
     (storeLessonNum.circleNumber == 2 &&
-      (storeLessonNum.lessonNumber ==
-        storeLessonsCollection.numberOf.circle2Grade9Lessons + 1 ||
+      (storeLessonNum.lessonNumber == numberOf.circle2Grade9Lessons + 1 ||
         storeLessonNum.lessonNumber ==
-          storeLessonsCollection.numberOf.circle2Grade9Lessons +
-            storeLessonsCollection.numberOf.grade10Lessons +
-            1))
+          numberOf.circle2Grade9Lessons + numberOf.grade10Lessons + 1))
   ) {
     return [
       storeLessonNum.circleNumber,
@@ -97,4 +87,4 @@ export const calculateLessonNumberForPreviousLesson = (
       storeLessonNum.lessonNumber - 1,
     ];
   }
-}
+};

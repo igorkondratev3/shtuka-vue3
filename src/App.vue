@@ -10,7 +10,11 @@
   const storeLessonNum = lessonNum();
   if (localStorage.lesson) {
     let lessonParameters = JSON.parse(localStorage.getItem('lesson'));
-    storeLessonNum.changeLessonNumber(lessonParameters.circleNumber, lessonParameters.gradeNumber, lessonParameters.lessonNumber)
+    storeLessonNum.changeLessonNumber(
+      lessonParameters.circleNumber,
+      lessonParameters.gradeNumber,
+      lessonParameters.lessonNumber
+    );
   }
   watch(storeLessonNum, () => {
     localStorage.setItem(
@@ -25,7 +29,10 @@
 </script>
 
 <template>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0"
+  />
   <RouterView />
 </template>
 

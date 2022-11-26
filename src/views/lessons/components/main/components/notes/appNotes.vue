@@ -1,4 +1,5 @@
 <script setup>
+  import { ref } from 'vue';
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
   import { authContext } from '@/stores/authContext';
 
@@ -8,7 +9,11 @@
     note: Object,
   });
 
-   const deleteNote = async () => {
+  const isDelete = ref(false);
+
+  const deleteNote = async () => {
+    isDelete.value = true;
+
     const response = await fetch(
       'http://localhost:4000/lesson/theory-notes/' + props.note._id,
       {
@@ -23,7 +28,9 @@
     if (response.ok) {
       storeTheoryNotesCollection.deleteTheoryNote(payload);
     }
-  }
+
+    isDelete.value = false;
+  };
 </script>
 
 <template>
@@ -32,17 +39,19 @@
     :style="props.note.textStyle"
   >
     {{ note.text }}
-    <div
+    <button
       class="note__delete-button"
       @click="deleteNote"
+      :disabled="isDelete"
+      :class="{ 'note__delete-button_disabled': isDelete }"
     >
-      <span 
+      <span
         class="material-symbols-outlined ghty"
-        style="font-size: 20px"  
+        style="font-size: 20px"
       >
         delete_forever
       </span>
-    </div>
+    </button>
   </div>
 </template>
 
@@ -66,9 +75,15 @@
     color: black;
     cursor: default;
     line-height: 0;
+    border: 0;
   }
 
   .note__delete-button:hover {
     color: red;
+  }
+
+  .note__delete-button_disabled,
+  .note__delete-button_disabled:hover {
+    color: rgb(212, 208, 208);
   }
 </style>

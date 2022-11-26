@@ -20,12 +20,12 @@
       circleAndGrade.value.grade = 9;
     }
     changeAddForNumberOfLesson();
-  }
+  };
 
   const changeGrade = (grade) => {
     circleAndGrade.value.grade = grade;
     changeAddForNumberOfLesson();
-  }
+  };
 
   const changeAddForNumberOfLesson = () => {
     switch (circleAndGrade.value.grade) {
@@ -55,7 +55,7 @@
           storeLessonsCollection.numberOf.grade10Lessons;
         break;
     }
-  }
+  };
 </script>
 
 <template>

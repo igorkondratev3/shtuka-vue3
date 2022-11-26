@@ -18,8 +18,8 @@
 
     if (password !== repeatPassword) {
       isLoading.value = false;
-      error.value = "Пароль и подтверждение не свопадают";
-      return
+      error.value = 'Пароль и подтверждение не свопадают';
+      return;
     }
 
     const response = await fetch('http://localhost:4000/user/signup', {
@@ -43,7 +43,7 @@
         router.push({ path: '/' });
       }
     }
-  }
+  };
 </script>
 
 <template>

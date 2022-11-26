@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
   import ListParameter from './components/listParameter.vue';
   import ButtonParameter from './components/buttonParameter.vue';
 
@@ -35,7 +34,7 @@ import { ref } from 'vue'
 
   function changeStyleForNotesContent(changedParameter) {
     emits('changeStyleForNotesContent', changedParameter);
-  } //переписать в шаблон
+  }
 </script>
 
 <template>

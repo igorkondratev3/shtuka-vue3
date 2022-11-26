@@ -65,7 +65,7 @@
 
   @media (max-width: 444px) {
     .visibility-control {
-      padding-left: 75px; /*при появлении скролла первый блок обрезается*/
+      padding-left: 75px; /*так как при появлении скролла первый блок обрезается*/
     }
   }
 </style>

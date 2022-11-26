@@ -22,7 +22,7 @@
 
   watch(props.flagClearStyleForNotesContent, () => {
     parameterTuningValues.value.choosenValueText = props.parameterListValue[0];
-  }); //переработать
+  });
 
   const border = computed(() => {
     return {

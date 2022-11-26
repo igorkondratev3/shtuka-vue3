@@ -3,28 +3,24 @@ export const closeListOfPararmeterValues = (parameterTuningValues) => {
   parameterTuningValues.choosenValueSeen = true;
   parameterTuningValues.arrowOpenListOfValues = true;
   parameterTuningValues.borderValue = '0.5px solid black';
-}
+};
 
-export const changeSeenOfListOfParameterValues = async(parameterTuningValues) => {
-  let changeSeen = new Promise((resolve) => {
-    // убрать промис
-    parameterTuningValues.listOfValuesSeen =
-      !parameterTuningValues.listOfValuesSeen;
-    parameterTuningValues.choosenValueSeen =
-      !parameterTuningValues.choosenValueSeen;
-    parameterTuningValues.arrowOpenListOfValues =
-      !parameterTuningValues.arrowOpenListOfValues;
-    resolve();
-  });
-
-  await changeSeen;
+export const changeSeenOfListOfParameterValues = async (
+  parameterTuningValues
+) => {
+  parameterTuningValues.listOfValuesSeen =
+    !parameterTuningValues.listOfValuesSeen;
+  parameterTuningValues.choosenValueSeen =
+    !parameterTuningValues.choosenValueSeen;
+  parameterTuningValues.arrowOpenListOfValues =
+    !parameterTuningValues.arrowOpenListOfValues;
 
   if (parameterTuningValues.listOfValuesSeen) {
     parameterTuningValues.borderValue = 'none';
   } else {
     parameterTuningValues.borderValue = '0.5px solid black';
   }
-}
+};
 
 export const changeListParameterValue = (
   parameterTuningValues,
@@ -97,7 +93,7 @@ export const changeListParameterValue = (
     case 'Cambria':
       return { fontFamily: 'Cambria' };
   }
-}
+};
 
 export const letterParameterDefinition = (parameter) => {
   switch (parameter) {
@@ -108,7 +104,7 @@ export const letterParameterDefinition = (parameter) => {
     case 'textDecoration':
       return 'ч';
   }
-}
+};
 
 export const drawArrowDown = (arrow) => {
   arrow.beginPath();
@@ -120,7 +116,7 @@ export const drawArrowDown = (arrow) => {
   arrow.lineTo(6, 3);
   arrow.strokeStyle = 'black';
   arrow.stroke();
-}
+};
 
 export const parameterOver = (parameterTuningValues, parameterPressed) => {
   if (parameterPressed) {
@@ -128,7 +124,7 @@ export const parameterOver = (parameterTuningValues, parameterPressed) => {
   } else {
     parameterTuningValues.backgroundColor = '#8795A5';
   }
-}
+};
 
 export const parameterOut = (parameterTuningValues, parameterPressed) => {
   if (parameterPressed) {
@@ -136,9 +132,13 @@ export const parameterOut = (parameterTuningValues, parameterPressed) => {
   } else {
     parameterTuningValues.backgroundColor = '#C5C8CB';
   }
-}
+};
 
-export function changeButtonParameterValue(parameter, parameterTuningValues, parameterPressed) {
+export function changeButtonParameterValue(
+  parameter,
+  parameterTuningValues,
+  parameterPressed
+) {
   parameterPressed.value = !parameterPressed.value;
   if (parameterPressed.value) {
     parameterTuningValues.value.backgroundColor = '#C5C8CB';
@@ -186,4 +186,4 @@ export const drawClip = (clip) => {
   clip.lineTo(15, 6);
   clip.strokeStyle = 'black';
   clip.stroke();
-}
+};

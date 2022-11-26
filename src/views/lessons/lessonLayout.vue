@@ -2,7 +2,7 @@
   import AppHeader from './components/header/appHeader.vue';
   import AppMain from './components/main/appMain.vue';
   import AppFooter from './components/footer/appFooter.vue';
-  import { watch, onMounted, onBeforeUnmount} from 'vue';
+  import { watch, onMounted, onBeforeUnmount } from 'vue';
   import { getLesson } from '../generalFunctions/requestsToBackend';
   import {
     calculateLessonNumberForPreviousLesson,
@@ -16,7 +16,7 @@
 
   if (!localStorage.lesson) {
     //на случай если загружается страница урока напрямую и если раньше не был на сайте
-    storeLessonNum.changeLessonNumber(1, 7, 1)
+    storeLessonNum.changeLessonNumber(1, 7, 1);
   }
 
   setLesson(
@@ -27,11 +27,14 @@
   setLesson(
     ...calculateLessonNumberForPreviousLesson(
       storeLessonNum,
-      storeLessonsCollection
+      storeLessonsCollection.numberOf
     )
   );
   setLesson(
-    ...calculateLessonNumberForNextLesson(storeLessonNum, storeLessonsCollection)
+    ...calculateLessonNumberForNextLesson(
+      storeLessonNum,
+      storeLessonsCollection.numberOf
+    )
   );
 
   watch(storeLessonNum, () => {
@@ -43,16 +46,25 @@
     setLesson(
       ...calculateLessonNumberForPreviousLesson(
         storeLessonNum,
-        storeLessonsCollection
+        storeLessonsCollection.numberOf
       )
     );
     setLesson(
-      ...calculateLessonNumberForNextLesson(storeLessonNum, storeLessonsCollection)
+      ...calculateLessonNumberForNextLesson(
+        storeLessonNum,
+        storeLessonsCollection.numberOf
+      )
     );
   });
 
   async function setLesson(circleNumber, gradeNumber, lessonNumber) {
-    if (!storeLessonsCollection.isThereLesson(circleNumber, gradeNumber, lessonNumber)) {
+    if (
+      !storeLessonsCollection.isThereLesson(
+        circleNumber,
+        gradeNumber,
+        lessonNumber
+      )
+    ) {
       storeLessonsCollection.setLesson(
         await getLesson(circleNumber, gradeNumber, lessonNumber)
       );
@@ -62,30 +74,30 @@
   let calculateLessonNumber;
 
   const handleGoToLesson = (event) => {
-      if (event.code==="ArrowLeft" && event.ctrlKey) {
-        calculateLessonNumber = calculateLessonNumberForPreviousLesson;
-        goToLesson();
-      }
-      if (event.code==="ArrowRight" && event.ctrlKey) {
-        calculateLessonNumber = calculateLessonNumberForNextLesson;
-        goToLesson();
-      }   
+    if (event.code === 'ArrowLeft' && event.ctrlKey) {
+      calculateLessonNumber = calculateLessonNumberForPreviousLesson;
+      goToLesson();
     }
+    if (event.code === 'ArrowRight' && event.ctrlKey) {
+      calculateLessonNumber = calculateLessonNumberForNextLesson;
+      goToLesson();
+    }
+  };
 
   const goToLesson = () => {
     const [circleNumber, gradeNumber, lessonNumber] = calculateLessonNumber(
       storeLessonNum,
-      storeLessonsCollection
+      storeLessonsCollection.numberOf
     );
     storeLessonNum.changeLessonNumber(circleNumber, gradeNumber, lessonNumber);
-  }
+  };
 
   onMounted(() => {
-    document.addEventListener('keydown', handleGoToLesson)
-  })
+    document.addEventListener('keydown', handleGoToLesson);
+  });
   onBeforeUnmount(() => {
     document.removeEventListener('keydown', handleGoToLesson);
-  })
+  });
 </script>
 
 <template>

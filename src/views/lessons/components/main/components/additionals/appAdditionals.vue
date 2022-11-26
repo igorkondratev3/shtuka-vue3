@@ -72,8 +72,8 @@
 
   const showError = (errorValue) => {
     error.value = errorValue;
-    setTimeout(() => error.value = null, 5000);
-  }
+    setTimeout(() => (error.value = null), 5000);
+  };
 </script>
 
 <template>

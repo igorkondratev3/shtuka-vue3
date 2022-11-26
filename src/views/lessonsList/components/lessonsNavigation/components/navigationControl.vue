@@ -24,7 +24,7 @@
       isGrade.value.isGrade11 = false;
       emits('changeCircle', 2);
     }
-  }
+  };
 
   const changeGrade = (chooseGradeNumber) => {
     isGrade.value.isGrade7 = false;
@@ -34,7 +34,7 @@
     isGrade.value.isGrade11 = false;
     isGrade.value['isGrade' + chooseGradeNumber] = true;
     emits('changeGrade', chooseGradeNumber);
-  }
+  };
 </script>
 
 <template>

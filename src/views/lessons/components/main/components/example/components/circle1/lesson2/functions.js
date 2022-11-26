@@ -33,4 +33,4 @@ export const drawDeception = (deception) => {
   deception.fillText('синий отрезок кажется длиннее. В этом', 3, 315);
   deception.fillText('легко убедиться с помощью линейки', 3, 330);
   deception.fillText('(экспериментальное исследование).', 3, 345);
-}
+};

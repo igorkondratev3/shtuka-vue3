@@ -7,27 +7,22 @@
 
   const props = defineProps({ circleAndGrade: Object });
   const storeLessonsCollection = lessonsCollection();
-  const circleAndGradeArr = computed(() => {
-    //переработать, вроде нужно для watch
-    return [props.circleAndGrade.circle, props.circleAndGrade.grade];
-  });
 
   setLessons();
-  watch(circleAndGradeArr, () => {
+  watch(props.circleAndGrade, () => {
     setLessons();
   });
 
   async function setLessons() {
     if (
       !storeLessonsCollection.isFull[
-        `circle${circleAndGradeArr.value[0]}grade${circleAndGradeArr.value[1]}`
+        `circle${props.circleAndGrade.circle}grade${props.circleAndGrade.grade}`
       ]
     ) {
       storeLessonsCollection.setLessons(
         await getLessons(
-          circleAndGradeArr.value[0],
-          circleAndGradeArr.value[1],
-          storeLessonsCollection
+          props.circleAndGrade.circle,
+          props.circleAndGrade.grade
         )
       );
     }
@@ -37,29 +32,31 @@
   const router = useRouter();
 
   const chooseLesson = (lessonNumber) => {
-    storeLessonNum.changeLessonNumber(props.circleAndGrade.circle, props.circleAndGrade.grade, lessonNumber);
+    storeLessonNum.changeLessonNumber(
+      props.circleAndGrade.circle,
+      props.circleAndGrade.grade,
+      lessonNumber
+    );
     router.push({ path: '/lessonLayout' });
-  }
+  };
 
   const excludeLessonNumber = (content, contentIndex) => {
     if (contentIndex > 0) {
       return content;
     }
-  }
+  };
 
   const lessons = computed(() => {
-    return storeLessonsCollection[
-      'circle' + props.circleAndGrade.circle
-    ]['grade' + props.circleAndGrade.grade];
+    return storeLessonsCollection['circle' + props.circleAndGrade.circle][
+      'grade' + props.circleAndGrade.grade
+    ];
   });
 
   const getLessonHeadings = (numberOfLesson) => {
     return lessons.value[
-      `lesson${
-        numberOfLesson + props.circleAndGrade.addForNumberOfLesson
-      }`
-    ]?.headings
-  }
+      `lesson${numberOfLesson + props.circleAndGrade.addForNumberOfLesson}`
+    ]?.headings;
+  };
 </script>
 
 <template>
@@ -68,7 +65,9 @@
       class="lessons__lesson lesson"
       v-for="numberOfLesson in Object.keys(lessons).length"
       :key="numberOfLesson.id"
-      @click="chooseLesson(numberOfLesson + props.circleAndGrade.addForNumberOfLesson)"
+      @click="
+        chooseLesson(numberOfLesson + props.circleAndGrade.addForNumberOfLesson)
+      "
     >
       <!--перебираем номера так как объекты записываются не по порядку, не хочу записывать в массив чтобы не было разреженных и вообще так больше нравится-->
       <div class="lesson__number">

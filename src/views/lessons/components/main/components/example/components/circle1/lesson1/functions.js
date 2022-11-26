@@ -380,4 +380,4 @@ export const drawLighting = (lighting, x, y) => {
     y + 392
   );
   lighting.fillText('механическое (движение облака)', x - 109, y + 412);
-}
+};

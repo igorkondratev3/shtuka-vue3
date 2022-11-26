@@ -1,7 +1,10 @@
 <script setup>
   import { ref, onMounted, computed } from 'vue';
   import { changeColor } from '@/views/generalFunctions/changeColor.js';
-  import { calculateLessonNumberForNextLesson, calculateLessonNumberForPreviousLesson } from '@/views/generalFunctions/calculateLessonNumber.js';
+  import {
+    calculateLessonNumberForNextLesson,
+    calculateLessonNumberForPreviousLesson,
+  } from '@/views/generalFunctions/calculateLessonNumber.js';
   import { drawArrowRight, drawArrowLeft } from './functions.js';
   import { lessonsCollection } from '@/stores/lessonsCollection';
   import { lessonNum } from '@/stores/lessonNum';
@@ -10,12 +13,12 @@
   let drawArrow;
   let calculateLessonNumber;
 
-  if (props.where === "next") {
+  if (props.where === 'next') {
     drawArrow = drawArrowRight;
     calculateLessonNumber = calculateLessonNumberForNextLesson;
   }
 
-  if (props.where === "previous") {
+  if (props.where === 'previous') {
     drawArrow = drawArrowLeft;
     calculateLessonNumber = calculateLessonNumberForPreviousLesson;
   }
@@ -33,7 +36,7 @@
   const lessonTitle = computed(() => {
     const [circleNumber, gradeNumber, lessonNumber] = calculateLessonNumber(
       storeLessonNum,
-      storeLessonsCollection
+      storeLessonsCollection.numberOf
     );
 
     let headings =
@@ -47,18 +50,22 @@
         title = title + head + ' ';
       }
     }
-    if (props.where === "next") {title = title + "(ctrl+right)"}
-    if (props.where === "previous") {title = title + "(ctrl+left)"}
+    if (props.where === 'next') {
+      title = title + '(ctrl+right)';
+    }
+    if (props.where === 'previous') {
+      title = title + '(ctrl+left)';
+    }
     return title;
   });
 
   const goToLesson = () => {
     const [circleNumber, gradeNumber, lessonNumber] = calculateLessonNumber(
       storeLessonNum,
-      storeLessonsCollection
+      storeLessonsCollection.numberOf
     );
     storeLessonNum.changeLessonNumber(circleNumber, gradeNumber, lessonNumber);
-  }
+  };
 </script>
 
 <template>

@@ -16,11 +16,11 @@
     for (let key in changedParameter) {
       styleForNotesContent.value[key] = changedParameter[key];
     }
-  }
+  };
 
   const flagClearStyleForNotesContent = ref({
     param: 1,
-  }); //переделать
+  });
 
   const clearStyleForNotesContent = () => {
     styleForNotesContent.value.color = '';
@@ -30,7 +30,7 @@
     styleForNotesContent.value.fontStyle = '';
     styleForNotesContent.value.textDecoration = '';
     flagClearStyleForNotesContent.value.param++;
-  }
+  };
 </script>
 
 <template>

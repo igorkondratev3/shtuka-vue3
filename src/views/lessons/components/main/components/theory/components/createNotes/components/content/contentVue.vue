@@ -31,22 +31,22 @@
   const calucalateWidthAndHeightForNote = () => {
     offsetWidthNotesContent.value = notesContent.value.offsetWidth;
     offsetHeightNotesContent.value = notesContent.value.offsetHeight;
-  }
+  };
 
   const clearTextAndStyleForNotesContent = () => {
     textNotes.value = '';
     emits('clearStyleForNotesContent');
-  }
+  };
 
   function showError(errorValue) {
     error.value = errorValue;
-    setTimeout(() => error.value = null, 5000);
+    setTimeout(() => (error.value = null), 5000);
   }
 </script>
 
 <template>
   <textarea
-    v-model="textNotes" 
+    v-model="textNotes"
     class="notes__content"
     :style="styleForNotesContent"
     ref="notesContent"

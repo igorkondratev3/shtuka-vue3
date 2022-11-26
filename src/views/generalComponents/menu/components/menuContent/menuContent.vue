@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, computed} from 'vue'
+  import { ref, computed } from 'vue';
   import { useRouter } from 'vue-router';
   import { authContext } from '@/stores/authContext';
 
@@ -29,7 +29,7 @@
         router.push({ path: '/lessonsList' });
         break;
     }
-  }
+  };
 </script>
 
 <template>
@@ -38,12 +38,12 @@
       class="menu"
       @pointerleave="emits('closeMenu')"
     >
-      <div class="menu__sections menu__user-name"> 
+      <div class="menu__sections menu__user-name">
         {{ userName }}
       </div>
       <div
         class="menu__sections"
-        v-for="section in sections" 
+        v-for="section in sections"
         :key="section.id"
         @click="chooseSection(section)"
       >
@@ -91,11 +91,8 @@
       box-sizing: content-box;
       cursor: default;
       color: white;
-      background-color: rgb(
-        89,
-        90,
-        97
-      ); // не делать прозрачность - контекст наложения
+      background-color: rgb(89, 90, 97);
+      // не делать прозрачность - контекст наложения
       border: 0.5px solid black;
       border-radius: 10px;
       padding: 10px;

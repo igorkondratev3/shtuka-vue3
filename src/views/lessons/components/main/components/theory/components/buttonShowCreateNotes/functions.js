@@ -25,4 +25,4 @@ export const drawPen = (pen) => {
   pen.bezierCurveTo(11, 16, 10, 16, 9, 14);
   pen.strokeStyle = 'black';
   pen.stroke();
-}
+};

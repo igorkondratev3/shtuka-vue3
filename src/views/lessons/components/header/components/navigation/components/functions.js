@@ -11,7 +11,7 @@ export const drawArrowLeft = (left) => {
   left.fillStyle = '#CAF2FE';
   left.fill();
   left.stroke();
-}
+};
 
 export const drawArrowRight = (right) => {
   right.beginPath();
@@ -26,4 +26,4 @@ export const drawArrowRight = (right) => {
   right.fillStyle = '#CAF2FE';
   right.fill();
   right.stroke();
-}
+};

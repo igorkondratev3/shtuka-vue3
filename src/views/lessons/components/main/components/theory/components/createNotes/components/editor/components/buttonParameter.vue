@@ -39,10 +39,14 @@
 
   const changeStyleForNotesContent = () => {
     emits(
-        'changeStyleForNotesContent',
-        changeButtonParameterValue(props.parameter, parameterTuningValues, parameterPressed)
+      'changeStyleForNotesContent',
+      changeButtonParameterValue(
+        props.parameter,
+        parameterTuningValues,
+        parameterPressed
       )
-  }
+    );
+  };
 </script>
 
 <template>

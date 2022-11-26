@@ -19,7 +19,7 @@
       storeLessonNum.grade
     ][storeLessonNum.lesson];
   });
-  
+
   const visibilityControl = ref({
     titel: true,
     theory: true,
@@ -87,7 +87,7 @@
 
   const changeVisibility = (element) => {
     visibilityControl.value[element] = !visibilityControl.value[element];
-  }
+  };
 </script>
 
 <template>

@@ -14,7 +14,7 @@
   const isCreate = ref(false);
   const error = ref(null);
 
-   const addAdditional = async () => {
+  const addAdditional = async () => {
     isCreate.value = true;
 
     if (!address.value.trim().length) {
@@ -29,7 +29,7 @@
       lesson: storeLessonNum.lessonNumber,
       address: address.value,
       name: name.value,
-      description: description.value, 
+      description: description.value,
     };
 
     const response = await fetch('http://localhost:4000/lesson/additionals', {
@@ -56,12 +56,12 @@
       emit('closeCreateAdditionalForm');
       isCreate.value = false;
     }
-  }
+  };
 
   const showError = (errorValue) => {
     error.value = errorValue;
-    setTimeout(() => error.value = null, 5000);
-  }
+    setTimeout(() => (error.value = null), 5000);
+  };
 </script>
 
 <template>

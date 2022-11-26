@@ -3,17 +3,17 @@ import { defineStore } from 'pinia';
 export const lessonsCollection = defineStore({
   id: 'lessonsCollection',
   state: () => ({
-      circle1: {
-        grade7: {},
-        grade8: {},
-        grade9: {},
-      },
-      circle2: {
-        grade9: {},
-        grade10: {},
-        grade11: {},
-      },
-    
+    circle1: {
+      grade7: {},
+      grade8: {},
+      grade9: {},
+    },
+    circle2: {
+      grade9: {},
+      grade10: {},
+      grade11: {},
+    },
+
     numberOf: {
       grade7Lessons: 50,
       grade8Lessons: 62,
@@ -54,14 +54,14 @@ export const lessonsCollection = defineStore({
     },
     isThereLesson(circleNumber, gradeNumber, lessonNumber) {
       if (
-        this[`circle${circleNumber}`][
-          `grade${gradeNumber}`
-        ][`lesson${lessonNumber}`]
+        this[`circle${circleNumber}`][`grade${gradeNumber}`][
+          `lesson${lessonNumber}`
+        ]
       ) {
         return true;
       } else {
         return false;
       }
-    }
+    },
   },
 });

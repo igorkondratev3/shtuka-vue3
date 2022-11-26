@@ -10,8 +10,6 @@
     drawPlus(plus.value.getContext('2d'));
     changeColor(buttonShowCreateAdditionalsForm.value);
   });
-
-  
 </script>
 
 <template>

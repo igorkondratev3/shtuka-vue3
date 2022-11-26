@@ -13,7 +13,7 @@
     storeAuthContext.logout();
     storeTheoryNotesCollection.clearTheoryNotes();
     storeAdditionalsCollection.clearAdditionals();
-  }
+  };
 </script>
 
 <template>

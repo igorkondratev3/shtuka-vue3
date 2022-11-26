@@ -32,7 +32,7 @@ const router = createRouter({
     },
     {
       path: '/signup',
-      name: 'signup', 
+      name: 'signup',
       component: SignupVue,
     },
   ],

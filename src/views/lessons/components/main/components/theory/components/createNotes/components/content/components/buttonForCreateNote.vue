@@ -11,7 +11,7 @@
   const emits = defineEmits([
     'clearTextAndStyleForNotesContent',
     'calucalateWidthAndHeightForNote',
-    'showError'
+    'showError',
   ]);
   const props = defineProps({
     textNotes: String,
@@ -67,7 +67,7 @@
       emits('clearTextAndStyleForNotesContent');
       isCreate.value = false;
     }
-  }
+  };
 </script>
 
 <template>

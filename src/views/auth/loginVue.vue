@@ -8,7 +8,7 @@
   const storeAuthContext = authContext();
   const email = ref('');
   const password = ref('');
-  const error = ref(null); 
+  const error = ref(null);
   const isLoading = ref(null);
 
   const login = async (email, password) => {
@@ -36,7 +36,7 @@
         router.push({ path: '/' });
       }
     }
-  }
+  };
 </script>
 
 <template>

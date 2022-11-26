@@ -6,9 +6,9 @@
   const storeLessonsCollection = lessonsCollection();
   const storeLessonNum = lessonNum();
   const heading = computed(() => {
-    return storeLessonsCollection[storeLessonNum.circle][
-      storeLessonNum.grade
-    ][storeLessonNum.lesson]?.headings;
+    return storeLessonsCollection[storeLessonNum.circle][storeLessonNum.grade][
+      storeLessonNum.lesson
+    ]?.headings;
   });
   const theme__value_media = computed(() => {
     return storeLessonNum.lesson;

@@ -18,4 +18,4 @@ export const drawPlus = (plus) => {
   plus.fillStyle = '#CAF2FE';
   plus.fill();
   plus.stroke();
-}
+};

@@ -7,4 +7,4 @@ export const drawArrow = (arrow) => {
   arrow.lineTo(10, 10);
   arrow.strokeStyle = '#0064A9';
   arrow.stroke();
-}
+};

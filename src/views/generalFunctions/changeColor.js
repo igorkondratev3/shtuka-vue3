@@ -11,4 +11,4 @@ export const changeColor = (elem) => {
   elem.addEventListener('pointerup', function () {
     elem.style.backgroundColor = '#C5C8CB';
   });
-}
+};

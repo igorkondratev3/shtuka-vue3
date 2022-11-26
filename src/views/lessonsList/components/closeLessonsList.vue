@@ -2,9 +2,9 @@
   import { ref, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
   import { drawCross } from '@/views/generalComponents/menu/components/menuButton/functions';
-  
+
   const router = useRouter();
-  
+
   const cross = ref(null);
   onMounted(() => {
     drawCross(
@@ -20,7 +20,7 @@
     } else {
       router.push({ path: '/' });
     }
-  }
+  };
 </script>
 
 <template>

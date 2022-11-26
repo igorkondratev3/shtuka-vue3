@@ -6,9 +6,9 @@
   const storeLessonsCollection = lessonsCollection();
   const storeLessonNum = lessonNum();
   const videoLessonURL = computed(() => {
-    return storeLessonsCollection[storeLessonNum.circle][
-      storeLessonNum.grade
-    ][storeLessonNum.lesson]?.videoLessonURL;
+    return storeLessonsCollection[storeLessonNum.circle][storeLessonNum.grade][
+      storeLessonNum.lesson
+    ]?.videoLessonURL;
   });
 </script>
 
