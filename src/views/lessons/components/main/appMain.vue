@@ -53,6 +53,17 @@
     }
   });
 
+  if (localStorage.visibilityControl) {
+    const visibilityControlFromLocalStorage = JSON.parse(localStorage.getItem('visibilityControl'));
+    for (let key in visibilityControl.value) {
+      visibilityControl.value[key] = visibilityControlFromLocalStorage[key];
+    } 
+  } else {
+    localStorage.setItem('visibilityControl', 
+      JSON.stringify(visibilityControl.value)
+    )
+  }
+
   async function setTheoryNotesInTheoryStoreCollection() {
     if (
       !storeTheoryNotesCollection[storeLessonNum.circle][storeLessonNum.grade][
@@ -87,6 +98,7 @@
 
   const changeVisibility = (element) => {
     visibilityControl.value[element] = !visibilityControl.value[element];
+    localStorage.setItem('visibilityControl', JSON.stringify(visibilityControl.value));
   };
 </script>
 

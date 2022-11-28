@@ -39,3 +39,12 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: 14px;
   }
+
+  .form-auth__error {
+    margin-top: 20px;
+  }
+
+  .disabled,
+  .disabled:hover {
+    background-color: rgb(212, 208, 208);
+  }

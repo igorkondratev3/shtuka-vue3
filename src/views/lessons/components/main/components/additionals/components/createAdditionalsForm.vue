@@ -1,8 +1,9 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
   import { lessonNum } from '@/stores/lessonNum';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue'
 
   const storeLessonNum = lessonNum();
   const storeAdditionalsCollection = additionalsCollection();
@@ -12,13 +13,18 @@
   const name = ref('');
   const description = ref('');
   const isCreate = ref(false);
-  const error = ref(null);
+  const error = ref('');
+  const resourceAddress = ref(null);
+
+  onMounted(() => {
+    resourceAddress.value.focus(); //через autofocus фокус работает только на первый раз
+  })
 
   const addAdditional = async () => {
     isCreate.value = true;
 
     if (!address.value.trim().length) {
-      showError('Поле c адресом ресурса должно быть заполнено');
+      error.value = 'Поле c адресом ресурса должно быть заполнено';
       isCreate.value = false;
       return;
     }
@@ -44,7 +50,7 @@
     const payload = await response.json();
 
     if (!response.ok) {
-      showError(payload.error);
+      error.value = payload.error;
       isCreate.value = false;
     }
 
@@ -56,11 +62,6 @@
       emit('closeCreateAdditionalForm');
       isCreate.value = false;
     }
-  };
-
-  const showError = (errorValue) => {
-    error.value = errorValue;
-    setTimeout(() => (error.value = null), 5000);
   };
 </script>
 
@@ -79,6 +80,7 @@
         type="text"
         class="create-additionals__input"
         v-model="address"
+        ref="resourceAddress"
       />
       <label>Обозначение ресурса</label>
       <input
@@ -100,12 +102,13 @@
       >
         Создать дополнение
       </button>
-      <div
-        class="create-additionals__error error"
-        v-show="error"
-      >
-        {{ error }}
-      </div>
+      <ErrorVue
+        class="create-additionals__error"
+        v-if="error" 
+        :error="error"
+        @closeError="error=''"
+      />
+      <!--v-if здесь, а не на компонентах и не v-show так как хочу чтобы код в error отрабатывался при открытии-->
     </div>
   </div>
 </template>
@@ -178,6 +181,9 @@
     }
     &__create-button:hover {
       background-color: rgb(88, 88, 165);
+    }
+    &__error {
+      margin-top: 20px;
     }
   }
 

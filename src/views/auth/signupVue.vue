@@ -3,18 +3,18 @@
   import { useRouter, RouterLink } from 'vue-router';
   import { authContext } from '@/stores/authContext';
   import AppMenu from '@/views/generalComponents/menu/appMenu.vue';
+  import ErrorVue from '../generalComponents/error/errorVue.vue';
 
   const router = useRouter();
   const storeAuthContext = authContext();
   const email = ref('');
   const password = ref('');
   const repeatPassword = ref('');
-  const error = ref(null);
+  const error = ref('');
   const isLoading = ref(null);
 
   const signup = async (email, password, repeatPassword) => {
     isLoading.value = true;
-    error.value = null;
 
     if (password !== repeatPassword) {
       isLoading.value = false;
@@ -72,15 +72,16 @@
       @click.prevent="signup(email, password, repeatPassword)"
       :disabled="isLoading"
       class="form-auth__button"
+      :class="{ disabled: isLoading }"
     >
       Зарегистрироваться
     </button>
-    <div
-      class="form__error error"
-      v-show="error"
-    >
-      {{ error }}
-    </div>
+    <ErrorVue
+      class="form-auth__error"
+      v-if="error" 
+      :error="error"
+      @closeError="error=''"
+    />
     <router-link
       class="nav-auth__signup form-auth__link"
       to="/login"
@@ -90,4 +91,5 @@
   </form>
 </template>
 
-<style></style>
+<style>
+</style>

@@ -19,5 +19,6 @@
   }
   .start-links_max-width {
     max-width: 25px;
+    overflow: hidden;
   }
 </style>

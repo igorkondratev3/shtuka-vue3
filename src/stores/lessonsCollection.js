@@ -34,6 +34,7 @@ export const lessonsCollection = defineStore({
   }),
   actions: {
     setLesson(lesson) {
+      console.log(lesson)
       if (lesson) {
         this[`circle${lesson.circle}`][`grade${lesson.grade}`][
           `lesson${lesson.lesson}`
@@ -41,6 +42,7 @@ export const lessonsCollection = defineStore({
       }
     },
     setLessons(lessons) {
+      console.log(lessons);
       if (lessons) {
         for (let lesson of lessons) {
           this[`circle${lesson.circle}`][`grade${lesson.grade}`][

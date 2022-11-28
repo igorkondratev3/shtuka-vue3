@@ -106,6 +106,7 @@
     flex-direction: column;
     justify-content: center;
     margin: 10px 10px 0px;
+    font: 18px 'Times New Roman'
   }
 
   .navigation-control {

@@ -3,17 +3,17 @@
   import { useRouter, RouterLink } from 'vue-router';
   import { authContext } from '@/stores/authContext';
   import AppMenu from '@/views/generalComponents/menu/appMenu.vue';
+  import ErrorVue from '../generalComponents/error/errorVue.vue';
 
   const router = useRouter();
   const storeAuthContext = authContext();
   const email = ref('');
   const password = ref('');
-  const error = ref(null);
+  const error = ref('');
   const isLoading = ref(null);
 
   const login = async (email, password) => {
     isLoading.value = true;
-    error.value = null;
 
     const response = await fetch('http://localhost:4000/user/login', {
       method: 'POST',
@@ -57,17 +57,18 @@
     />
     <button
       class="form-auth__button"
+      :class="{ disabled: isLoading }"
       :disabled="isLoading"
       @click.prevent="login(email, password)"
     >
       Войти
     </button>
-    <div
-      class="form-auth__error error"
-      v-show="error"
-    >
-      {{ error }}
-    </div>
+    <ErrorVue
+      class="form-auth__error"
+      v-if="error" 
+      :error="error"
+      @closeError="error=''"
+    />
     <router-link
       class="nav-auth__signup form-auth__link"
       to="/signup"
@@ -79,7 +80,6 @@
 
 <style>
   @import './formAuth.css';
-  @import '@/assets/error.css';
 
   .form-auth__link {
     top: 20px;

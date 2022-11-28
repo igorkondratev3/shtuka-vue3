@@ -1,6 +1,7 @@
 <script setup>
   import { computed, ref } from 'vue';
   import ButtonForCreateNote from './components/buttonForCreateNote.vue';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
 
   const emits = defineEmits(['clearStyleForNotesContent']);
   const props = defineProps({
@@ -26,7 +27,7 @@
   let offsetWidthNotesContent = ref(0);
   let offsetHeightNotesContent = ref(0);
   const notesContent = ref(null);
-  const error = ref(null);
+  const error = ref('');
 
   const calucalateWidthAndHeightForNote = () => {
     offsetWidthNotesContent.value = notesContent.value.offsetWidth;
@@ -37,11 +38,6 @@
     textNotes.value = '';
     emits('clearStyleForNotesContent');
   };
-
-  function showError(errorValue) {
-    error.value = errorValue;
-    setTimeout(() => (error.value = null), 5000);
-  }
 </script>
 
 <template>
@@ -57,14 +53,14 @@
     :widthAndHeightForNote="widthAndHeightForNote"
     @calucalateWidthAndHeightForNote="calucalateWidthAndHeightForNote"
     @clearTextAndStyleForNotesContent="clearTextAndStyleForNotesContent"
-    @showError="showError"
+    @showError="(errorValue) => error = errorValue"
   />
-  <div
-    class="notes__error error"
-    v-show="error"
-  >
-    {{ error }}
-  </div>
+  <ErrorVue 
+    class = "notes__error"
+    v-if="error"
+    :error="error"
+    @closeError="error = ''"
+  />
 </template>
 
 <style>
@@ -90,5 +86,6 @@
 
   .notes__error {
     max-width: 350px;
+    margin-top: 20px;
   }
 </style>
