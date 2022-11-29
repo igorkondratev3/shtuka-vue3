@@ -15,7 +15,7 @@
       </div>
       Вам необходимо
       <router-link
-        to="/login"
+        to="/auth?start=login"
         class="need-auth__login"
       >
         войти</router-link
@@ -23,7 +23,7 @@
       или
       <router-link
         class="need-auth__signup"
-        to="/signup"
+        to="/auth?start=signup"
       >
         зарегистрироваться</router-link
       >

@@ -1,54 +1,28 @@
 <script setup>
   import { ref } from 'vue';
-  import { useRouter, RouterLink } from 'vue-router';
-  import { authContext } from '@/stores/authContext';
-  import AppMenu from '@/views/generalComponents/menu/appMenu.vue';
-  import ErrorVue from '../generalComponents/error/errorVue.vue';
+  import { useRouter } from 'vue-router';
+  import ErrorVue from '../../generalComponents/error/errorVue.vue';
+  import { fetchAuth } from './fetchAuth'
 
   const router = useRouter();
-  const storeAuthContext = authContext();
   const email = ref('');
   const password = ref('');
   const repeatPassword = ref('');
   const error = ref('');
   const isLoading = ref(null);
 
-  const signup = async (email, password, repeatPassword) => {
-    isLoading.value = true;
-
+  const signup = (email, password, repeatPassword) => {
     if (password !== repeatPassword) {
       isLoading.value = false;
       error.value = 'Пароль и подтверждение не свопадают';
       return;
     }
-
-    const response = await fetch('http://localhost:4000/user/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-    const payload = await response.json();
-
-    if (!response.ok) {
-      isLoading.value = false;
-      error.value = payload.error;
-    }
-    if (response.ok) {
-      localStorage.setItem('user', JSON.stringify(payload));
-      storeAuthContext.login(payload);
-      isLoading.value = false;
-      if (window.history.state.back) {
-        window.history.back();
-      } else {
-        router.push({ path: '/' });
-      }
-    }
+    
+    fetchAuth('signup', email, password, error, isLoading, router);
   };
 </script>
 
 <template>
-  <header class="header"><AppMenu /></header>
-  <form class="form-auth signup">
     <h3 class="form-auth__title">Регистрация</h3>
     <label>Email:</label>
     <input
@@ -82,13 +56,6 @@
       :error="error"
       @closeError="error=''"
     />
-    <router-link
-      class="nav-auth__signup form-auth__link"
-      to="/login"
-    >
-      Вход
-    </router-link>
-  </form>
 </template>
 
 <style>

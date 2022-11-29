@@ -38,7 +38,7 @@
       description: description.value,
     };
 
-    const response = await fetch('http://localhost:4000/lesson/additionals', {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/lesson/additionals`, {
       method: 'POST',
       body: JSON.stringify(additional),
       headers: {
@@ -63,10 +63,19 @@
       isCreate.value = false;
     }
   };
+
+  const checkClose = (event) => {
+    if (event.target === event.currentTarget) {
+      emit('closeCreateAdditionalForm');
+    }
+  }
 </script>
 
 <template>
-  <div class="additionals__create-additionals create-additionals">
+  <div 
+    class="additionals__create-additionals create-additionals"
+    @click="checkClose"
+  >
     <div class="create-additionals__form">
       <div
         class="create-additionals__close-button"

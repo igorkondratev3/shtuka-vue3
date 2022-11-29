@@ -5,11 +5,13 @@
   import CreateAdditionalsForm from './components/createAdditionalsForm.vue';
   import UserAdditionals from './components/userAdditionals.vue';
   import NeedAuth from '@/views/generalComponents/needAuth/needAuth.vue';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import { ref, computed, watch } from 'vue';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
   import { lessonNum } from '@/stores/lessonNum';
-  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
+  import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend';
+
 
   const storeAdditionalsCollection = additionalsCollection();
   const storeLessonNum = lessonNum();
@@ -46,29 +48,14 @@
       ]
     ) {
       storeAdditionalsCollection.setAdditionals(
-        await getAdditionals(
+        await getElementsFromBackend(
+          'additionals',
           storeLessonNum.circleNumber,
           storeLessonNum.gradeNumber,
           storeLessonNum.lessonNumber
         )
       );
     }
-  }
-
-  async function getAdditionals(circleNumber, gradeNumber, lessonNumber) {
-    const response = await fetch(
-      `http://localhost:4000/lesson/additionals/${circleNumber}/${gradeNumber}/${lessonNumber}`,
-      {
-        headers: {
-          authorization: `Bearer ${storeAuthContext.user?.token}`,
-        },
-      }
-    );
-    const additionals = await response.json();
-    if (!response.ok) {
-      return false;
-    }
-    return additionals;
   }
 </script>
 

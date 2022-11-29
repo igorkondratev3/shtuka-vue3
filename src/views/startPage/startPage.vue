@@ -8,7 +8,6 @@
 <template>
   <div
     class="start-page"
-    v-cloak
   >
     <header class="start-page__header">
       <AuthNav />

@@ -46,7 +46,7 @@
     note.textStyle.width = props.widthAndHeightForNote.width.value + 'px';
     note.textStyle.height = props.widthAndHeightForNote.height.value + 'px';
 
-    const response = await fetch('http://localhost:4000/lesson/theory-notes', {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes`, {
       method: 'POST',
       body: JSON.stringify(note),
       headers: {

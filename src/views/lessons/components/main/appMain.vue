@@ -9,6 +9,7 @@
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
   import { authContext } from '@/stores/authContext';
   import { lessonNum } from '@/stores/lessonNum';
+  import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend';
 
   const storeTheoryNotesCollection = theoryNotesCollection();
   const storeLessonNum = lessonNum();
@@ -71,29 +72,14 @@
       ]
     ) {
       storeTheoryNotesCollection.setTheoryNotes(
-        await getTheoryNotes(
+        await getElementsFromBackend(
+          'theory-notes',
           storeLessonNum.circleNumber,
           storeLessonNum.gradeNumber,
           storeLessonNum.lessonNumber
         )
       );
     }
-  }
-
-  async function getTheoryNotes(circleNumber, gradeNumber, lessonNumber) {
-    const response = await fetch(
-      `http://localhost:4000/lesson/theory-notes/${circleNumber}/${gradeNumber}/${lessonNumber}`,
-      {
-        headers: {
-          authorization: `Bearer ${storeAuthContext.user?.token}`,
-        },
-      }
-    );
-    const theoryNotes = await response.json();
-    if (!response.ok) {
-      return false;
-    }
-    return theoryNotes;
   }
 
   const changeVisibility = (element) => {

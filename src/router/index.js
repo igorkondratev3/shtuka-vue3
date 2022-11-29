@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import LessonLayout from '@/views/lessons/lessonLayout.vue';
 import LessonsList from '@/views/lessonsList/lessonsList.vue';
-import LoginVue from '@/views/auth/loginVue.vue';
-import SignupVue from '@/views/auth/signupVue.vue';
+import AuthVue from '@/views/auth/authVue.vue';
 import StartPage from '@/views/startPage/startPage.vue';
 import { authContext } from '@/stores/authContext';
 
@@ -26,22 +25,16 @@ const router = createRouter({
       component: LessonsList,
     },
     {
-      path: '/login',
-      name: 'login',
-      component: LoginVue,
-    },
-    {
-      path: '/signup',
-      name: 'signup',
-      component: SignupVue,
+      path: '/auth',
+      name: 'auth',
+      component: AuthVue,
     },
   ],
 });
 
 router.beforeEach((to) => {
   const storeAuthContext = authContext();
-  if (to.path == '/login' && storeAuthContext.user) return '/';
-  if (to.path == '/signup' && storeAuthContext.user) return '/';
+  if (to.path == '/auth' && storeAuthContext.user) return '/';
 });
 
 export default router;

@@ -15,7 +15,7 @@
     isDelete.value = true;
 
     const response = await fetch(
-      'http://localhost:4000/lesson/theory-notes/' + props.note._id,
+      `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes/` + props.note._id,
       {
         method: 'DELETE',
         headers: {

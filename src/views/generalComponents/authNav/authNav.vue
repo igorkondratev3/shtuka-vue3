@@ -27,7 +27,7 @@
     </button>
     <div v-show="!storeAuthContext.user">
       <router-link
-        to="/login"
+        to="/auth?start=login"
         class="nav-auth__login"
       >
         Вход
@@ -35,7 +35,7 @@
       /
       <router-link
         class="nav-auth__signup"
-        to="/signup"
+        to="/auth?start=signup"
       >
         Регистрация
       </router-link>

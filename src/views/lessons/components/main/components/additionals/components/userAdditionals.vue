@@ -23,7 +23,7 @@
     isDelete.value = true;
 
     const response = await fetch(
-      'http://localhost:4000/lesson/additionals/' + props.additional._id,
+      `${import.meta.env.VITE_BACKEND_URI}/lesson/additionals/` + props.additional._id,
       {
         method: 'DELETE',
         headers: {
