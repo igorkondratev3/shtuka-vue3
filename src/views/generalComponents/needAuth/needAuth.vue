@@ -1,11 +1,16 @@
 <script setup>
   import { RouterLink } from 'vue-router';
+  import { checkClose } from '@/views/generalFunctions/checkClose';
+
   const prop = defineProps({ allowedAction: String });
   defineEmits(['closeNeedAuth']);
 </script>
 
 <template>
-  <div class="need-auth">
+  <div 
+    class="need-auth"
+    @click="checkClose($event) ? $emit('closeNeedAuth') : undefined"  
+  >
     <div class="need-auth__content">
       <div
         class="need-auth__close-button"

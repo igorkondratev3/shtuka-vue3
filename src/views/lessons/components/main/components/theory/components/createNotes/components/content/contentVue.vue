@@ -1,5 +1,5 @@
 <script setup>
-  import { computed, ref } from 'vue';
+  import { computed, ref, onActivated } from 'vue';
   import ButtonForCreateNote from './components/buttonForCreateNote.vue';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
 
@@ -28,6 +28,10 @@
   let offsetHeightNotesContent = ref(0);
   const notesContent = ref(null);
   const error = ref('');
+
+  onActivated(() => {
+    notesContent.value.focus();
+  })
 
   const calucalateWidthAndHeightForNote = () => {
     offsetWidthNotesContent.value = notesContent.value.offsetWidth;

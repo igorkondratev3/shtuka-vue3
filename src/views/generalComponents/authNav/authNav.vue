@@ -3,17 +3,27 @@
   import { authContext } from '@/stores/authContext';
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
   import { additionalsCollection } from '@/stores/additionalsCollection';
+  import { shtukaChannel } from '@/shtukaChannel';  
 
   const storeAuthContext = authContext();
   const storeTheoryNotesCollection = theoryNotesCollection();
   const storeAdditionalsCollection = additionalsCollection();
+
+  const handleLogout = () => {
+    logout();
+    shtukaChannel.postMessage('logout');
+  }
 
   const logout = () => {
     localStorage.removeItem('user');
     storeAuthContext.logout();
     storeTheoryNotesCollection.clearTheoryNotes();
     storeAdditionalsCollection.clearAdditionals();
-  };
+  } 
+
+  shtukaChannel.onmessage = (event) => {
+    if (event.data === 'logout') logout();
+  }
 </script>
 
 <template>
@@ -21,7 +31,7 @@
     <button
       class="nav-auth__logout"
       v-show="storeAuthContext.user"
-      @click="logout()"
+      @click="handleLogout"
     >
       Выйти
     </button>

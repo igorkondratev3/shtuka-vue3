@@ -6,6 +6,7 @@
     calculateLessonNumberForPreviousLesson,
   } from '@/views/generalFunctions/calculateLessonNumber.js';
   import { drawArrowRight, drawArrowLeft } from './functions.js';
+  import { changeLesson } from '@/views/generalFunctions/changeLesson';
   import { lessonsCollection } from '@/stores/lessonsCollection';
   import { lessonNum } from '@/stores/lessonNum';
 
@@ -58,21 +59,13 @@
     }
     return title;
   });
-
-  const goToLesson = () => {
-    const [circleNumber, gradeNumber, lessonNumber] = calculateLessonNumber(
-      storeLessonNum,
-      storeLessonsCollection.numberOf
-    );
-    storeLessonNum.changeLessonNumber(circleNumber, gradeNumber, lessonNumber);
-  };
 </script>
 
 <template>
   <div
     class="navigation__lesson-button round-button"
     ref="lessonButton"
-    @click="goToLesson()"
+    @click="changeLesson(calculateLessonNumber)"
     :title="lessonTitle"
   >
     <canvas

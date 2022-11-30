@@ -8,8 +8,7 @@
   const urlSearchParams = new URLSearchParams(document.location.search);
   if (urlSearchParams.get('start') === 'signup') {
     isSignup.value = true;
-  } 
-  
+  }
 </script>
 
 <template>

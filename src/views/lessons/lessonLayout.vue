@@ -8,6 +8,7 @@
     calculateLessonNumberForPreviousLesson,
     calculateLessonNumberForNextLesson,
   } from '../generalFunctions/calculateLessonNumber';
+  import { changeLesson } from '@/views/generalFunctions/changeLesson';
   import { lessonsCollection } from '../../stores/lessonsCollection';
   import { lessonNum } from '../../stores/lessonNum';
 
@@ -71,32 +72,19 @@
     }
   }
 
-  let calculateLessonNumber;
-
-  const handleGoToLesson = (event) => {
-    if (event.code === 'ArrowLeft' && event.ctrlKey) {
-      calculateLessonNumber = calculateLessonNumberForPreviousLesson;
-      goToLesson();
-    }
-    if (event.code === 'ArrowRight' && event.ctrlKey) {
-      calculateLessonNumber = calculateLessonNumberForNextLesson;
-      goToLesson();
-    }
-  };
-
-  const goToLesson = () => {
-    const [circleNumber, gradeNumber, lessonNumber] = calculateLessonNumber(
-      storeLessonNum,
-      storeLessonsCollection.numberOf
-    );
-    storeLessonNum.changeLessonNumber(circleNumber, gradeNumber, lessonNumber);
+  const handleChangeLesson = (event) => {
+    if (event.code === 'ArrowLeft' && event.ctrlKey)
+      changeLesson(calculateLessonNumberForPreviousLesson);
+    
+    if (event.code === 'ArrowRight' && event.ctrlKey)
+      changeLesson(calculateLessonNumberForNextLesson);
   };
 
   onMounted(() => {
-    document.addEventListener('keydown', handleGoToLesson);
+    document.addEventListener('keydown', handleChangeLesson);
   });
   onBeforeUnmount(() => {
-    document.removeEventListener('keydown', handleGoToLesson);
+    document.removeEventListener('keydown', handleChangeLesson);
   });
 </script>
 

@@ -4,6 +4,7 @@
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue'
+  import { checkClose } from '@/views/generalFunctions/checkClose';
 
   const storeLessonNum = lessonNum();
   const storeAdditionalsCollection = additionalsCollection();
@@ -63,18 +64,12 @@
       isCreate.value = false;
     }
   };
-
-  const checkClose = (event) => {
-    if (event.target === event.currentTarget) {
-      emit('closeCreateAdditionalForm');
-    }
-  }
 </script>
 
 <template>
   <div 
     class="additionals__create-additionals create-additionals"
-    @click="checkClose"
+    @click="checkClose($event) ? $emit('closeCreateAdditionalForm') : undefined"
   >
     <div class="create-additionals__form">
       <div

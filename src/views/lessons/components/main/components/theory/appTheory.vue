@@ -47,7 +47,9 @@
         storeAuthContext.user ? (notesSeen = !notesSeen) : (needAuthSeen = true)
       "
     />
-    <CreateNotes v-show="notesSeen" />
+    <KeepAlive>
+      <CreateNotes v-if="notesSeen" />
+    </KeepAlive>
     <NeedAuth
       v-if="needAuthSeen"
       allowedAction="оставлять пометки."
