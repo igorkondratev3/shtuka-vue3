@@ -6,9 +6,7 @@
 </script>
 
 <template>
-  <div
-    class="start-page"
-  >
+  <div class="start-page">
     <header class="start-page__header">
       <AuthNav />
       <AppMenu />

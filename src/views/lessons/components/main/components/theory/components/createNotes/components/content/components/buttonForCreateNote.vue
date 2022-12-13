@@ -3,6 +3,7 @@
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
   import { authContext } from '@/stores/authContext';
   import { ref } from 'vue';
+  import { getNewTokens } from '@/views/generalFunctions/refreshToken';
 
   const storeLessonNum = lessonNum();
   const storeTheoryNotesCollection = theoryNotesCollection();
@@ -46,16 +47,33 @@
     note.textStyle.width = props.widthAndHeightForNote.width.value + 'px';
     note.textStyle.height = props.widthAndHeightForNote.height.value + 'px';
 
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes`, {
-      method: 'POST',
-      body: JSON.stringify(note),
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${storeAuthContext.user?.token}`,
-      },
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes`,
+      {
+        method: 'POST',
+        body: JSON.stringify(note),
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${storeAuthContext.user?.token}`,
+        },
+      }
+    );
 
     const payload = await response.json();
+
+    if (payload.error === 'Необходимо предоставить refreshToken') {
+      const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
+      if (tokens.error) {
+        emits('showError', tokens.error);
+        isCreate.value = false;
+        return;
+      }
+
+      storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
+      localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
+      createNote();
+      return;
+    }
 
     if (!response.ok) {
       emits('showError', payload.error);

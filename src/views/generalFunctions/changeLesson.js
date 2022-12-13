@@ -10,4 +10,4 @@ export const changeLesson = (calculateLessonNumber) => {
     storeLessonsCollection.numberOf
   );
   storeLessonNum.changeLessonNumber(circleNumber, gradeNumber, lessonNumber);
-}
+};

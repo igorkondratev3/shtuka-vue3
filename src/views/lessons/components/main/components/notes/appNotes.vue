@@ -2,6 +2,7 @@
   import { ref } from 'vue';
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
   import { authContext } from '@/stores/authContext';
+  import { deleteElementFromDB } from '@/views/generalFunctions/requestsToBackend';
 
   const storeAuthContext = authContext();
   const storeTheoryNotesCollection = theoryNotesCollection();
@@ -14,19 +15,15 @@
   const deleteNote = async () => {
     isDelete.value = true;
 
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes/` + props.note._id,
-      {
-        method: 'DELETE',
-        headers: {
-          authorization: `Bearer ${storeAuthContext.user?.token}`,
-        },
-      }
+    const payloadResponse = await deleteElementFromDB(
+      'theory-notes',
+      props.note._id,
+      storeAuthContext.user.token,
+      storeAuthContext.user.refreshToken
     );
-    const payload = await response.json();
 
-    if (response.ok) {
-      storeTheoryNotesCollection.deleteTheoryNote(payload);
+    if (!payloadResponse.error) {
+      storeTheoryNotesCollection.deleteTheoryNote(payloadResponse);
     }
 
     isDelete.value = false;

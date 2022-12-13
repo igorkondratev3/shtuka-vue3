@@ -2,14 +2,14 @@
   const props = defineProps({
     error: String,
   });
-  const emits = defineEmits(['closeError'])
-  setTimeout(() => (emits('closeError')), 5000);
+  const emits = defineEmits(['closeError']);
+  setTimeout(() => emits('closeError'), 5000);
 </script>
 
 <template>
   <div class="error">
     {{ props.error }}
-  </div>  
+  </div>
 </template>
 
 <style>

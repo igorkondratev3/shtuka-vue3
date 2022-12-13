@@ -12,5 +12,9 @@ export const authContext = defineStore({
     logout() {
       this.user = null;
     },
+    updateTokens(token, refreshToken) {
+      this.user.token = token;
+      this.user.refreshToken = refreshToken;
+    },
   },
 });

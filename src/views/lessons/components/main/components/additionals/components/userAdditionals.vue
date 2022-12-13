@@ -3,6 +3,7 @@
   import { ref } from 'vue';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
+  import { deleteElementFromDB } from '@/views/generalFunctions/requestsToBackend';
 
   const storeAuthContext = authContext();
   const storeAdditionalsCollection = additionalsCollection();
@@ -22,26 +23,21 @@
 
     isDelete.value = true;
 
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URI}/lesson/additionals/` + props.additional._id,
-      {
-        method: 'DELETE',
-        headers: {
-          authorization: `Bearer ${storeAuthContext.user?.token}`,
-        },
-      }
+    const payloadResponse = await deleteElementFromDB(
+      'additionals',
+      props.additional._id,
+      storeAuthContext.user.token,
+      storeAuthContext.user.refreshToken
     );
-    const payload = await response.json();
 
-    if (!response.ok) {
-      emit('showError', payload.error);
+    if (payloadResponse.error) {
+      emit('showError', payloadResponse.error);
       isDelete.value = false;
+      return;
     }
 
-    if (response.ok) {
-      storeAdditionalsCollection.deleteAdditional(payload);
-      isDelete.value = false;
-    }
+    storeAdditionalsCollection.deleteAdditional(payloadResponse);
+    isDelete.value = false;
   };
 </script>
 

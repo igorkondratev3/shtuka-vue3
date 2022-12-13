@@ -3,9 +3,12 @@
   import { RouterView } from 'vue-router';
   import { lessonNum } from './stores/lessonNum';
   import { authContext } from './stores/authContext';
+  import { shtukaChannel } from '@/shtukaChannel';
+  import { deleteUserInformationFromStores } from '@/views/generalFunctions/deleteUserInformationFromStores';
 
   const storeAuthContext = authContext();
-  storeAuthContext.user = JSON.parse(localStorage.getItem('user'));
+  if (localStorage.getItem('user'))
+    storeAuthContext.user = JSON.parse(localStorage.getItem('user'));
 
   const storeLessonNum = lessonNum();
   if (localStorage.lesson) {
@@ -26,6 +29,12 @@
       })
     );
   });
+
+  shtukaChannel.onmessage = (event) => {
+    if (event.data === 'logout') deleteUserInformationFromStores();
+    if (event.data === 'login')
+      storeAuthContext.login(JSON.parse(localStorage.getItem('user')));
+  };
 </script>
 
 <template>

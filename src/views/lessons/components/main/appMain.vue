@@ -44,25 +44,28 @@
     }),
   });
 
-  if (storeAuthContext.user) {
-    setTheoryNotesInTheoryStoreCollection();
-  }
+  if (storeAuthContext.user) setTheoryNotesInTheoryStoreCollection();
 
   watch(storeLessonNum, () => {
-    if (storeAuthContext.user) {
-      setTheoryNotesInTheoryStoreCollection();
-    }
+    if (storeAuthContext.user) setTheoryNotesInTheoryStoreCollection();
+  });
+
+  watch(storeAuthContext, () => {
+    if (storeAuthContext.user) setTheoryNotesInTheoryStoreCollection();
   });
 
   if (localStorage.visibilityControl) {
-    const visibilityControlFromLocalStorage = JSON.parse(localStorage.getItem('visibilityControl'));
+    const visibilityControlFromLocalStorage = JSON.parse(
+      localStorage.getItem('visibilityControl')
+    );
     for (let key in visibilityControl.value) {
       visibilityControl.value[key] = visibilityControlFromLocalStorage[key];
-    } 
+    }
   } else {
-    localStorage.setItem('visibilityControl', 
+    localStorage.setItem(
+      'visibilityControl',
       JSON.stringify(visibilityControl.value)
-    )
+    );
   }
 
   async function setTheoryNotesInTheoryStoreCollection() {
@@ -84,7 +87,10 @@
 
   const changeVisibility = (element) => {
     visibilityControl.value[element] = !visibilityControl.value[element];
-    localStorage.setItem('visibilityControl', JSON.stringify(visibilityControl.value));
+    localStorage.setItem(
+      'visibilityControl',
+      JSON.stringify(visibilityControl.value)
+    );
   };
 </script>
 

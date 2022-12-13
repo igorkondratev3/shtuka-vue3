@@ -3,8 +3,9 @@
   import { lessonNum } from '@/stores/lessonNum';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
-  import ErrorVue from '@/views/generalComponents/error/errorVue.vue'
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import { checkClose } from '@/views/generalFunctions/checkClose';
+  import { getNewTokens } from '@/views/generalFunctions/refreshToken';
 
   const storeLessonNum = lessonNum();
   const storeAdditionalsCollection = additionalsCollection();
@@ -19,7 +20,7 @@
 
   onMounted(() => {
     resourceAddress.value.focus(); //через autofocus фокус работает только на первый раз
-  })
+  });
 
   const addAdditional = async () => {
     isCreate.value = true;
@@ -39,16 +40,33 @@
       description: description.value,
     };
 
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/lesson/additionals`, {
-      method: 'POST',
-      body: JSON.stringify(additional),
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${storeAuthContext.user?.token}`,
-      },
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URI}/lesson/additionals`,
+      {
+        method: 'POST',
+        body: JSON.stringify(additional),
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${storeAuthContext.user?.token}`,
+        },
+      }
+    );
 
     const payload = await response.json();
+
+    if (payload.error === 'Необходимо предоставить refreshToken') {
+      const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
+      if (tokens.error) {
+        error.value = tokens.error;
+        isCreate.value = false;
+        return;
+      }
+
+      storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
+      localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
+      addAdditional();
+      return;
+    }
 
     if (!response.ok) {
       error.value = payload.error;
@@ -67,7 +85,7 @@
 </script>
 
 <template>
-  <div 
+  <div
     class="additionals__create-additionals create-additionals"
     @click="checkClose($event) ? $emit('closeCreateAdditionalForm') : undefined"
   >
@@ -108,9 +126,9 @@
       </button>
       <ErrorVue
         class="create-additionals__error"
-        v-if="error" 
+        v-if="error"
         :error="error"
-        @closeError="error=''"
+        @closeError="error = ''"
       />
       <!--v-if здесь, а не на компонентах и не v-show так как хочу чтобы код в error отрабатывался при открытии-->
     </div>

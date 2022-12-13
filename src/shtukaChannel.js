@@ -1,1 +1,1 @@
-export const shtukaChannel = new BroadcastChannel('shtukaChannel');
+export const shtukaChannel = new BroadcastChannel('shtuka_channel');

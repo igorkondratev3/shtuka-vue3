@@ -7,9 +7,9 @@
 </script>
 
 <template>
-  <div 
+  <div
     class="need-auth"
-    @click="checkClose($event) ? $emit('closeNeedAuth') : undefined"  
+    @click="checkClose($event) ? $emit('closeNeedAuth') : undefined"
   >
     <div class="need-auth__content">
       <div

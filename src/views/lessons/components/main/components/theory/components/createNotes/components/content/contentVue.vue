@@ -31,7 +31,7 @@
 
   onActivated(() => {
     notesContent.value.focus();
-  })
+  });
 
   const calucalateWidthAndHeightForNote = () => {
     offsetWidthNotesContent.value = notesContent.value.offsetWidth;
@@ -57,10 +57,10 @@
     :widthAndHeightForNote="widthAndHeightForNote"
     @calucalateWidthAndHeightForNote="calucalateWidthAndHeightForNote"
     @clearTextAndStyleForNotesContent="clearTextAndStyleForNotesContent"
-    @showError="(errorValue) => error = errorValue"
+    @showError="(errorValue) => (error = errorValue)"
   />
-  <ErrorVue 
-    class = "notes__error"
+  <ErrorVue
+    class="notes__error"
     v-if="error"
     :error="error"
     @closeError="error = ''"

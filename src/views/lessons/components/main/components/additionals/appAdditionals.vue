@@ -12,7 +12,6 @@
   import { lessonNum } from '@/stores/lessonNum';
   import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend';
 
-
   const storeAdditionalsCollection = additionalsCollection();
   const storeLessonNum = lessonNum();
   const storeAuthContext = authContext();
@@ -36,9 +35,8 @@
   });
 
   watch(storeAuthContext, () => {
-    if (!storeAuthContext.user) {
-      createAdditionasFormSeen.value = false;
-    }
+    if (storeAuthContext.user) setAdditionalsInAdditionalsCollection();
+    else createAdditionasFormSeen.value = false;
   });
 
   async function setAdditionalsInAdditionalsCollection() {
@@ -71,7 +69,7 @@
         v-for="additional in additionals"
         :key="additional.id"
         :additional="additional"
-        @showError="(errorValue) => error = errorValue"
+        @showError="(errorValue) => (error = errorValue)"
       />
     </div>
     <ButtonForCreateAdditional
@@ -85,12 +83,13 @@
       class="additionals__error"
       v-if="error"
       :error="error"
-      @closeError="error=''"
+      @closeError="error = ''"
     />
     <CreateAdditionalsForm
       v-if="createAdditionasFormSeen"
       @closeCreateAdditionalForm="createAdditionasFormSeen = false"
-    /> <!-- v-if чтобы работал focus() -->
+    />
+    <!-- v-if чтобы работал focus() -->
     <NeedAuth
       v-if="needAuthSeen"
       allowedAction="оставлять дополнения."
