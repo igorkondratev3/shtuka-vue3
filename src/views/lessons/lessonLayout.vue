@@ -73,10 +73,10 @@
   }
 
   const handleChangeLesson = (event) => {
-    if (event.code === 'ArrowLeft' && event.ctrlKey)
+    if (event.code === 'ArrowLeft' && event.altKey && event.shiftKey)
       changeLesson(calculateLessonNumberForPreviousLesson);
 
-    if (event.code === 'ArrowRight' && event.ctrlKey)
+    if (event.code === 'ArrowRight' && event.altKey && event.shiftKey)
       changeLesson(calculateLessonNumberForNextLesson);
   };
 

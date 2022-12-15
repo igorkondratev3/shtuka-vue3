@@ -1,86 +1,43 @@
 <script setup>
-  import { ref, onMounted } from 'vue';
-  import { lessonNum } from '@/stores/lessonNum';
-  import { additionalsCollection } from '@/stores/additionalsCollection';
-  import { authContext } from '@/stores/authContext';
+  import { ref, onMounted, computed } from 'vue';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import { checkClose } from '@/views/generalFunctions/checkClose';
-  import { getNewTokens } from '@/views/generalFunctions/refreshToken';
+  import AddButtonAdditionalForm from './components/addButtonAdditionalForm.vue';
+  import EditButtonAdditionalForm from './components/editButtonAdditionalForm.vue';
 
-  const storeLessonNum = lessonNum();
-  const storeAdditionalsCollection = additionalsCollection();
-  const storeAuthContext = authContext();
   const emit = defineEmits(['closeCreateAdditionalForm']);
   const address = ref('');
   const name = ref('');
   const description = ref('');
-  const isCreate = ref(false);
   const error = ref('');
   const resourceAddress = ref(null);
+
+  const correctAdditionalValues = computed(() => ({
+    address: address.value,
+    name: name.value,
+    description: description.value,
+  }));
+
+  const props = defineProps({
+    isCreateForm: Boolean,
+    additionalForEdit: Object,
+  });
+
+  if (!props.isCreateForm) {
+    address.value = props.additionalForEdit.address;
+    name.value = props.additionalForEdit.name;
+    description.value = props.additionalForEdit.description;
+  }
 
   onMounted(() => {
     resourceAddress.value.focus(); //через autofocus фокус работает только на первый раз
   });
 
-  const addAdditional = async () => {
-    isCreate.value = true;
-
-    if (!address.value.trim().length) {
-      error.value = 'Поле c адресом ресурса должно быть заполнено';
-      isCreate.value = false;
-      return;
-    }
-
-    const additional = {
-      circle: storeLessonNum.circleNumber,
-      grade: storeLessonNum.gradeNumber,
-      lesson: storeLessonNum.lessonNumber,
-      address: address.value,
-      name: name.value,
-      description: description.value,
-    };
-
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URI}/lesson/additionals`,
-      {
-        method: 'POST',
-        body: JSON.stringify(additional),
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${storeAuthContext.user?.token}`,
-        },
-      }
-    );
-
-    const payload = await response.json();
-
-    if (payload.error === 'Необходимо предоставить refreshToken') {
-      const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
-      if (tokens.error) {
-        error.value = tokens.error;
-        isCreate.value = false;
-        return;
-      }
-
-      storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
-      localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
-      addAdditional();
-      return;
-    }
-
-    if (!response.ok) {
-      error.value = payload.error;
-      isCreate.value = false;
-    }
-
-    if (response.ok) {
-      storeAdditionalsCollection.setAdditional(payload);
-      address.value = '';
-      name.value = '';
-      description.value = '';
-      emit('closeCreateAdditionalForm');
-      isCreate.value = false;
-    }
+  const handleCloseFormFromDelete = () => {
+    address.value = '';
+    name.value = '';
+    description.value = '';
+    emit('closeCreateAdditionalForm');
   };
 </script>
 
@@ -116,14 +73,19 @@
         v-model="description"
         class="create-additionals__input"
       />
-      <button
-        class="create-additionals__create-button"
-        @click="addAdditional"
-        :disabled="isCreate"
-        :class="{ disabled: isCreate }"
-      >
-        Создать дополнение
-      </button>
+      <AddButtonAdditionalForm
+        v-if="props.isCreateForm"
+        :correctAdditionalValues="correctAdditionalValues"
+        @showError="(errorValue) => (error = errorValue)"
+        @closeCreateAdditionalForm="handleCloseFormFromDelete"
+      />
+      <EditButtonAdditionalForm
+        v-if="!props.isCreateForm"
+        :additionalID="props.additionalForEdit._id"
+        :correctAdditionalValues="correctAdditionalValues"
+        @showError="(errorValue) => (error = errorValue)"
+        @closeCreateAdditionalForm="handleCloseFormFromDelete"
+      />
       <ErrorVue
         class="create-additionals__error"
         v-if="error"
@@ -190,7 +152,7 @@
       border: 1px solid rgb(37, 5, 219);
     }
 
-    &__create-button {
+    &__button {
       font-family: 'Times New Roman', Times, serif;
       font-size: 14px;
       color: rgb(239, 240, 236);
@@ -201,7 +163,7 @@
       margin-left: 20%;
       padding: 3px 0px;
     }
-    &__create-button:hover {
+    &__button:hover {
       background-color: rgb(88, 88, 165);
     }
     &__error {

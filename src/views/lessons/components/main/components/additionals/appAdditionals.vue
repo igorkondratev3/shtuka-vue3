@@ -2,8 +2,8 @@
   import VideoLessonURL from './components/videoLessonURL.vue';
   import TextBook from './components/textBook.vue';
   import ButtonForCreateAdditional from './components/buttonForCreateAdditional.vue';
-  import CreateAdditionalsForm from './components/createAdditionalsForm.vue';
-  import UserAdditionals from './components/userAdditionals.vue';
+  import CreateAdditionalsForm from './components/createAdditionalsForm/createAdditionalsForm.vue';
+  import UserAdditionals from './components/userAdditionals/userAdditionals.vue';
   import NeedAuth from '@/views/generalComponents/needAuth/needAuth.vue';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import { ref, computed, watch } from 'vue';
@@ -18,6 +18,8 @@
   const createAdditionasFormSeen = ref(false);
   const needAuthSeen = ref(false);
   const error = ref('');
+  const isCreateForm = ref(true);
+  let additionalForEdit = ref({});
   const additionals = computed(() => {
     return storeAdditionalsCollection[storeLessonNum.circle][
       storeLessonNum.grade
@@ -55,6 +57,24 @@
       );
     }
   }
+
+  const openCreateAdditionalsForm = (whatIsForm, additional) => {
+    if (!storeAuthContext.user) {
+      needAuthSeen.value = true;
+      return;
+    }
+
+    if (whatIsForm === 'create') {
+      isCreateForm.value = true;
+      createAdditionasFormSeen.value = true;
+    }
+
+    if (whatIsForm === 'edit') {
+      isCreateForm.value = false;
+      additionalForEdit.value = additional;
+      createAdditionasFormSeen.value = true;
+    }
+  };
 </script>
 
 <template>
@@ -70,15 +90,12 @@
         :key="additional.id"
         :additional="additional"
         @showError="(errorValue) => (error = errorValue)"
+        @openCreateAdditionalsForm="
+          (additional) => openCreateAdditionalsForm('edit', additional)
+        "
       />
     </div>
-    <ButtonForCreateAdditional
-      @click="
-        storeAuthContext.user
-          ? (createAdditionasFormSeen = true)
-          : (needAuthSeen = true)
-      "
-    />
+    <ButtonForCreateAdditional @click="openCreateAdditionalsForm('create')" />
     <ErrorVue
       class="additionals__error"
       v-if="error"
@@ -87,6 +104,8 @@
     />
     <CreateAdditionalsForm
       v-if="createAdditionasFormSeen"
+      :isCreateForm="isCreateForm"
+      :additionalForEdit="additionalForEdit"
       @closeCreateAdditionalForm="createAdditionasFormSeen = false"
     />
     <!-- v-if чтобы работал focus() -->

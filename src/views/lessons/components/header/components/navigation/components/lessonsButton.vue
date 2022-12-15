@@ -52,10 +52,10 @@
       }
     }
     if (props.where === 'next') {
-      title = title + '(ctrl+right)';
+      title = title + '(alt+shift+right)';
     }
     if (props.where === 'previous') {
-      title = title + '(ctrl+left)';
+      title = title + '(alt+shift+left)';
     }
     return title;
   });

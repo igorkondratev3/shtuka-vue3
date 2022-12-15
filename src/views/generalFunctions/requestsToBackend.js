@@ -70,7 +70,7 @@ export const deleteElementFromDB = async (
   refreshToken
 ) => {
   const response = await fetch(
-    `${import.meta.env.VITE_BACKEND_URI}/lesson/${elementsName}/${idElement}`,
+    `${import.meta.env.VITE_BACKEND_URI}/lesson/${elementsName}/${idElement}/`,
     {
       method: 'DELETE',
       headers: {

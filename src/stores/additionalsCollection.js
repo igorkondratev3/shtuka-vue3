@@ -49,6 +49,18 @@ export const additionalsCollection = defineStore({
         1
       );
     },
+    editAdditional(currentAdditional) {
+      const additionals =
+        this[`circle${currentAdditional.circle}`][
+          `grade${currentAdditional.grade}`
+        ][`lesson${currentAdditional.lesson}`];
+      const additional = additionals.find(
+        (additional) => additional._id === currentAdditional._id
+      );
+      additional.address = currentAdditional.address;
+      additional.name = currentAdditional.name;
+      additional.description = currentAdditional.description;
+    },
     clearAdditionals() {
       this.circle1.grade7 = {};
       this.circle1.grade8 = {};
