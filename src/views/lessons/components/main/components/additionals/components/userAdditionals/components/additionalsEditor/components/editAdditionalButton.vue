@@ -7,7 +7,7 @@
 
 <template>
   <button
-    class="additionals-link__button additionals-link__button_color"
+    class="additionals-link__button edit-button_color"
     title="изменить"
     @click="$emit('openCreateAdditionalsForm', props.additional)"
   >
@@ -21,7 +21,7 @@
 </template>
 
 <style>
-  .additionals-link__button_color:hover {
+  .edit-button_color:hover {
     color: rgb(64, 156, 156);
   }
 </style>

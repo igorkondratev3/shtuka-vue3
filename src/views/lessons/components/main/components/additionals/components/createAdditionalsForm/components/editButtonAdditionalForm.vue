@@ -65,7 +65,7 @@
     }
 
     if (response.ok) {
-      storeAdditionalsCollection.editAdditional(payload); //ВОТ ОТСЮДА проверить update c find и без через postman
+      storeAdditionalsCollection.editAdditional(payload);
       emits('closeCreateAdditionalForm');
       isEdit.value = false;
     }

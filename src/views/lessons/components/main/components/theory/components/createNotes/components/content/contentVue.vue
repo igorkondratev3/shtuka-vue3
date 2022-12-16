@@ -1,11 +1,15 @@
 <script setup>
-  import { computed, ref, onActivated } from 'vue';
+  import { computed, ref, onActivated, onMounted } from 'vue';
   import ButtonForCreateNote from './components/buttonForCreateNote.vue';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
+  import ButtonForEditNote from './components/buttonForEditNote.vue';
 
-  const emits = defineEmits(['clearStyleForNotesContent']);
+  const emits = defineEmits(['clearStyleForNotesContent', 'closeEditNoteForm']);
   const props = defineProps({
     styleForNotesContent: Object,
+    textForEditNote: String,
+    editNoteID: String,
+    editFormSeen: Boolean
   });
   const styleForNotesContent = computed(() => {
     return {
@@ -17,6 +21,7 @@
       textDecoration: props.styleForNotesContent.textDecoration,
     };
   });
+
   const widthAndHeightForNote = computed(() => {
     return {
       width: offsetWidthNotesContent,
@@ -29,9 +34,17 @@
   const notesContent = ref(null);
   const error = ref('');
 
+  if (props.textForEditNote) textNotes.value = props.textForEditNote;
+
   onActivated(() => {
     notesContent.value.focus();
   });
+  onMounted(() => {
+    if (props.editNoteID) {
+      notesContent.value.style.height = props.styleForNotesContent.height;
+      notesContent.value.style.width = props.styleForNotesContent.width;
+    } // если с помощью :style и computed, то почему-то при начале ввода возвращает блок к начальной ширине
+  })
 
   const calucalateWidthAndHeightForNote = () => {
     offsetWidthNotesContent.value = notesContent.value.offsetWidth;
@@ -52,11 +65,22 @@
     ref="notesContent"
   ></textarea>
   <ButtonForCreateNote
+    v-if="!editFormSeen"
     :textNotes="textNotes"
     :styleForNotesContent="styleForNotesContent"
     :widthAndHeightForNote="widthAndHeightForNote"
     @calucalateWidthAndHeightForNote="calucalateWidthAndHeightForNote"
     @clearTextAndStyleForNotesContent="clearTextAndStyleForNotesContent"
+    @showError="(errorValue) => (error = errorValue)"
+  />
+  <ButtonForEditNote
+    v-if="editFormSeen"
+    :textNotes="textNotes"
+    :styleForNotesContent="styleForNotesContent"
+    :widthAndHeightForNote="widthAndHeightForNote"
+    :editNoteID="props.editNoteID"
+    @calucalateWidthAndHeightForNote="calucalateWidthAndHeightForNote"
+    @closeEditNoteForm="emits('closeEditNoteForm')"
     @showError="(errorValue) => (error = errorValue)"
   />
   <ErrorVue

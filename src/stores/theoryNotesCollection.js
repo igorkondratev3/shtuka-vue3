@@ -49,6 +49,17 @@ export const theoryNotesCollection = defineStore({
         1
       );
     },
+    editTheoryNote(currentTheoryNote) {
+      const theoryNotes =
+        this[`circle${currentTheoryNote.circle}`][
+          `grade${currentTheoryNote.grade}`
+        ][`lesson${currentTheoryNote.lesson}`];
+      const theoryNote = theoryNotes.find(
+        (theoryNote) => theoryNote._id === currentTheoryNote._id
+      );
+      theoryNote.textStyle = currentTheoryNote.textStyle;
+      theoryNote.text = currentTheoryNote.text;
+    },
     clearTheoryNotes() {
       this.circle1.grade7 = {};
       this.circle1.grade8 = {};

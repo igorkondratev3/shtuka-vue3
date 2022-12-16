@@ -1,5 +1,5 @@
 <script setup>
-  import DeleteAdditionalsButton from './components/deleteAdditionalButton.vue';
+  import DeleteAdditionalButton from './components/deleteAdditionalButton.vue';
   import EditAdditionalButton from './components/editAdditionalButton.vue';
 
   const props = defineProps({
@@ -9,8 +9,8 @@
 </script>
 
 <template>
-  <div class="additionals__editor">
-    <DeleteAdditionalsButton
+  <div class="user-additionals__editor">
+    <DeleteAdditionalButton
       :additional="props.additional"
       @showError="(error) => $emit('showError', error)"
     />
@@ -25,7 +25,7 @@
 </template>
 
 <style>
-  .additionals__editor {
+  .user-additionals__editor {
     display: flex;
     flex-direction: row-reverse;
     align-self: center;

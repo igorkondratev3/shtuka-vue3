@@ -10,29 +10,31 @@
   const storeAuthContext = authContext();
 
   const emits = defineEmits([
-    'clearTextAndStyleForNotesContent',
     'calucalateWidthAndHeightForNote',
     'showError',
+    'closeEditNoteForm'
   ]);
   const props = defineProps({
     textNotes: String,
     styleForNotesContent: Object,
     widthAndHeightForNote: Object,
+    editNoteID: String
   });
 
-  const isCreate = ref(false);
+  const isEdit = ref(false);
 
-  const createNote = async () => {
-    isCreate.value = true;
+  const editNote = async () => {
+    isEdit.value = true;
 
     if (!props.textNotes.trim().length) {
       emits('showError', 'Поле для пометок должно быть заполнено');
-      isCreate.value = false;
+      isEdit.value = false;
       return;
     }
 
     emits('calucalateWidthAndHeightForNote');
     const note = {
+      _id: props.editNoteID,
       circle: storeLessonNum.circleNumber,
       grade: storeLessonNum.gradeNumber,
       lesson: storeLessonNum.lessonNumber,
@@ -43,14 +45,14 @@
     for (let key in props.styleForNotesContent) {
       note.textStyle[key] = props.styleForNotesContent[key];
     }
-    
+
     note.textStyle.width = props.widthAndHeightForNote.width.value + 'px';
     note.textStyle.height = props.widthAndHeightForNote.height.value + 'px';
 
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes`,
       {
-        method: 'POST',
+        method: 'PATCH',
         body: JSON.stringify(note),
         headers: {
           'Content-Type': 'application/json',
@@ -65,36 +67,42 @@
       const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
       if (tokens.error) {
         emits('showError', tokens.error);
-        isCreate.value = false;
+        isEdit.value = false;
         return;
       }
 
       storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
       localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
-      createNote();
+      editNote();
       return;
     }
 
     if (!response.ok) {
       emits('showError', payload.error);
-      isCreate.value = false;
+      isEdit.value = false;
     }
 
     if (response.ok) {
-      storeTheoryNotesCollection.setTheoryNote(payload);
-      emits('clearTextAndStyleForNotesContent');
-      isCreate.value = false;
+      storeTheoryNotesCollection.editTheoryNote(payload);
+      emits('closeEditNoteForm');
+      isEdit.value = false;
     }
   };
 </script>
 
 <template>
   <button
-    @click="createNote"
+    @click="editNote"
     class="notes__button"
-    :disabled="isCreate"
+    :disabled="isEdit"
   >
-    Создать пометку
+    Сохранить изменения
+  </button>
+  <button
+    class="notes__button"
+    @click="emits('closeEditNoteForm')"
+  >
+    Отменить
   </button>
 </template>
 

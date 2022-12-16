@@ -48,7 +48,10 @@
       "
     />
     <KeepAlive>
-      <CreateNotes v-if="notesSeen" />
+      <CreateNotes 
+        v-if="notesSeen" 
+        :editFromSeen="false"
+        />
     </KeepAlive>
     <NeedAuth
       v-if="needAuthSeen"

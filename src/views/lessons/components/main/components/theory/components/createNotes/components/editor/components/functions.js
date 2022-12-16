@@ -175,6 +175,29 @@ export function changeButtonParameterValue(
   }
 }
 
+export const translateParameter = (parameterValue) => {
+  switch (parameterValue) {
+    case 'black': return 'черный';
+    case 'red': return 'красный'
+    case 'blue': return 'синий';
+    case 'green': return 'зеленый';
+    case 'gray': return 'серый';
+    case '10.706456px': return '8pt';
+    case '13.38307px': return '10pt';
+    case '16.059683999999997px': return '12pt';
+    case '18.736297999999998px': return '14pt';
+    case '24.089526px': return '18pt';
+    case '26.76614px': return '20pt';
+    case '29.442753999999997px': return '22pt';
+    case '32.119367999999994px': return '24pt';
+    case 'Times New Roman': return 'Times New Roman';
+    case 'Arial': return 'Arial';
+    case 'Calibri': return 'Calibri';
+    case 'Cambria': return 'Cambria';
+    default: return undefined;
+  }
+} 
+
 export const drawClip = (clip) => {
   clip.moveTo(11, 2);
   clip.lineTo(2, 11);

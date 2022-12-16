@@ -5,20 +5,23 @@
     changeListParameterValue,
     changeSeenOfListOfParameterValues,
     closeListOfPararmeterValues,
+    translateParameter
   } from './functions.js';
+
+  const emits = defineEmits(['changeStyleForNotesContent']);
+  const props = defineProps({
+    parameterListValue: Array,
+    flagClearStyleForNotesContent: Object,
+    startValueForEditNote: String
+  });
 
   const parameterTuningValues = ref({
     listOfValuesSeen: false,
     choosenValueSeen: true,
     arrowOpenListOfValues: true,
     borderValue: '0.5px solid black',
-    choosenValueText: props.parameterListValue[0],
-  });
-  const emits = defineEmits(['changeStyleForNotesContent']);
-  const props = defineProps({
-    parameterListValue: Array,
-    flagClearStyleForNotesContent: Object,
-  });
+    choosenValueText: translateParameter(props.startValueForEditNote) || props.parameterListValue[0],
+  }); 
 
   watch(props.flagClearStyleForNotesContent, () => {
     parameterTuningValues.value.choosenValueText = props.parameterListValue[0];

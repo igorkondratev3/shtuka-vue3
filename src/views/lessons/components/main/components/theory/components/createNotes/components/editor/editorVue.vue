@@ -3,7 +3,11 @@
   import ButtonParameter from './components/buttonParameter.vue';
 
   const emits = defineEmits(['changeStyleForNotesContent']);
-  const props = defineProps({ flagClearStyleForNotesContent: Object });
+  const props = defineProps({ 
+    flagClearStyleForNotesContent: Object,
+    currentValuesForEditNote: Object
+  });
+ 
   const colorsList = [
     '-цвет-',
     'черный',
@@ -43,32 +47,40 @@
       @changeStyleForNotesContent="changeStyleForNotesContent"
       :parameterListValue="colorsList"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
+      :startValueForEditNote="props.currentValuesForEditNote?.color"
     />
     <ListParameter
       @changeStyleForNotesContent="changeStyleForNotesContent"
       :parameterListValue="sizesList"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
+      :startValueForEditNote="props.currentValuesForEditNote?.fontSize"
+
     />
     <ListParameter
       @changeStyleForNotesContent="changeStyleForNotesContent"
       :parameterListValue="familiesList"
       class="editor__family-list-parameter_width"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
+      :startValueForEditNote="props.currentValuesForEditNote?.fontFamily"
+
     />
     <ButtonParameter
       @changeStyleForNotesContent="changeStyleForNotesContent"
       parameter="fontWeight"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
+      :startValueForEditNote="props.currentValuesForEditNote?.fontWeight"
     />
     <ButtonParameter
       @changeStyleForNotesContent="changeStyleForNotesContent"
       parameter="fontStyle"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
+      :startValueForEditNote="props.currentValuesForEditNote?.fontStyle"
     />
     <ButtonParameter
       @changeStyleForNotesContent="changeStyleForNotesContent"
       parameter="textDecoration"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
+      :startValueForEditNote="props.currentValuesForEditNote?.textDecoration"
     />
   </div>
 </template>
