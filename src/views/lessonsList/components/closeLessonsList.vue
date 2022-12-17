@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted,watch } from 'vue';
   import { useRouter } from 'vue-router';
   import { drawCross } from '@/views/generalComponents/menu/components/menuButton/functions';
 

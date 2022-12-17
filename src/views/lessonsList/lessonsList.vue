@@ -60,7 +60,9 @@
 
 <template>
   <div class="lessons-list">
-    <CloseLessonsList />
+    <CloseLessonsList 
+      :trew="a"
+    />
     <LessonsNavigation
       @changeCircle="changeCircle"
       @changeGrade="changeGrade"

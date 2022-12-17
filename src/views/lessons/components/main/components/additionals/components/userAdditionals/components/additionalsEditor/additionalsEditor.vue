@@ -1,4 +1,5 @@
 <script setup>
+  import CopyAdditionalButton from './components/copyAdditionalButton.vue';
   import DeleteAdditionalButton from './components/deleteAdditionalButton.vue';
   import EditAdditionalButton from './components/editAdditionalButton.vue';
 
@@ -20,6 +21,10 @@
       @openCreateAdditionalsForm="
         (additional) => $emit('openCreateAdditionalsForm', additional)
       "
+    />
+    <CopyAdditionalButton 
+      :additionalID="props.additional._id"
+      @showError="(error) => $emit('showError', error)"
     />
   </div>
 </template>

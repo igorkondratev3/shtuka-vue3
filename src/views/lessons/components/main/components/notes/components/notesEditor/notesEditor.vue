@@ -1,4 +1,5 @@
 <script setup>
+  import CopyNoteButton from './components/copyNoteButton.vue';
   import DeleteNoteButton from './components/deleteNoteButton.vue';
   import EditNoteButton from './components/editNoteButton.vue';
 
@@ -16,8 +17,10 @@
     <EditNoteButton 
       @openEditNoteForm="$emit('openEditNoteForm')"
     />
+    <CopyNoteButton 
+      :noteID="props.noteID"
+    />
   </div>
-
 </template>
 
 <style>
