@@ -10,7 +10,7 @@
   const emits = defineEmits(['changeStyleForNotesContent']);
   const props = defineProps({
     parameter: String,
-    flagClearStyleForNotesContent: Object,
+    flagClearStyleForNotesContent: Number,
     startValueForEditNote: String
   });
   const parameterPressed = ref(false);
@@ -30,7 +30,7 @@
 
   parameterTuningValues.value[props.parameter] = props.startValueForEditNote;
 
-  watch(props.flagClearStyleForNotesContent, () => {
+  watch(() => props.flagClearStyleForNotesContent, () => {
     parameterPressed.value = false;
     switch (props.parameter) {
       case 'fontWeight':

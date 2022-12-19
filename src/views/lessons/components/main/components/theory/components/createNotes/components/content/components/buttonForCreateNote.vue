@@ -44,8 +44,8 @@
       note.textStyle[key] = props.styleForNotesContent[key];
     }
     
-    note.textStyle.width = props.widthAndHeightForNote.width.value + 'px';
-    note.textStyle.height = props.widthAndHeightForNote.height.value + 'px';
+    note.textStyle.width = props.widthAndHeightForNote.width + 'px';
+    note.textStyle.height = props.widthAndHeightForNote.height + 'px';
 
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes`,

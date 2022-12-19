@@ -61,26 +61,26 @@
 
 <template>
   <div class="lessons-list__lessons lessons">
-    <div
-      class="lessons__lesson lesson"
-      v-for="numberOfLesson in Object.keys(lessons).length"
-      :key="numberOfLesson.id"
-      @click="
-        chooseLesson(numberOfLesson + props.circleAndGrade.addForNumberOfLesson)
-      "
-    >
-      <!--перебираем номера так как объекты записываются не по порядку, не хочу записывать в массив чтобы не было разреженных и вообще так больше нравится-->
-      <div class="lesson__number">
-        {{ getLessonHeadings(numberOfLesson)[0] }}
+      <div
+        class="lessons__lesson lesson"
+        v-for="numberOfLesson in Object.keys(lessons).length"
+        :key="numberOfLesson.id"
+        @click="
+          chooseLesson(numberOfLesson + props.circleAndGrade.addForNumberOfLesson)
+        "
+      >
+        <!--перебираем номера так как объекты записываются не по порядку, не хочу записывать в массив чтобы не было разреженных и вообще так больше нравится-->
+        <div class="lesson__number">
+          {{ getLessonHeadings(numberOfLesson)[0] }}
+        </div>
+        <div class="lesson__theme">
+          <template
+            v-for="(head, headIndex) in getLessonHeadings(numberOfLesson)"
+          >
+            {{ excludeLessonNumber(head, headIndex) }} {{ ' ' }}
+          </template>
+        </div>
       </div>
-      <div class="lesson__theme">
-        <template
-          v-for="(head, headIndex) in getLessonHeadings(numberOfLesson)"
-        >
-          {{ excludeLessonNumber(head, headIndex) }} {{ ' ' }}
-        </template>
-      </div>
-    </div>
   </div>
 </template>
 

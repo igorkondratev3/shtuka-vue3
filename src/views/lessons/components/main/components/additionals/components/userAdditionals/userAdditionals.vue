@@ -4,17 +4,12 @@
   const props = defineProps({
     additional: Object,
   });
-  defineEmits(['showError', 'openCreateAdditionalsForm']);
 </script>
 
 <template>
   <div class="additionals__user-additionals user-additionals">
     <AdditionalsEditor
       :additional="props.additional"
-      @showError="(error) => $emit('showError', error)"
-      @openCreateAdditionalsForm="
-        (additional) => $emit('openCreateAdditionalsForm', additional)
-      "
     />
     <a
       class="additionals__link additionals-link user-additionals__link"

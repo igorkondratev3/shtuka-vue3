@@ -4,7 +4,7 @@
 
   const emits = defineEmits(['changeStyleForNotesContent']);
   const props = defineProps({ 
-    flagClearStyleForNotesContent: Object,
+    flagClearStyleForNotesContent: Number,
     currentValuesForEditNote: Object
   });
  

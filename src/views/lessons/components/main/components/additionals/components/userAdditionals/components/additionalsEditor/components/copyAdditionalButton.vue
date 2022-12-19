@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, inject } from 'vue';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
   import { getNewTokens } from '@/views/generalFunctions/refreshToken';
@@ -7,7 +7,7 @@
   const props = defineProps({
     additionalID: String
   });
-  const emit = defineEmits(['showError'])
+  const showError = inject('showError');
 
   const storeAuthContext = authContext();
   const storeAdditionalsCollection = additionalsCollection();
@@ -34,7 +34,7 @@
       const tokens = await getNewTokens(storeAuthContext.user.refreshToken);
       
       if (tokens.error) {
-        emit('showError', tokens.error);
+        showError(tokens.error);
         isCopy.value = false;
         return;
       }
@@ -46,7 +46,7 @@
     }
 
     if (!response.ok) {
-      emit('showError', payload.error);
+      showError(payload.error);
       isCopy.value = false;
     }
 
@@ -60,6 +60,7 @@
 <template>
   <button
     class="note-editor__button copy-button_color"
+    title="копировать"
     @click="copyAdditional"
     :disabled="isCopy"
     :class="{ 'note-editor__button_disabled': isCopy }"

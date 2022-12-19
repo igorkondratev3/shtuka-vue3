@@ -1,12 +1,14 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, inject } from 'vue';
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
   import { authContext } from '@/stores/authContext';
   import { deleteElementFromDB } from '@/views/generalFunctions/requestsToBackend';
+  import { showErrorSymbol } from '@/views/lessons/components/main/components/notes/symbols.js';
 
   const props = defineProps({
     noteID: String
   })
+  const showError = inject(showErrorSymbol);
 
   const storeAuthContext = authContext();
   const storeTheoryNotesCollection = theoryNotesCollection();
@@ -22,8 +24,13 @@
       storeAuthContext.user.refreshToken
     );
 
-    if (!payloadResponse.error) storeTheoryNotesCollection.deleteTheoryNote(payloadResponse);
-    
+    if (payloadResponse.error) {
+      showError(payloadResponse.error);
+      isDelete.value = false;
+      return;
+    }
+
+    storeTheoryNotesCollection.deleteTheoryNote(payloadResponse);
     isDelete.value = false;
   };
 </script>
@@ -31,6 +38,7 @@
 <template>
   <button
     class="note-editor__button delete-button_color"
+    title="удалить"
     @click="deleteNote"
     :disabled="isDelete"
     :class="{ 'note-editor__button_disabled': isDelete }"

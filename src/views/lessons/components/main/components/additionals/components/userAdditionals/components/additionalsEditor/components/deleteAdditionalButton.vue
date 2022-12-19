@@ -1,14 +1,14 @@
 <script setup>
   import crossSVG from '@/views/generalComponents/svg/crossSVG.vue';
-  import { ref } from 'vue';
+  import { ref, inject } from 'vue';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
   import { deleteElementFromDB } from '@/views/generalFunctions/requestsToBackend';
 
   const props = defineProps({
-    additional: Object,
+    additionalID: String,
   });
-  const emit = defineEmits(['showError']);
+  const showError = inject('showError');
 
   const storeAuthContext = authContext();
   const storeAdditionalsCollection = additionalsCollection();
@@ -26,13 +26,13 @@
 
     const payloadResponse = await deleteElementFromDB(
       'additionals',
-      props.additional._id,
+      props.additionalID,
       storeAuthContext.user.token,
       storeAuthContext.user.refreshToken
     );
 
     if (payloadResponse.error) {
-      emit('showError', payloadResponse.error);
+      showError(payloadResponse.error);
       isDelete.value = false;
       return;
     }

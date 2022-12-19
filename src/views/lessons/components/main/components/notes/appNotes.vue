@@ -1,13 +1,23 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref, provide } from 'vue'
   import CreateNotes from '../theory/components/createNotes/CreateNotes.vue';
   import NotesEditor from './components/notesEditor/notesEditor.vue';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
+  import { showErrorSymbol } from './symbols'
 
   const props = defineProps({
     note: Object,
   });
+  provide(showErrorSymbol, showError);
 
   const editFormSeen = ref(false);
+  const error = ref('');
+
+  function showError (errorValue) {
+    error.value = errorValue;
+    setTimeout(() => error.value = '', 5000)
+  }
+
 </script>
 
 <template>
@@ -30,6 +40,11 @@
     >
       {{ note.text }}
     </div>
+    <ErrorVue
+      class="notes__error"
+      v-if="error"
+      :error="error"
+    />
   </div>
 </template>
 

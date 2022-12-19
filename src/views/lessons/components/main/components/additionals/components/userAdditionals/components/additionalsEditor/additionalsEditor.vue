@@ -6,25 +6,18 @@
   const props = defineProps({
     additional: Object,
   });
-  defineEmits(['showError', 'openCreateAdditionalsForm']);
 </script>
 
 <template>
   <div class="user-additionals__editor">
     <DeleteAdditionalButton
-      :additional="props.additional"
-      @showError="(error) => $emit('showError', error)"
+      :additionalID="props.additional._id"
     />
     <EditAdditionalButton
       :additional="props.additional"
-      @showError="(error) => $emit('showError', error)"
-      @openCreateAdditionalsForm="
-        (additional) => $emit('openCreateAdditionalsForm', additional)
-      "
     />
     <CopyAdditionalButton 
       :additionalID="props.additional._id"
-      @showError="(error) => $emit('showError', error)"
     />
   </div>
 </template>

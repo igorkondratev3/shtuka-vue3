@@ -6,7 +6,7 @@
   import UserAdditionals from './components/userAdditionals/userAdditionals.vue';
   import NeedAuth from '@/views/generalComponents/needAuth/needAuth.vue';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
-  import { ref, computed, watch } from 'vue';
+  import { ref, computed, watch, provide } from 'vue';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
   import { lessonNum } from '@/stores/lessonNum';
@@ -25,6 +25,13 @@
       storeLessonNum.grade
     ][storeLessonNum.lesson];
   });
+
+  const showError = (errorValue) => {
+    error.value = errorValue
+  }
+
+  provide('showError', showError);
+  provide('openCreateAdditionalsForm', openCreateAdditionalsForm);
 
   if (storeAuthContext.user) {
     setAdditionalsInAdditionalsCollection();
@@ -58,7 +65,7 @@
     }
   }
 
-  const openCreateAdditionalsForm = (whatIsForm, additional) => {
+  function openCreateAdditionalsForm (whatIsForm, additional) {
     if (!storeAuthContext.user) {
       needAuthSeen.value = true;
       return;
@@ -89,10 +96,6 @@
         v-for="additional in additionals"
         :key="additional.id"
         :additional="additional"
-        @showError="(errorValue) => (error = errorValue)"
-        @openCreateAdditionalsForm="
-          (additional) => openCreateAdditionalsForm('edit', additional)
-        "
       />
     </div>
     <ButtonForCreateAdditional @click="openCreateAdditionalsForm('create')" />

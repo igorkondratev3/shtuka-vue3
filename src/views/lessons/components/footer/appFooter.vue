@@ -7,7 +7,6 @@
 <style>
   .footer {
     margin: 10px 16px;
-    height: 34px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

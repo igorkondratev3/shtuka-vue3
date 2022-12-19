@@ -33,7 +33,7 @@
     resourceAddress.value.focus(); //через autofocus фокус работает только на первый раз
   });
 
-  const handleCloseFormFromDelete = () => {
+  const handleCloseFormFromButtons = () => {
     address.value = '';
     name.value = '';
     description.value = '';
@@ -77,14 +77,14 @@
         v-if="props.isCreateForm"
         :correctAdditionalValues="correctAdditionalValues"
         @showError="(errorValue) => (error = errorValue)"
-        @closeCreateAdditionalForm="handleCloseFormFromDelete"
+        @closeCreateAdditionalForm="handleCloseFormFromButtons"
       />
       <EditButtonAdditionalForm
         v-if="!props.isCreateForm"
         :additionalID="props.additionalForEdit._id"
         :correctAdditionalValues="correctAdditionalValues"
         @showError="(errorValue) => (error = errorValue)"
-        @closeCreateAdditionalForm="handleCloseFormFromDelete"
+        @closeCreateAdditionalForm="handleCloseFormFromButtons"
       />
       <ErrorVue
         class="create-additionals__error"
@@ -110,6 +110,7 @@
     width: 100vw;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.788);
+    backdrop-filter: blur(5px);
   }
 
   .create-additionals {
@@ -166,7 +167,7 @@
     &__button:hover {
       background-color: rgb(88, 88, 165);
     }
-    &__error {
+    &__error { 
       margin-top: 20px;
     }
   }

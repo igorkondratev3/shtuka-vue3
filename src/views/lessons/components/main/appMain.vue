@@ -151,6 +151,7 @@
       flex-wrap: wrap;
       order: 4;
       overflow-x: auto; //уменьшает блок при уменьшении экрана
+      margin-top: 10px;
     }
   }
 

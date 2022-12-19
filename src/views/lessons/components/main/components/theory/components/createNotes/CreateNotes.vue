@@ -31,9 +31,7 @@
     }
   }; //вроде можно перерработать после того как удалил line-height или объединить с логикой выше
 
-  const flagClearStyleForNotesContent = ref({
-    param: 1,
-  });
+  const flagClearStyleForNotesContent = ref(1);
 
   const clearStyleForNotesContent = () => {
     styleForNotesContent.value.color = '';
@@ -42,7 +40,7 @@
     styleForNotesContent.value.fontWeight = '';
     styleForNotesContent.value.fontStyle = '';
     styleForNotesContent.value.textDecoration = '';
-    flagClearStyleForNotesContent.value.param++;
+    flagClearStyleForNotesContent.value++;
   };
 </script>
 

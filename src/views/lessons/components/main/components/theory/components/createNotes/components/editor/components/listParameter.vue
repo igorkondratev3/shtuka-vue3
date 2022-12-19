@@ -11,7 +11,7 @@
   const emits = defineEmits(['changeStyleForNotesContent']);
   const props = defineProps({
     parameterListValue: Array,
-    flagClearStyleForNotesContent: Object,
+    flagClearStyleForNotesContent: Number,
     startValueForEditNote: String
   });
 
@@ -23,7 +23,7 @@
     choosenValueText: translateParameter(props.startValueForEditNote) || props.parameterListValue[0],
   }); 
 
-  watch(props.flagClearStyleForNotesContent, () => {
+  watch(() => props.flagClearStyleForNotesContent, () => {
     parameterTuningValues.value.choosenValueText = props.parameterListValue[0];
   });
 

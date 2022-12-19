@@ -19,7 +19,7 @@
     changeColor(button.value);
   });
 
-  watch(props, () => {
+  watch(() => props.menuContentSeen, () => {
     if (props.menuContentSeen) {
       drawCross(
         contextAreaForLinesAndCross,

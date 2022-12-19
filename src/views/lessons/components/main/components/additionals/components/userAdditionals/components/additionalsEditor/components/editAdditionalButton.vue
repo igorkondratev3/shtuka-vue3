@@ -1,15 +1,17 @@
 <script setup>
+  import { inject } from 'vue'
+
   const props = defineProps({
     additional: Object,
   });
-  defineEmits(['openCreateAdditionalsForm']);
+  const openCreateAdditionalsForm = inject('openCreateAdditionalsForm');
 </script>
 
 <template>
   <button
     class="additionals-link__button edit-button_color"
     title="изменить"
-    @click="$emit('openCreateAdditionalsForm', props.additional)"
+    @click="openCreateAdditionalsForm('edit', props.additional)"
   >
     <span
       class="material-symbols-outlined"

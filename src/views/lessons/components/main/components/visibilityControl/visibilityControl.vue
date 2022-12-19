@@ -33,12 +33,12 @@
   .visibility-control {
     position: fixed;
     bottom: 10px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: row;
     justify-content: center;
     z-index: 998;
-    width: 100vw;
     overflow-x: auto;
   }
 

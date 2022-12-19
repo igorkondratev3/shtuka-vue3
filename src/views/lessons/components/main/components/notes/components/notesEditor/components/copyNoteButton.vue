@@ -1,12 +1,14 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, inject } from 'vue';
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
   import { authContext } from '@/stores/authContext';
   import { getNewTokens } from '@/views/generalFunctions/refreshToken';
+  import { showErrorSymbol } from '@/views/lessons/components/main/components/notes/symbols.js';
 
   const props = defineProps({
     noteID: String
-  })
+  });
+  const showError = inject(showErrorSymbol);
 
   const storeAuthContext = authContext();
   const storeTheoryNotesCollection = theoryNotesCollection();
@@ -33,6 +35,7 @@
       const tokens = await getNewTokens(storeAuthContext.user.refreshToken);
       
       if (tokens.error) {
+        showError(tokens.error);
         isCopy.value = false;
         return;
       }
@@ -44,6 +47,7 @@
     }
 
     if (!response.ok) {
+      showError(payload.error);
       isCopy.value = false;
     }
 
@@ -57,6 +61,7 @@
 <template>
   <button
     class="note-editor__button copy-button_color"
+    title="копировать"
     @click="copyNote"
     :disabled="isCopy"
     :class="{ 'note-editor__button_disabled': isCopy }"

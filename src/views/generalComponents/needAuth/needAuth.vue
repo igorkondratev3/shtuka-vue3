@@ -50,7 +50,9 @@
     width: 100vw;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.664);
+    backdrop-filter: blur(10px);
   }
+
   .need-auth {
     &__content {
       font: 22px 'Times New Roman';

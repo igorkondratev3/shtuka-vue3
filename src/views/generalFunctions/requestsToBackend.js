@@ -87,13 +87,13 @@ export const deleteElementFromDB = async (
     const storeAuthContext = authContext();
     storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
     localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
-    const payload = await deleteElementFromDB(
+    await deleteElementFromDB(
       elementsName,
       idElement,
       tokens.token,
       tokens.refreshToken
     );
-    return payload;
+    return;
   }
 
   return payload;

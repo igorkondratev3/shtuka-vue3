@@ -22,33 +22,30 @@
     };
   });
 
-  const widthAndHeightForNote = computed(() => {
-    return {
-      width: offsetWidthNotesContent,
-      height: offsetHeightNotesContent,
-    };
-  });
+  const widthAndHeightForNote = ref({
+    width: '',
+    height: ''
+  })
   const textNotes = ref('');
-  let offsetWidthNotesContent = ref(0);
-  let offsetHeightNotesContent = ref(0);
   const notesContent = ref(null);
   const error = ref('');
 
   if (props.textForEditNote) textNotes.value = props.textForEditNote;
 
   onActivated(() => {
-    notesContent.value.focus();
+    notesContent.value.focus(); //дублирует для фокуса при повторном открытии области создания пометок
   });
   onMounted(() => {
     if (props.editNoteID) {
       notesContent.value.style.height = props.styleForNotesContent.height;
       notesContent.value.style.width = props.styleForNotesContent.width;
     } // если с помощью :style и computed, то почему-то при начале ввода возвращает блок к начальной ширине
+    notesContent.value.focus();
   })
 
   const calucalateWidthAndHeightForNote = () => {
-    offsetWidthNotesContent.value = notesContent.value.offsetWidth;
-    offsetHeightNotesContent.value = notesContent.value.offsetHeight;
+    widthAndHeightForNote.value.width = notesContent.value.offsetWidth;
+    widthAndHeightForNote.value.height = notesContent.value.offsetHeight;
   };
 
   const clearTextAndStyleForNotesContent = () => {
