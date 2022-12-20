@@ -85,5 +85,9 @@
     &__signup:hover {
       color: red;
     }
+    &__login:focus,
+    &__signup:focus {
+      outline: none;
+    }
   }
 </style>

@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, computed } from 'vue';
+  import { ref, onMounted, computed, onBeforeUnmount, watch } from 'vue';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import { checkClose } from '@/views/generalFunctions/checkClose';
   import AddButtonAdditionalForm from './components/addButtonAdditionalForm.vue';
@@ -23,15 +23,18 @@
     additionalForEdit: Object,
   });
 
-  if (!props.isCreateForm) {
-    address.value = props.additionalForEdit.address;
-    name.value = props.additionalForEdit.name;
-    description.value = props.additionalForEdit.description;
-  }
+  watch(() => props.additionalForEdit, () => {
+    if (props.additionalForEdit.address) {
+      address.value = props.additionalForEdit.address;
+      name.value = props.additionalForEdit.name;
+      description.value = props.additionalForEdit.description;
+    }
+    });
 
-  onMounted(() => {
+  /*onMounted(() => {
+    console.log(1)
     resourceAddress.value.focus(); //через autofocus фокус работает только на первый раз
-  });
+  });*/
 
   const handleCloseFormFromButtons = () => {
     address.value = '';
@@ -44,34 +47,37 @@
 <template>
   <div
     class="additionals__create-additionals create-additionals"
-    @click="checkClose($event) ? $emit('closeCreateAdditionalForm') : undefined"
+    @click="checkClose($event) ? handleCloseFormFromButtons() : undefined"
   >
     <div class="create-additionals__form">
       <div
         class="create-additionals__close-button"
-        @click="$emit('closeCreateAdditionalForm')"
+        @click="handleCloseFormFromButtons"
       >
         <span class="material-symbols-outlined"> close </span>
       </div>
 
-      <label>Адрес ресурса</label>
+      <label for="address">Адрес ресурса</label>
       <input
         type="text"
         class="create-additionals__input"
+        id="address"
         v-model="address"
         ref="resourceAddress"
       />
-      <label>Обозначение ресурса</label>
+      <label for="name">Обозначение ресурса</label>
       <input
         type="text"
         v-model="name"
         class="create-additionals__input"
+        id="name"
       />
-      <label>Описание ресурса</label>
+      <label for="description">Описание ресурса</label>
       <input
         type="text"
         v-model="description"
         class="create-additionals__input"
+        id="description"
       />
       <AddButtonAdditionalForm
         v-if="props.isCreateForm"

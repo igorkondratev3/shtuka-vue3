@@ -17,20 +17,20 @@
   const deleteNote = async () => {
     isDelete.value = true;
 
-    const payloadResponse = await deleteElementFromDB(
+    const deletedNote = await deleteElementFromDB(
       'theory-notes',
       props.noteID,
       storeAuthContext.user.token,
       storeAuthContext.user.refreshToken
     );
 
-    if (payloadResponse.error) {
-      showError(payloadResponse.error);
+    if (deletedNote.error) {
+      showError(deletedNote.error);
       isDelete.value = false;
       return;
     }
 
-    storeTheoryNotesCollection.deleteTheoryNote(payloadResponse);
+    storeTheoryNotesCollection.deleteTheoryNote(deletedNote);
     isDelete.value = false;
   };
 </script>

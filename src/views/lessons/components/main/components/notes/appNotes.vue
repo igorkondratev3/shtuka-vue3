@@ -15,7 +15,6 @@
 
   function showError (errorValue) {
     error.value = errorValue;
-    setTimeout(() => error.value = '', 5000)
   }
 
 </script>
@@ -44,6 +43,7 @@
       class="notes__error"
       v-if="error"
       :error="error"
+      @closeError="error=''"
     />
   </div>
 </template>

@@ -4,11 +4,12 @@
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
   import { deleteElementFromDB } from '@/views/generalFunctions/requestsToBackend';
+  import { showErrorSymbol } from '@/views/lessons/components/main/components/additionals/symbols.js';
 
   const props = defineProps({
     additionalID: String,
   });
-  const showError = inject('showError');
+  const showError = inject(showErrorSymbol);
 
   const storeAuthContext = authContext();
   const storeAdditionalsCollection = additionalsCollection();
@@ -24,20 +25,20 @@
 
     isDelete.value = true;
 
-    const payloadResponse = await deleteElementFromDB(
+    const deletedAdditional = await deleteElementFromDB(
       'additionals',
       props.additionalID,
       storeAuthContext.user.token,
       storeAuthContext.user.refreshToken
     );
 
-    if (payloadResponse.error) {
-      showError(payloadResponse.error);
+    if (deletedAdditional.error) {
+      showError(deletedAdditional.error);
       isDelete.value = false;
       return;
     }
 
-    storeAdditionalsCollection.deleteAdditional(payloadResponse);
+    storeAdditionalsCollection.deleteAdditional(deletedAdditional);
     isDelete.value = false;
   };
 </script>
@@ -46,7 +47,7 @@
   <button
     class="additionals-link__button"
     title="удалить"
-    @click.stop.prevent="deleteAdditional"
+    @click="deleteAdditional"
     @pointerover="isOverDeleteButton = true"
     @pointerout="isOverDeleteButton = false"
   >

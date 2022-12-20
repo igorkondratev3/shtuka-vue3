@@ -3,11 +3,12 @@
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
   import { getNewTokens } from '@/views/generalFunctions/refreshToken';
+  import { showErrorSymbol } from '@/views/lessons/components/main/components/additionals/symbols.js';
 
   const props = defineProps({
     additionalID: String
   });
-  const showError = inject('showError');
+  const showError = inject(showErrorSymbol);
 
   const storeAuthContext = authContext();
   const storeAdditionalsCollection = additionalsCollection();

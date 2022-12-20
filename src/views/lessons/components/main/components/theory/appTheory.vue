@@ -2,10 +2,12 @@
   import ButtonShowCreateNotes from './components/buttonShowCreateNotes/buttonShowCreateNotes.vue';
   import CreateNotes from './components/createNotes/CreateNotes.vue';
   import NeedAuth from '@/views/generalComponents/needAuth/needAuth.vue';
-  import { ref, computed, watch } from 'vue';
+  import { ref, computed, watch, inject } from 'vue';
   import { lessonNum } from '@/stores/lessonNum';
   import { defineAsyncComponent } from 'vue';
   import { authContext } from '@/stores/authContext';
+  import { openDialog, closeDialog } from '@/views/generalFunctions/dialog.js';
+  import { changeCanChangeLessonSymbol } from '@/views/lessons/symbols.js'
 
   const Circle1Lesson1 = defineAsyncComponent(() =>
     import(`./components/circle1/lesson1/lesson1Vue.vue`)
@@ -18,20 +20,38 @@
     Circle1Lesson2,
   };
 
+  const changeCanChangeLesson = inject(changeCanChangeLessonSymbol);
+
   const storeLessonNum = lessonNum();
   const theoryComponent = computed(() => {
     return componentsList[storeLessonNum.theoryComponentName];
   });
 
   const notesSeen = ref(false);
-  const needAuthSeen = ref(false);
+  const dialogNeedAuth = ref(null);
   const storeAuthContext = authContext();
 
   watch(storeAuthContext, () => {
     if (!storeAuthContext.user) {
       notesSeen.value = false;
-    }
+    } else {
+        changeCanChangeLesson(true);
+        closeDialog(dialogNeedAuth.value) 
+      } //если вышел на соседней вкладке
   });
+
+  const handleShowCreateNotes = () => {
+    if (storeAuthContext.user) notesSeen.value = !notesSeen.value;
+    else {
+      changeCanChangeLesson(false);
+      openDialog(dialogNeedAuth.value)
+    }
+  }
+
+  const closeNeedAuth = () => {
+    changeCanChangeLesson(true);
+    closeDialog(dialogNeedAuth.value);
+  }
 </script>
 
 <template>
@@ -43,9 +63,7 @@
       </template>
     </Suspense>
     <ButtonShowCreateNotes
-      @click="
-        storeAuthContext.user ? (notesSeen = !notesSeen) : (needAuthSeen = true)
-      "
+      @click="handleShowCreateNotes"
     />
     <KeepAlive>
       <CreateNotes 
@@ -53,11 +71,15 @@
         :editFromSeen="false"
         />
     </KeepAlive>
-    <NeedAuth
-      v-if="needAuthSeen"
-      allowedAction="оставлять пометки."
-      @closeNeedAuth="needAuthSeen = false"
-    />
+    <dialog 
+      class="lesson-theory__dialog-need-auth"
+      ref="dialogNeedAuth"
+    >
+      <NeedAuth
+        allowedAction="оставлять пометки."
+        @closeNeedAuth="closeNeedAuth"
+      />
+    </dialog>
   </div>
 </template>
 

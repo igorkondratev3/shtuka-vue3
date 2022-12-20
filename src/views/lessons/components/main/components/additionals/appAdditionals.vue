@@ -6,18 +6,21 @@
   import UserAdditionals from './components/userAdditionals/userAdditionals.vue';
   import NeedAuth from '@/views/generalComponents/needAuth/needAuth.vue';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
-  import { ref, computed, watch, provide } from 'vue';
+  import { ref, computed, watch, provide, inject } from 'vue';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
   import { lessonNum } from '@/stores/lessonNum';
   import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend';
+  import { showErrorSymbol } from './symbols';
+  import { openDialog, closeDialog } from '@/views/generalFunctions/dialog.js'
+  import { changeCanChangeLessonSymbol } from '@/views/lessons/symbols.js'
 
   const storeAdditionalsCollection = additionalsCollection();
   const storeLessonNum = lessonNum();
   const storeAuthContext = authContext();
-  const createAdditionasFormSeen = ref(false);
-  const needAuthSeen = ref(false);
+  const dialogNeedAuth = ref(null);
   const error = ref('');
+  const dialogCreateAdditionals = ref(null);
   const isCreateForm = ref(true);
   let additionalForEdit = ref({});
   const additionals = computed(() => {
@@ -29,8 +32,8 @@
   const showError = (errorValue) => {
     error.value = errorValue
   }
-
-  provide('showError', showError);
+  const changeCanChangeLesson = inject(changeCanChangeLessonSymbol);
+  provide(showErrorSymbol, showError);
   provide('openCreateAdditionalsForm', openCreateAdditionalsForm);
 
   if (storeAuthContext.user) {
@@ -45,7 +48,10 @@
 
   watch(storeAuthContext, () => {
     if (storeAuthContext.user) setAdditionalsInAdditionalsCollection();
-    else createAdditionasFormSeen.value = false;
+    else {
+      changeCanChangeLesson(true);
+      closeDialog(dialogCreateAdditionals.value);
+    }
   });
 
   async function setAdditionalsInAdditionalsCollection() {
@@ -67,21 +73,35 @@
 
   function openCreateAdditionalsForm (whatIsForm, additional) {
     if (!storeAuthContext.user) {
-      needAuthSeen.value = true;
+      changeCanChangeLesson(false)
+      openDialog(dialogNeedAuth.value)
       return;
     }
 
     if (whatIsForm === 'create') {
       isCreateForm.value = true;
-      createAdditionasFormSeen.value = true;
+      changeCanChangeLesson(false)
+      openDialog(dialogCreateAdditionals.value);
     }
 
     if (whatIsForm === 'edit') {
       isCreateForm.value = false;
       additionalForEdit.value = additional;
-      createAdditionasFormSeen.value = true;
+      changeCanChangeLesson(false)
+      openDialog(dialogCreateAdditionals.value);
     }
   };
+
+  const closeCreateAdditionalForm = () => {
+    additionalForEdit.value = {};
+    changeCanChangeLesson(true);
+    closeDialog(dialogCreateAdditionals.value)
+  }
+
+  const closeNeedAuth = () => {
+    changeCanChangeLesson(true);
+    closeDialog(dialogNeedAuth.value);
+  }
 </script>
 
 <template>
@@ -105,18 +125,25 @@
       :error="error"
       @closeError="error = ''"
     />
-    <CreateAdditionalsForm
-      v-if="createAdditionasFormSeen"
-      :isCreateForm="isCreateForm"
-      :additionalForEdit="additionalForEdit"
-      @closeCreateAdditionalForm="createAdditionasFormSeen = false"
-    />
-    <!-- v-if чтобы работал focus() -->
-    <NeedAuth
-      v-if="needAuthSeen"
-      allowedAction="оставлять дополнения."
-      @closeNeedAuth="needAuthSeen = false"
-    />
+    <dialog
+      class = "additionals__dialog-create-additionals"
+      ref = "dialogCreateAdditionals"
+    >
+      <CreateAdditionalsForm
+        :isCreateForm="isCreateForm"
+        :additionalForEdit="additionalForEdit"
+        @closeCreateAdditionalForm="closeCreateAdditionalForm"
+      />
+    </dialog>
+    <dialog
+      class="additionals__dialog-need-auth"
+      ref="dialogNeedAuth"
+    >
+      <NeedAuth
+        allowedAction="оставлять дополнения."
+        @closeNeedAuth="closeNeedAuth"
+      />
+    </dialog>
   </div>
 </template>
 

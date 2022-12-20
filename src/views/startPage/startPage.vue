@@ -35,7 +35,7 @@
     gap: 10px;
     background-color: rgb(217, 248, 241);
     min-height: 100vh;
-    padding: 5px 16px;
+    padding: 5px 9px;
   }
 
   .start-page {

@@ -21,16 +21,16 @@
       return;
     }
 
-    const payloadResponse = await fetchAuth('login', email, password);
+    const user = await fetchAuth('login', email, password);
 
-    if (payloadResponse.error) {
+    if (user.error) {
       isLoading.value = false;
-      error.value = payloadResponse.error;
+      error.value = user.error;
       return;
     }
 
-    localStorage.setItem('user', JSON.stringify(payloadResponse));
-    storeAuthContext.login(payloadResponse);
+    localStorage.setItem('user', JSON.stringify(user));
+    storeAuthContext.login(user);
     isLoading.value = false;
     shtukaChannel.postMessage('login');
   };
@@ -38,23 +38,26 @@
 
 <template>
   <h3 class="form-auth__title">Регистрация</h3>
-  <label>Email:</label>
+  <label for="email">Email:</label>
   <input
     type="email"
+    id="email"
     v-model="email"
     class="form-auth__input"
   />
-  <label>Пароль:</label>
+  <label for="password">Пароль:</label>
   <input
     type="password"
     v-model="password"
     class="form-auth__input"
+    id="password"
   />
-  <label>Подтвердите пароль:</label>
+  <label for="repeat-password">Подтвердите пароль:</label>
   <input
     type="password"
     v-model="repeatPassword"
     class="form-auth__input"
+    id="repeat-password"
   />
   <button
     @click.prevent="signup(email, password, repeatPassword)"
