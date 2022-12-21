@@ -48,7 +48,7 @@
     }
   }
 
-  const closeNeedAuth = () => {
+  const closeNeedAuth = () => {   
     changeCanChangeLesson(true);
     closeDialog(dialogNeedAuth.value);
   }
@@ -64,13 +64,12 @@
     </Suspense>
     <ButtonShowCreateNotes
       @click="handleShowCreateNotes"
+    /> 
+    <CreateNotes 
+      v-show="notesSeen" 
+      :editFromSeen="false"
+      :notesSeen="notesSeen"
     />
-    <KeepAlive>
-      <CreateNotes 
-        v-if="notesSeen" 
-        :editFromSeen="false"
-        />
-    </KeepAlive>
     <dialog 
       class="lesson-theory__dialog-need-auth"
       ref="dialogNeedAuth"

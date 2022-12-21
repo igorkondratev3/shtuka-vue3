@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, computed, onBeforeUnmount, watch } from 'vue';
+  import { ref, computed, watch } from 'vue';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import { checkClose } from '@/views/generalFunctions/checkClose';
   import AddButtonAdditionalForm from './components/addButtonAdditionalForm.vue';
@@ -31,10 +31,7 @@
     }
     });
 
-  /*onMounted(() => {
-    console.log(1)
-    resourceAddress.value.focus(); //через autofocus фокус работает только на первый раз
-  });*/
+
 
   const handleCloseFormFromButtons = () => {
     address.value = '';

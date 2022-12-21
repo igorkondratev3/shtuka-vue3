@@ -1,5 +1,5 @@
 <script setup>
-  import { computed, ref, onActivated, onMounted } from 'vue';
+  import { computed, ref, onMounted, watch, nextTick } from 'vue';
   import ButtonForCreateNote from './components/buttonForCreateNote.vue';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import ButtonForEditNote from './components/buttonForEditNote.vue';
@@ -9,7 +9,8 @@
     styleForNotesContent: Object,
     textForEditNote: String,
     editNoteID: String,
-    editFormSeen: Boolean
+    editFormSeen: Boolean,
+    notesSeen: Boolean
   });
   const styleForNotesContent = computed(() => {
     return {
@@ -30,11 +31,12 @@
   const notesContent = ref(null);
   const error = ref('');
 
+  watch(() => props.notesSeen, () => {
+    if (props.notesSeen) nextTick(() => notesContent.value.focus());
+  });
+
   if (props.textForEditNote) textNotes.value = props.textForEditNote;
 
-  onActivated(() => {
-    notesContent.value.focus(); //дублирует для фокуса при повторном открытии области создания пометок
-  });
   onMounted(() => {
     if (props.editNoteID) {
       notesContent.value.style.height = props.styleForNotesContent.height;

@@ -21,7 +21,7 @@
 
 <template>
   <div class="lessons-main__note note">
-    <CreateNotes 
+    <CreateNotes
       :noteForEdit="props.note"
       v-if="editFormSeen"
       :editFormSeen="editFormSeen"

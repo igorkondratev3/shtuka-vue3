@@ -1,6 +1,7 @@
 <script setup>
   import ListParameter from './components/listParameter.vue';
   import ButtonParameter from './components/buttonParameter.vue';
+  import ColorEditor from './components/colorEditor.vue'
 
   const emits = defineEmits(['changeStyleForNotesContent']);
   const props = defineProps({ 
@@ -8,14 +9,6 @@
     currentValuesForEditNote: Object
   });
  
-  const colorsList = [
-    '-цвет-',
-    'черный',
-    'красный',
-    'синий',
-    'зеленый',
-    'серый',
-  ];
   const sizesList = [
     '-размер-',
     '8pt',
@@ -29,12 +22,12 @@
     '24pt',
   ];
   const familiesList = [
-    '-шрифт-',
-    'Times New Roman',
+    '-шрифт-', 
+    'Times New Roman', 
     'Arial',
     'Calibri',
     'Cambria',
-  ];
+  ];  
 
   function changeStyleForNotesContent(changedParameter) {
     emits('changeStyleForNotesContent', changedParameter);
@@ -43,9 +36,8 @@
 
 <template>
   <div class="notes__editor editor">
-    <ListParameter
+    <ColorEditor 
       @changeStyleForNotesContent="changeStyleForNotesContent"
-      :parameterListValue="colorsList"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
       :startValueForEditNote="props.currentValuesForEditNote?.color"
     />

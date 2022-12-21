@@ -32,7 +32,7 @@
 <style>
   .visibility-control {
     position: fixed;
-    bottom: 10px;
+    bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -49,7 +49,7 @@
     border: 1px solid black;
     border-radius: 30px;
     padding: 5px;
-    margin: 5px 5px;
+    margin: 0px 5px;
     white-space: nowrap;
     overflow: visible;
   }

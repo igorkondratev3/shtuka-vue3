@@ -73,21 +73,21 @@
 
   function openCreateAdditionalsForm (whatIsForm, additional) {
     if (!storeAuthContext.user) {
-      changeCanChangeLesson(false)
+      changeCanChangeLesson(false);
       openDialog(dialogNeedAuth.value)
       return;
     }
 
     if (whatIsForm === 'create') {
       isCreateForm.value = true;
-      changeCanChangeLesson(false)
+      changeCanChangeLesson(false);
       openDialog(dialogCreateAdditionals.value);
     }
 
     if (whatIsForm === 'edit') {
       isCreateForm.value = false;
       additionalForEdit.value = additional;
-      changeCanChangeLesson(false)
+      changeCanChangeLesson(false);
       openDialog(dialogCreateAdditionals.value);
     }
   };
@@ -166,6 +166,7 @@
       align-items: center;
       max-height: 500px;
       overflow: auto;
+      padding-right: 7px;
     }
 
     &__title {

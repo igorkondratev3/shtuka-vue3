@@ -30,18 +30,6 @@ export const changeListParameterValue = (
     eventChangeParameter.target.textContent;
   changeSeenOfListOfParameterValues(parameterTuningValues);
   switch (eventChangeParameter.target.textContent) {
-    case '-цвет-':
-      return { color: 'black' };
-    case 'черный':
-      return { color: 'black' };
-    case 'красный':
-      return { color: 'red' };
-    case 'синий':
-      return { color: 'blue' };
-    case 'зеленый':
-      return { color: 'green' };
-    case 'серый':
-      return { color: 'gray' };
     case '-размер-':
       return {
         fontSize: '16px',
@@ -177,11 +165,6 @@ export function changeButtonParameterValue(
 
 export const translateParameter = (parameterValue) => {
   switch (parameterValue) {
-    case 'black': return 'черный';
-    case 'red': return 'красный'
-    case 'blue': return 'синий';
-    case 'green': return 'зеленый';
-    case 'gray': return 'серый';
     case '10.706456px': return '8pt';
     case '13.38307px': return '10pt';
     case '16.059683999999997px': return '12pt';

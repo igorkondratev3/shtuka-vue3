@@ -7,8 +7,10 @@
 <style>
   .footer {
     margin: 10px 16px;
+    margin-bottom: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    height: 34px;
   }
 </style>
