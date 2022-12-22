@@ -10,6 +10,8 @@
   import { authContext } from '@/stores/authContext';
   import { lessonNum } from '@/stores/lessonNum';
   import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
+
 
   const storeTheoryNotesCollection = theoryNotesCollection();
   const storeLessonNum = lessonNum();
@@ -21,6 +23,7 @@
     ][storeLessonNum.lesson];
   });
 
+  const error = ref('');
   const visibilityControl = ref({
     titel: true,
     theory: true,
@@ -34,13 +37,10 @@
     example: true,
     additionals: true,
     notes: computed(() => {
-      if (!notes.value) {
-        return false;
-      } else if (notes.value[0]) {
-        return true;
-      } else {
-        return false;
-      }
+      if (error.value) return true;
+      if (!notes.value) return false;
+      if (notes.value[0]) return true;
+      return false;
     }),
   });
 
@@ -74,14 +74,20 @@
         storeLessonNum.lesson
       ]
     ) {
-      storeTheoryNotesCollection.setTheoryNotes(
-        await getElementsFromBackend(
+      const theoryNotes = await getElementsFromBackend(
           'theory-notes',
           storeLessonNum.circleNumber,
           storeLessonNum.gradeNumber,
           storeLessonNum.lessonNumber
         )
-      );
+
+      if (!theoryNotes) return;
+      
+      if (theoryNotes.error) {
+        error.value = theoryNotes.error;
+        return;
+      }
+      storeTheoryNotesCollection.setTheoryNotes(theoryNotes);
     }
   }
 
@@ -112,6 +118,12 @@
           :note="note"
           v-for="note in notes"
           :key="note.id"
+        />
+        <ErrorVue
+          class="form-auth__error"
+          v-if="error"
+          :error="error"
+          @closeError="error = ''"
         />
       </div>
     </div>

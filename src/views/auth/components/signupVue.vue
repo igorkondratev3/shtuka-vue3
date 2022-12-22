@@ -37,36 +37,41 @@
 </script>
 
 <template>
-  <h3 class="form-auth__title">Регистрация</h3>
+  <h3 class="auth__title">Регистрация</h3>
+  <form 
+    ref="formLogin"
+    class="auth__form form-auth"
+    > 
   <label for="email">Email:</label>
-  <input
-    type="email"
-    id="email"
-    v-model="email"
-    class="form-auth__input"
-  />
-  <label for="password">Пароль:</label>
-  <input
-    type="password"
-    v-model="password"
-    class="form-auth__input"
-    id="password"
-  />
-  <label for="repeat-password">Подтвердите пароль:</label>
-  <input
-    type="password"
-    v-model="repeatPassword"
-    class="form-auth__input"
-    id="repeat-password"
-  />
-  <button
-    @click.prevent="signup(email, password, repeatPassword)"
-    :disabled="isLoading"
-    class="form-auth__button"
-    :class="{ disabled: isLoading }"
-  >
-    Зарегистрироваться
-  </button>
+    <input
+      type="email"
+      id="email"
+      v-model="email"
+      class="form-auth__input"
+    />
+    <label for="password">Пароль:</label>
+    <input
+      type="password"
+      v-model="password"
+      class="form-auth__input"
+      id="password"
+    />
+    <label for="repeat-password">Подтвердите пароль:</label>
+    <input
+      type="password"
+      v-model="repeatPassword"
+      class="form-auth__input"
+      id="repeat-password"
+    />
+    <button
+      @click.prevent="signup(email, password, repeatPassword)"
+      :disabled="isLoading"
+      class="form-auth__button"
+      :class="{ disabled: isLoading }"
+    >
+      Зарегистрироваться
+    </button>
+  </form>
   <ErrorVue
     class="form-auth__error"
     v-if="error"

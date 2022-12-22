@@ -22,23 +22,23 @@
 
 <template>
   <header class="header"><AppMenu /></header>
-  <form class="form-auth signup">
+  <div class="auth">
     <component :is="isSignup ? SignupVue : LoginVue"></component>
     <a
-      class="nav-auth__signup form-auth__link"
+      class="nav-auth__login auth__link"
       v-show="isSignup"
       @click="isSignup = false"
     >
       Вход
     </a>
     <a
-      class="nav-auth__signup form-auth__link"
+      class="nav-auth__signup auth__link"
       v-show="!isSignup"
       @click="isSignup = true"
     >
       Регистрация
     </a>
-  </form>
+  </div>
 </template>
 
 <style>

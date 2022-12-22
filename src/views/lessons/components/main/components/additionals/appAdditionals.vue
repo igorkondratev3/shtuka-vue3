@@ -60,14 +60,20 @@
         storeLessonNum.lesson
       ]
     ) {
-      storeAdditionalsCollection.setAdditionals(
-        await getElementsFromBackend(
+    const additionals = await getElementsFromBackend(
           'additionals',
           storeLessonNum.circleNumber,
           storeLessonNum.gradeNumber,
           storeLessonNum.lessonNumber
         )
-      );
+
+      if (!additionals) return;
+      
+      if (additionals.error) {
+        error.value = additionals.error;
+        return;
+      }
+      storeAdditionalsCollection.setAdditionals(additionals);
     }
   }
 

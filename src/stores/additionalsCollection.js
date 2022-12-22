@@ -16,11 +16,9 @@ export const additionalsCollection = defineStore({
   }),
   actions: {
     setAdditionals(additionals) {
-      if (additionals && additionals[0]) {
         this[`circle${additionals[0].circle}`][`grade${additionals[0].grade}`][
           `lesson${additionals[0].lesson}`
         ] = additionals;
-      }
     },
     setAdditional(additional) {
       if (additional) {

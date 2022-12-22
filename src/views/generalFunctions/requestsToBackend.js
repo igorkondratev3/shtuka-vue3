@@ -15,14 +15,15 @@ export const getLesson = async (circleNumber, gradeNumber, lessonNumber) => {
 };
 
 export const getLessons = async (circleNumber, gradeNumber) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_BACKEND_URI}/lesson/${circleNumber}/${gradeNumber}`
-  );
-  const lessons = await response.json();
-  if (!response.ok) {
-    return false;
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URI}/lesson/${circleNumber}/${gradeNumber}`
+    );
+    const lessons = await response.json();
+    return lessons;
+  } catch(error) {
+      return {error: 'Ошибка доступа к серверу'};
   }
-  return lessons;
 };
 
 export const getElementsFromBackend = async (
@@ -32,33 +33,35 @@ export const getElementsFromBackend = async (
   lessonNumber
 ) => {
   const storeAuthContext = authContext();
-  const response = await fetch(
-    `${
-      import.meta.env.VITE_BACKEND_URI
-    }/lesson/${elementsName}/${circleNumber}/${gradeNumber}/${lessonNumber}`,
-    {
-      headers: {
-        authorization: `Bearer ${storeAuthContext.user?.token}`,
-      },
-    }
-  );
-  const elements = await response.json();
-
-  if (
-    elements.error === 'Необходимо предоставить refreshToken' &&
-    elementsName === 'additionals'
-  ) {
-    //временный костыль чтобы не посылать запрос токенов два раза - функция общая и вызывается одновременно для нескольких элементов
-    const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
-    if (tokens.error) return tokens;
-
-    storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
-    localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
-    return false; //так как есть watch
+  let response;
+  try {
+    response = await fetch(
+      `${
+        import.meta.env.VITE_BACKEND_URI
+      }/lesson/${elementsName}/${circleNumber}/${gradeNumber}/${lessonNumber}`,
+      {
+        headers: {
+          authorization: `Bearer ${storeAuthContext.user?.token}`,
+        },
+      }
+    );
+  } catch {
+    return {error: "Ошибка доступа к серверу"} 
   }
 
-  if (!response.ok) {
-    return false;
+  const elements = await response.json();
+
+  if (elements.error === 'Необходимо предоставить refreshToken') {
+    if (elementsName === 'additionals') {
+      //временный костыль чтобы не посылать запрос токенов два раза - функция общая и вызывается одновременно для нескольких элементов
+      const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
+      if (tokens.error) return tokens;
+  
+      storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
+      localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
+      return; //так как есть watch
+    }
+    return;
   }
   return elements;
 };

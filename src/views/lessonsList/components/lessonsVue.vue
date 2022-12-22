@@ -1,12 +1,14 @@
 <script setup>
-  import { computed, watch } from 'vue';
+  import { computed, watch, ref } from 'vue';
   import { useRouter } from 'vue-router';
   import { lessonsCollection } from '@/stores/lessonsCollection';
   import { lessonNum } from '@/stores/lessonNum';
   import { getLessons } from '../../generalFunctions/requestsToBackend';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
 
   const props = defineProps({ circleAndGrade: Object });
   const storeLessonsCollection = lessonsCollection();
+  const error = ref('')
 
   setLessons();
   watch(props.circleAndGrade, () => {
@@ -19,12 +21,16 @@
         `circle${props.circleAndGrade.circle}grade${props.circleAndGrade.grade}`
       ]
     ) {
-      storeLessonsCollection.setLessons(
-        await getLessons(
-          props.circleAndGrade.circle,
-          props.circleAndGrade.grade
-        )
-      );
+    const lessons = await getLessons(
+            props.circleAndGrade.circle,
+            props.circleAndGrade.grade
+          );
+
+    if (lessons.error) {
+      error.value = lessons.error;
+      return;
+    }
+    storeLessonsCollection.setLessons(lessons);
     }
   }
 
@@ -81,6 +87,12 @@
           </template>
         </div>
       </div>
+      <ErrorVue
+        class="form-auth__error"
+        v-if="error"
+        :error="error"
+        @closeError="error = ''"
+      />
   </div>
 </template>
 
