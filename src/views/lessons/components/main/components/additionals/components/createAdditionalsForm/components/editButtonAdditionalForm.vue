@@ -12,17 +12,14 @@
   const props = defineProps({
     additionalID: String,
     correctAdditionalValues: Object,
+    resourceAddress: Object
   });
   const emits = defineEmits(['showError', 'closeCreateAdditionalForm']);
 
   const editAdditional = async () => {
-    isEdit.value = true;
+    if (!props.resourceAddress.reportValidity()) return;
 
-    if (!props.correctAdditionalValues.address.trim().length) {
-      emits('showError', 'Поле c адресом ресурса должно быть заполнено');
-      isEdit.value = false;
-      return;
-    }
+    isEdit.value = true;
 
     const editAdditional = {
       _id: props.additionalID,

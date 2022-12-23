@@ -31,8 +31,6 @@
     }
     });
 
-
-
   const handleCloseFormFromButtons = () => {
     address.value = '';
     name.value = '';
@@ -53,42 +51,46 @@
       >
         <span class="material-symbols-outlined"> close </span>
       </div>
-
-      <label for="address">Адрес ресурса</label>
-      <input
-        type="text"
-        class="create-additionals__input"
-        id="address"
-        v-model="address"
-        ref="resourceAddress"
-      />
-      <label for="name">Обозначение ресурса</label>
-      <input
-        type="text"
-        v-model="name"
-        class="create-additionals__input"
-        id="name"
-      />
-      <label for="description">Описание ресурса</label>
-      <input
-        type="text"
-        v-model="description"
-        class="create-additionals__input"
-        id="description"
-      />
-      <AddButtonAdditionalForm
-        v-if="props.isCreateForm"
-        :correctAdditionalValues="correctAdditionalValues"
-        @showError="(errorValue) => (error = errorValue)"
-        @closeCreateAdditionalForm="handleCloseFormFromButtons"
-      />
-      <EditButtonAdditionalForm
-        v-if="!props.isCreateForm"
-        :additionalID="props.additionalForEdit._id"
-        :correctAdditionalValues="correctAdditionalValues"
-        @showError="(errorValue) => (error = errorValue)"
-        @closeCreateAdditionalForm="handleCloseFormFromButtons"
-      />
+      <form>
+        <label for="address">Адрес ресурса</label>
+        <input
+          type="url"
+          class="create-additionals__input"
+          id="address"
+          v-model="address"
+          ref="resourceAddress"
+          required
+        />
+        <label for="name">Обозначение ресурса</label>
+        <input
+          type="text"
+          v-model="name"
+          class="create-additionals__input"
+          id="name"
+        />
+        <label for="description">Описание ресурса</label>
+        <input
+          type="text"
+          v-model="description"
+          class="create-additionals__input"
+          id="description"
+        />
+        <AddButtonAdditionalForm
+          v-if="props.isCreateForm"
+          :resourceAddress="resourceAddress"
+          :correctAdditionalValues="correctAdditionalValues"
+          @showError="(errorValue) => (error = errorValue)"
+          @closeCreateAdditionalForm="handleCloseFormFromButtons"
+        />
+        <EditButtonAdditionalForm
+          v-if="!props.isCreateForm"
+          :resourceAddress="resourceAddress"
+          :additionalID="props.additionalForEdit._id"
+          :correctAdditionalValues="correctAdditionalValues"
+          @showError="(errorValue) => (error = errorValue)"
+          @closeCreateAdditionalForm="handleCloseFormFromButtons"
+        />
+      </form>
       <ErrorVue
         class="create-additionals__error"
         v-if="error"
@@ -153,7 +155,7 @@
       margin-top: 3px;
     }
     &__input:focus {
-      border: 1px solid rgb(37, 5, 219);
+      border: 1px solid rgb(12, 82, 87);
     }
 
     &__button {

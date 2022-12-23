@@ -74,7 +74,7 @@
   <form 
     ref="formLogin"
     class="auth__form form-auth"
-    > 
+  > 
     <label for="email">Email:</label>
     <input
       class="form-auth__input"

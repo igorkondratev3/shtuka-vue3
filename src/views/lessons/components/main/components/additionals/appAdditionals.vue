@@ -73,7 +73,8 @@
         error.value = additionals.error;
         return;
       }
-      storeAdditionalsCollection.setAdditionals(additionals);
+
+      if (additionals[0]) storeAdditionalsCollection.setAdditionals(additionals);
     }
   }
 

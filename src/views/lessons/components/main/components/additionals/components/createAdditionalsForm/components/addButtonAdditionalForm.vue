@@ -13,17 +13,14 @@
 
   const props = defineProps({
     correctAdditionalValues: Object,
+    resourceAddress: Object
   });
   const emits = defineEmits(['showError', 'closeCreateAdditionalForm']);
 
   const addAdditional = async () => {
+    if (!props.resourceAddress.reportValidity()) return;
+    
     isCreate.value = true;
-
-    if (!props.correctAdditionalValues.address.trim().length) {
-      emits('showError', 'Поле c адресом ресурса должно быть заполнено');
-      isCreate.value = false;
-      return;
-    }
 
     const additional = {
       circle: storeLessonNum.circleNumber,

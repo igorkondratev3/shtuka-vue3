@@ -87,7 +87,7 @@
         error.value = theoryNotes.error;
         return;
       }
-      storeTheoryNotesCollection.setTheoryNotes(theoryNotes);
+      if (theoryNotes[0]) storeTheoryNotesCollection.setTheoryNotes(theoryNotes);
     }
   }
 

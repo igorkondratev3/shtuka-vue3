@@ -91,8 +91,8 @@
   <form 
     ref="formLogin"
     class="auth__form form-auth"
-    > 
-  <label for="email">Email:</label>
+  > 
+    <label for="email">Email:</label>
     <input
       type="email"
       id="email"
