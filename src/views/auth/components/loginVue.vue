@@ -12,16 +12,37 @@
   const emailLogin = ref(null);
   const passwordLogin = ref(null);
 
-  const login = async (email, password) => {
+  const isPasswordEventListener = ref(false); 
+  const validate = () => {
+    if (isPasswordEventListener.value) {
+      passwordLogin.value.setCustomValidity("");
+      passwordLogin.value.removeEventListener('input', validate);
+      isPasswordEventListener.value = false;
+    }
+
+    if (!emailLogin.value.reportValidity()) return false;
+
+    if (passwordLogin.value.validity.valueMissing) {
+      passwordLogin.value.setCustomValidity("Заполните это поле");
+      passwordLogin.value.reportValidity();
+      passwordLogin.value.addEventListener('input', validate);
+      isPasswordEventListener.value = true;
+      return false;
+    } 
 
     if (passwordLogin.value.validity.patternMismatch) {
       passwordLogin.value.setCustomValidity("Некорректный пароль");
       passwordLogin.value.reportValidity();
-      setTimeout(() => passwordLogin.value.setCustomValidity(""), 1000);
-      return;
+      passwordLogin.value.addEventListener('input', validate);
+      isPasswordEventListener.value = true;
+      return false;
     }
 
-    if (!emailLogin.value.reportValidity()) return;
+    return true;
+  }
+
+  const login = async (email, password) => {
+    if (!validate()) return
 
     isLoading.value = true;
 
@@ -32,12 +53,12 @@
       if (user.error === 'Некорректный пароль') {
         passwordLogin.value.setCustomValidity("Некорректный пароль");
         passwordLogin.value.reportValidity();
-        setTimeout(() => passwordLogin.value.setCustomValidity(""), 1000);
+        setTimeout(() => passwordLogin.value.setCustomValidity(""), 1500);
         return;
       }
       emailLogin.value.setCustomValidity("Некорректный email");
       emailLogin.value.reportValidity();
-      setTimeout(() => emailLogin.value.setCustomValidity(""), 1000);
+      setTimeout(() => emailLogin.value.setCustomValidity(""), 1500);
       return;
     }
 
@@ -63,7 +84,7 @@
       v-model="email"
       maxlength="40"
       required
-    >
+    />
     <label for="password">Пароль:</label>
     <input
       class="form-auth__input"
