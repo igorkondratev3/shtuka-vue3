@@ -12,10 +12,10 @@
   const emailLogin = ref(null);
   const passwordLogin = ref(null);
 
-  const isPasswordEventListener = ref(false); 
+  const isPasswordEventListener = ref(false);
   const validate = () => {
     if (isPasswordEventListener.value) {
-      passwordLogin.value.setCustomValidity("");
+      passwordLogin.value.setCustomValidity('');
       passwordLogin.value.removeEventListener('input', validate);
       isPasswordEventListener.value = false;
     }
@@ -23,15 +23,15 @@
     if (!emailLogin.value.reportValidity()) return false;
 
     if (passwordLogin.value.validity.valueMissing) {
-      passwordLogin.value.setCustomValidity("Заполните это поле");
+      passwordLogin.value.setCustomValidity('Заполните это поле');
       passwordLogin.value.reportValidity();
       passwordLogin.value.addEventListener('input', validate);
       isPasswordEventListener.value = true;
       return false;
-    } 
+    }
 
     if (passwordLogin.value.validity.patternMismatch) {
-      passwordLogin.value.setCustomValidity("Некорректный пароль");
+      passwordLogin.value.setCustomValidity('Некорректный пароль');
       passwordLogin.value.reportValidity();
       passwordLogin.value.addEventListener('input', validate);
       isPasswordEventListener.value = true;
@@ -39,10 +39,10 @@
     }
 
     return true;
-  }
+  };
 
   const login = async (email, password) => {
-    if (!validate()) return
+    if (!validate()) return;
 
     isLoading.value = true;
 
@@ -51,14 +51,14 @@
     if (user.error) {
       isLoading.value = false;
       if (user.error === 'Некорректный пароль') {
-        passwordLogin.value.setCustomValidity("Некорректный пароль");
+        passwordLogin.value.setCustomValidity('Некорректный пароль');
         passwordLogin.value.reportValidity();
-        setTimeout(() => passwordLogin.value.setCustomValidity(""), 1500);
+        setTimeout(() => passwordLogin.value.setCustomValidity(''), 1500);
         return;
       }
-      emailLogin.value.setCustomValidity("Некорректный email");
+      emailLogin.value.setCustomValidity('Некорректный email');
       emailLogin.value.reportValidity();
-      setTimeout(() => emailLogin.value.setCustomValidity(""), 1500);
+      setTimeout(() => emailLogin.value.setCustomValidity(''), 1500);
       return;
     }
 
@@ -71,10 +71,10 @@
 
 <template>
   <h3 class="auth__title">Вход</h3>
-  <form 
+  <form
     ref="formLogin"
     class="auth__form form-auth"
-  > 
+  >
     <label for="email">Email:</label>
     <input
       class="form-auth__input"

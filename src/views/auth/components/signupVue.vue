@@ -1,6 +1,5 @@
 <script setup>
   import { ref } from 'vue';
-  import ErrorVue from '../../generalComponents/error/errorVue.vue';
   import { fetchAuth } from './fetchAuth';
   import { authContext } from '@/stores/authContext';
   import { shtukaChannel } from '@/shtukaChannel';
@@ -18,29 +17,31 @@
   const isRepeatPasswordEventListener = ref(false);
   const validate = () => {
     if (isPasswordEventListener.value) {
-      passwordSignup.value.setCustomValidity("");
+      passwordSignup.value.setCustomValidity('');
       passwordSignup.value.removeEventListener('input', validate);
       isPasswordEventListener.value = false;
     }
 
     if (isRepeatPasswordEventListener.value) {
-      repeatPasswordSignup.value.setCustomValidity("");
+      repeatPasswordSignup.value.setCustomValidity('');
       repeatPasswordSignup.value.removeEventListener('input', validate);
       isRepeatPasswordEventListener.value = false;
     }
 
     if (!emailSignup.value.reportValidity()) return false;
-    
+
     if (passwordSignup.value.validity.valueMissing) {
-      passwordSignup.value.setCustomValidity("Заполните это поле");
+      passwordSignup.value.setCustomValidity('Заполните это поле');
       passwordSignup.value.reportValidity();
       passwordSignup.value.addEventListener('input', validate);
       isPasswordEventListener.value = true;
       return false;
-    } 
+    }
 
     if (passwordSignup.value.validity.patternMismatch) {
-      passwordSignup.value.setCustomValidity("Пароль должен быть не менее 8 символов, содержащих латинские буквы в верхнем и нижнем регистре, цифры и спецсимволы");
+      passwordSignup.value.setCustomValidity(
+        'Пароль должен быть не менее 8 символов, содержащих латинские буквы в верхнем и нижнем регистре, цифры и спецсимволы'
+      );
       passwordSignup.value.reportValidity();
       passwordSignup.value.addEventListener('input', validate);
       isPasswordEventListener.value = true;
@@ -48,7 +49,9 @@
     }
 
     if (password.value !== repeatPassword.value) {
-      repeatPasswordSignup.value.setCustomValidity("Пароль и подтверждение не совпадают");
+      repeatPasswordSignup.value.setCustomValidity(
+        'Пароль и подтверждение не совпадают'
+      );
       repeatPasswordSignup.value.reportValidity();
       repeatPasswordSignup.value.addEventListener('input', validate);
       isRepeatPasswordEventListener.value = true;
@@ -56,10 +59,10 @@
     }
 
     return true;
-  }
+  };
 
   const signup = async (email, password) => {
-    if (!validate()) return
+    if (!validate()) return;
 
     isLoading.value = true;
 
@@ -70,12 +73,12 @@
       if (user.error === 'Пароль недостаточно надежный') {
         passwordSignup.value.setCustomValidity(user.error);
         passwordSignup.value.reportValidity();
-        setTimeout(() => passwordSignup.value.setCustomValidity(""), 1500);
+        setTimeout(() => passwordSignup.value.setCustomValidity(''), 1500);
         return;
       }
       emailSignup.value.setCustomValidity(user.error);
       emailSignup.value.reportValidity();
-      setTimeout(() => emailSignup.value.setCustomValidity(""), 1500);
+      setTimeout(() => emailSignup.value.setCustomValidity(''), 1500);
       return;
     }
 
@@ -88,10 +91,10 @@
 
 <template>
   <h3 class="auth__title">Регистрация</h3>
-  <form 
+  <form
     ref="formLogin"
     class="auth__form form-auth"
-  > 
+  >
     <label for="email">Email:</label>
     <input
       type="email"

@@ -6,7 +6,7 @@
   import { showErrorSymbol } from '@/views/lessons/components/main/components/notes/symbols.js';
 
   const props = defineProps({
-    noteID: String
+    noteID: String,
   });
   const showError = inject(showErrorSymbol);
 
@@ -17,23 +17,23 @@
   const copyNote = async () => {
     isCopy.value = true;
 
-  const response = await fetch(
-    `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes/copy`,
-    {
-      method: 'POST',
-      body: JSON.stringify({ _id: props.noteID }),
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${storeAuthContext.user?.token}`,
-      },
-    }
-  );
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes/copy`,
+      {
+        method: 'POST',
+        body: JSON.stringify({ _id: props.noteID }),
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${storeAuthContext.user?.token}`,
+        },
+      }
+    );
 
     const payload = await response.json();
 
     if (payload.error === 'Необходимо предоставить refreshToken') {
       const tokens = await getNewTokens(storeAuthContext.user.refreshToken);
-      
+
       if (tokens.error) {
         showError(tokens.error);
         isCopy.value = false;
@@ -66,9 +66,9 @@
     :disabled="isCopy"
     :class="{ 'note-editor__button_disabled': isCopy }"
   >
-    <span 
+    <span
       class="material-symbols-outlined"
-      style="font-size: 18px; line-height: 18px;"
+      style="font-size: 18px; line-height: 18px"
     >
       file_copy
     </span>

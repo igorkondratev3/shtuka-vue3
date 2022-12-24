@@ -12,7 +12,7 @@
   const props = defineProps({
     additionalID: String,
     correctAdditionalValues: Object,
-    resourceAddress: Object
+    resourceAddress: Object,
   });
   const emits = defineEmits(['showError', 'closeCreateAdditionalForm']);
 

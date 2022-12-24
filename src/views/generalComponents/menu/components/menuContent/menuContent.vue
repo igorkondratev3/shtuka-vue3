@@ -92,7 +92,6 @@
       cursor: default;
       color: white;
       background-color: rgb(89, 90, 97);
-      // не делать прозрачность - контекст наложения
       border: 0.5px solid black;
       border-radius: 10px;
       padding: 10px;

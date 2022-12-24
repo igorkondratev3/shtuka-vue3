@@ -23,13 +23,16 @@
     additionalForEdit: Object,
   });
 
-  watch(() => props.additionalForEdit, () => {
-    if (props.additionalForEdit.address) {
-      address.value = props.additionalForEdit.address;
-      name.value = props.additionalForEdit.name;
-      description.value = props.additionalForEdit.description;
+  watch(
+    () => props.additionalForEdit,
+    () => {
+      if (props.additionalForEdit.address) {
+        address.value = props.additionalForEdit.address;
+        name.value = props.additionalForEdit.name;
+        description.value = props.additionalForEdit.description;
+      }
     }
-    });
+  );
 
   const handleCloseFormFromButtons = () => {
     address.value = '';
@@ -172,7 +175,7 @@
     &__button:hover {
       background-color: rgb(88, 88, 165);
     }
-    &__error { 
+    &__error {
       margin-top: 20px;
     }
   }

@@ -7,7 +7,7 @@
   import { defineAsyncComponent } from 'vue';
   import { authContext } from '@/stores/authContext';
   import { openDialog, closeDialog } from '@/views/generalFunctions/dialog.js';
-  import { changeCanChangeLessonSymbol } from '@/views/lessons/symbols.js'
+  import { changeCanChangeLessonSymbol } from '@/views/lessons/symbols.js';
 
   const Circle1Lesson1 = defineAsyncComponent(() =>
     import(`./components/circle1/lesson1/lesson1Vue.vue`)
@@ -35,23 +35,23 @@
     if (!storeAuthContext.user) {
       notesSeen.value = false;
     } else {
-        changeCanChangeLesson(true);
-        closeDialog(dialogNeedAuth.value) 
-      } //если вышел на соседней вкладке
+      changeCanChangeLesson(true);
+      closeDialog(dialogNeedAuth.value);
+    }
   });
 
   const handleShowCreateNotes = () => {
     if (storeAuthContext.user) notesSeen.value = !notesSeen.value;
     else {
       changeCanChangeLesson(false);
-      openDialog(dialogNeedAuth.value)
+      openDialog(dialogNeedAuth.value);
     }
-  }
+  };
 
-  const closeNeedAuth = () => {   
+  const closeNeedAuth = () => {
     changeCanChangeLesson(true);
     closeDialog(dialogNeedAuth.value);
-  }
+  };
 </script>
 
 <template>
@@ -62,15 +62,13 @@
         <div class="suspense">Загрузка теории...</div>
       </template>
     </Suspense>
-    <ButtonShowCreateNotes
-      @click="handleShowCreateNotes"
-    /> 
-    <CreateNotes 
-      v-show="notesSeen" 
+    <ButtonShowCreateNotes @click="handleShowCreateNotes" />
+    <CreateNotes
+      v-show="notesSeen"
       :editFromSeen="false"
       :notesSeen="notesSeen"
     />
-    <dialog 
+    <dialog
       class="lesson-theory__dialog-need-auth"
       ref="dialogNeedAuth"
     >

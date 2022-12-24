@@ -1,14 +1,14 @@
 <script setup>
   import ListParameter from './components/listParameter.vue';
   import ButtonParameter from './components/buttonParameter.vue';
-  import ColorEditor from './components/colorEditor.vue'
+  import ColorEditor from './components/colorEditor.vue';
 
   const emits = defineEmits(['changeStyleForNotesContent']);
-  const props = defineProps({ 
+  const props = defineProps({
     flagClearStyleForNotesContent: Number,
-    currentValuesForEditNote: Object
+    currentValuesForEditNote: Object,
   });
- 
+
   const sizesList = [
     '-размер-',
     '8pt',
@@ -22,12 +22,12 @@
     '24pt',
   ];
   const familiesList = [
-    '-шрифт-', 
-    'Times New Roman', 
+    '-шрифт-',
+    'Times New Roman',
     'Arial',
     'Calibri',
     'Cambria',
-  ];  
+  ];
 
   function changeStyleForNotesContent(changedParameter) {
     emits('changeStyleForNotesContent', changedParameter);
@@ -36,7 +36,7 @@
 
 <template>
   <div class="notes__editor editor">
-    <ColorEditor 
+    <ColorEditor
       @changeStyleForNotesContent="changeStyleForNotesContent"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
       :startValueForEditNote="props.currentValuesForEditNote?.color"
@@ -46,7 +46,6 @@
       :parameterListValue="sizesList"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
       :startValueForEditNote="props.currentValuesForEditNote?.fontSize"
-
     />
     <ListParameter
       @changeStyleForNotesContent="changeStyleForNotesContent"
@@ -54,7 +53,6 @@
       class="editor__family-list-parameter_width"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
       :startValueForEditNote="props.currentValuesForEditNote?.fontFamily"
-
     />
     <ButtonParameter
       @changeStyleForNotesContent="changeStyleForNotesContent"

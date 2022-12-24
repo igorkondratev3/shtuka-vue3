@@ -12,7 +12,6 @@
   import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
 
-
   const storeTheoryNotesCollection = theoryNotesCollection();
   const storeLessonNum = lessonNum();
   const storeAuthContext = authContext();
@@ -52,7 +51,7 @@
 
   watch(storeAuthContext, () => {
     if (storeAuthContext.user) setTheoryNotesInTheoryStoreCollection();
-  });
+  }); //обновление токенов и запись объекта user
 
   if (localStorage.visibilityControl) {
     const visibilityControlFromLocalStorage = JSON.parse(
@@ -75,19 +74,20 @@
       ]
     ) {
       const theoryNotes = await getElementsFromBackend(
-          'theory-notes',
-          storeLessonNum.circleNumber,
-          storeLessonNum.gradeNumber,
-          storeLessonNum.lessonNumber
-        )
+        'theory-notes',
+        storeLessonNum.circleNumber,
+        storeLessonNum.gradeNumber,
+        storeLessonNum.lessonNumber
+      );
 
       if (!theoryNotes) return;
-      
+
       if (theoryNotes.error) {
         error.value = theoryNotes.error;
         return;
       }
-      if (theoryNotes[0]) storeTheoryNotesCollection.setTheoryNotes(theoryNotes);
+      if (theoryNotes[0])
+        storeTheoryNotesCollection.setTheoryNotes(theoryNotes);
     }
   }
 

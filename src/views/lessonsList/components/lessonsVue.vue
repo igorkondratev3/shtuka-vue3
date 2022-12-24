@@ -8,7 +8,7 @@
 
   const props = defineProps({ circleAndGrade: Object });
   const storeLessonsCollection = lessonsCollection();
-  const error = ref('')
+  const error = ref('');
 
   setLessons();
   watch(props.circleAndGrade, () => {
@@ -21,16 +21,16 @@
         `circle${props.circleAndGrade.circle}grade${props.circleAndGrade.grade}`
       ]
     ) {
-    const lessons = await getLessons(
-            props.circleAndGrade.circle,
-            props.circleAndGrade.grade
-          );
+      const lessons = await getLessons(
+        props.circleAndGrade.circle,
+        props.circleAndGrade.grade
+      );
 
-    if (lessons.error) {
-      error.value = lessons.error;
-      return;
-    }
-    storeLessonsCollection.setLessons(lessons);
+      if (lessons.error) {
+        error.value = lessons.error;
+        return;
+      }
+      storeLessonsCollection.setLessons(lessons);
     }
   }
 
@@ -67,32 +67,32 @@
 
 <template>
   <div class="lessons-list__lessons lessons">
-      <div
-        class="lessons__lesson lesson"
-        v-for="numberOfLesson in Object.keys(lessons).length"
-        :key="numberOfLesson.id"
-        @click="
-          chooseLesson(numberOfLesson + props.circleAndGrade.addForNumberOfLesson)
-        "
-      >
-        <!--перебираем номера так как объекты записываются не по порядку, не хочу записывать в массив чтобы не было разреженных и вообще так больше нравится-->
-        <div class="lesson__number">
-          {{ getLessonHeadings(numberOfLesson)[0] }}
-        </div>
-        <div class="lesson__theme">
-          <template
-            v-for="(head, headIndex) in getLessonHeadings(numberOfLesson)"
-          >
-            {{ excludeLessonNumber(head, headIndex) }} {{ ' ' }}
-          </template>
-        </div>
+    <div
+      class="lessons__lesson lesson"
+      v-for="numberOfLesson in Object.keys(lessons).length"
+      :key="numberOfLesson.id"
+      @click="
+        chooseLesson(numberOfLesson + props.circleAndGrade.addForNumberOfLesson)
+      "
+    >
+      <!--перебираем номера так как объекты записываются не по порядку, не хочу записывать в массив чтобы не было разреженных и вообще так больше нравится-->
+      <div class="lesson__number">
+        {{ getLessonHeadings(numberOfLesson)[0] }}
       </div>
-      <ErrorVue
-        class="form-auth__error"
-        v-if="error"
-        :error="error"
-        @closeError="error = ''"
-      />
+      <div class="lesson__theme">
+        <template
+          v-for="(head, headIndex) in getLessonHeadings(numberOfLesson)"
+        >
+          {{ excludeLessonNumber(head, headIndex) }} {{ ' ' }}
+        </template>
+      </div>
+    </div>
+    <ErrorVue
+      class="form-auth__error"
+      v-if="error"
+      :error="error"
+      @closeError="error = ''"
+    />
   </div>
 </template>
 

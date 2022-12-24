@@ -11,7 +11,7 @@
   const props = defineProps({
     parameter: String,
     flagClearStyleForNotesContent: Number,
-    startValueForEditNote: String
+    startValueForEditNote: String,
   });
   const parameterPressed = ref(false);
   const parameterTuningValues = ref({
@@ -22,7 +22,11 @@
     textDecoration: '',
   });
 
-  if (props.startValueForEditNote === 'bold' || props.startValueForEditNote === 'oblique' || props.startValueForEditNote === 'underline') {
+  if (
+    props.startValueForEditNote === 'bold' ||
+    props.startValueForEditNote === 'oblique' ||
+    props.startValueForEditNote === 'underline'
+  ) {
     parameterPressed.value = true;
     parameterTuningValues.value.backgroundColor = '#8795A5';
     parameterTuningValues.value.boxShadow = 'none';
@@ -30,21 +34,24 @@
 
   parameterTuningValues.value[props.parameter] = props.startValueForEditNote;
 
-  watch(() => props.flagClearStyleForNotesContent, () => {
-    parameterPressed.value = false;
-    switch (props.parameter) {
-      case 'fontWeight':
-        parameterTuningValues.value.fontWeight = 'normal';
-        break;
-      case 'fontStyle':
-        parameterTuningValues.value.fontStyle = 'normal';
-        break;
-      case 'textDecoration':
-        parameterTuningValues.value.textDecoration = 'none';
-        break;
+  watch(
+    () => props.flagClearStyleForNotesContent,
+    () => {
+      parameterPressed.value = false;
+      switch (props.parameter) {
+        case 'fontWeight':
+          parameterTuningValues.value.fontWeight = 'normal';
+          break;
+        case 'fontStyle':
+          parameterTuningValues.value.fontStyle = 'normal';
+          break;
+        case 'textDecoration':
+          parameterTuningValues.value.textDecoration = 'none';
+          break;
+      }
+      parameterTuningValues.value.backgroundColor = '#C5C8CB';
     }
-    parameterTuningValues.value.backgroundColor = '#C5C8CB';
-  });
+  );
 
   const changeStyleForNotesContent = () => {
     emits(

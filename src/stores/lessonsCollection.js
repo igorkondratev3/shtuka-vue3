@@ -46,9 +46,7 @@ export const lessonsCollection = defineStore({
           `lesson${lesson.lesson}`
         ] = lesson;
       }
-      this.isFull[
-        `circle${lessons[0].circle}grade${lessons[0].grade}`
-      ] = true;
+      this.isFull[`circle${lessons[0].circle}grade${lessons[0].grade}`] = true;
     },
     isThereLesson(circleNumber, gradeNumber, lessonNumber) {
       if (

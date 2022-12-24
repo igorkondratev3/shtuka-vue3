@@ -4,22 +4,16 @@
   import EditNoteButton from './components/editNoteButton.vue';
 
   const props = defineProps({
-    noteID: String
+    noteID: String,
   });
-  defineEmits(['openEditNoteForm'])
+  defineEmits(['openEditNoteForm']);
 </script>
 
 <template>
   <div class="note__editor note-editor">
-    <DeleteNoteButton
-      :noteID="props.noteID"
-    />
-    <EditNoteButton 
-      @openEditNoteForm="$emit('openEditNoteForm')"
-    />
-    <CopyNoteButton 
-      :noteID="props.noteID"
-    />
+    <DeleteNoteButton :noteID="props.noteID" />
+    <EditNoteButton @openEditNoteForm="$emit('openEditNoteForm')" />
+    <CopyNoteButton :noteID="props.noteID" />
   </div>
 </template>
 

@@ -60,8 +60,7 @@
 
 <template>
   <div class="lessons-list">
-    <CloseLessonsList
-    />
+    <CloseLessonsList />
     <LessonsNavigation
       @changeCircle="changeCircle"
       @changeGrade="changeGrade"

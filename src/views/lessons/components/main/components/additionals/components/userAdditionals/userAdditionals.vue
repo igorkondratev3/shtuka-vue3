@@ -8,9 +8,7 @@
 
 <template>
   <div class="additionals__user-additionals user-additionals">
-    <AdditionalsEditor
-      :additional="props.additional"
-    />
+    <AdditionalsEditor :additional="props.additional" />
     <a
       class="additionals__link additionals-link user-additionals__link"
       :href="props.additional.address"

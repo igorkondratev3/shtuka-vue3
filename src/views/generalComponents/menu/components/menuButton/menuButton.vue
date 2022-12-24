@@ -19,21 +19,24 @@
     changeColor(button.value);
   });
 
-  watch(() => props.menuContentSeen, () => {
-    if (props.menuContentSeen) {
-      drawCross(
-        contextAreaForLinesAndCross,
-        areaForLinesAndCross.value.width,
-        areaForLinesAndCross.value.height
-      );
-    } else {
-      drawLines(
-        contextAreaForLinesAndCross,
-        areaForLinesAndCross.value.width,
-        areaForLinesAndCross.value.height
-      );
+  watch(
+    () => props.menuContentSeen,
+    () => {
+      if (props.menuContentSeen) {
+        drawCross(
+          contextAreaForLinesAndCross,
+          areaForLinesAndCross.value.width,
+          areaForLinesAndCross.value.height
+        );
+      } else {
+        drawLines(
+          contextAreaForLinesAndCross,
+          areaForLinesAndCross.value.width,
+          areaForLinesAndCross.value.height
+        );
+      }
     }
-  });
+  );
 </script>
 
 <template>

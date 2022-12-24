@@ -12,8 +12,8 @@
   import { lessonNum } from '@/stores/lessonNum';
   import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend';
   import { showErrorSymbol } from './symbols';
-  import { openDialog, closeDialog } from '@/views/generalFunctions/dialog.js'
-  import { changeCanChangeLessonSymbol } from '@/views/lessons/symbols.js'
+  import { openDialog, closeDialog } from '@/views/generalFunctions/dialog.js';
+  import { changeCanChangeLessonSymbol } from '@/views/lessons/symbols.js';
 
   const storeAdditionalsCollection = additionalsCollection();
   const storeLessonNum = lessonNum();
@@ -30,8 +30,8 @@
   });
 
   const showError = (errorValue) => {
-    error.value = errorValue
-  }
+    error.value = errorValue;
+  };
   const changeCanChangeLesson = inject(changeCanChangeLessonSymbol);
   provide(showErrorSymbol, showError);
   provide('openCreateAdditionalsForm', openCreateAdditionalsForm);
@@ -60,28 +60,29 @@
         storeLessonNum.lesson
       ]
     ) {
-    const additionals = await getElementsFromBackend(
-          'additionals',
-          storeLessonNum.circleNumber,
-          storeLessonNum.gradeNumber,
-          storeLessonNum.lessonNumber
-        )
+      const additionals = await getElementsFromBackend(
+        'additionals',
+        storeLessonNum.circleNumber,
+        storeLessonNum.gradeNumber,
+        storeLessonNum.lessonNumber
+      );
 
       if (!additionals) return;
-      
+
       if (additionals.error) {
         error.value = additionals.error;
         return;
       }
 
-      if (additionals[0]) storeAdditionalsCollection.setAdditionals(additionals);
+      if (additionals[0])
+        storeAdditionalsCollection.setAdditionals(additionals);
     }
   }
 
-  function openCreateAdditionalsForm (whatIsForm, additional) {
+  function openCreateAdditionalsForm(whatIsForm, additional) {
     if (!storeAuthContext.user) {
       changeCanChangeLesson(false);
-      openDialog(dialogNeedAuth.value)
+      openDialog(dialogNeedAuth.value);
       return;
     }
 
@@ -97,18 +98,18 @@
       changeCanChangeLesson(false);
       openDialog(dialogCreateAdditionals.value);
     }
-  };
+  }
 
   const closeCreateAdditionalForm = () => {
     additionalForEdit.value = {};
     changeCanChangeLesson(true);
-    closeDialog(dialogCreateAdditionals.value)
-  }
+    closeDialog(dialogCreateAdditionals.value);
+  };
 
   const closeNeedAuth = () => {
     changeCanChangeLesson(true);
     closeDialog(dialogNeedAuth.value);
-  }
+  };
 </script>
 
 <template>
@@ -133,8 +134,8 @@
       @closeError="error = ''"
     />
     <dialog
-      class = "additionals__dialog-create-additionals"
-      ref = "dialogCreateAdditionals"
+      class="additionals__dialog-create-additionals"
+      ref="dialogCreateAdditionals"
     >
       <CreateAdditionalsForm
         :isCreateForm="isCreateForm"

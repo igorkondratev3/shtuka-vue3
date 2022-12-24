@@ -17,12 +17,14 @@ export const getLesson = async (circleNumber, gradeNumber, lessonNumber) => {
 export const getLessons = async (circleNumber, gradeNumber) => {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URI}/lesson/${circleNumber}/${gradeNumber}`
+      `${
+        import.meta.env.VITE_BACKEND_URI
+      }/lesson/${circleNumber}/${gradeNumber}`
     );
     const lessons = await response.json();
     return lessons;
-  } catch(error) {
-      return {error: 'Ошибка доступа к серверу'};
+  } catch (error) {
+    return { error: 'Ошибка доступа к серверу' };
   }
 };
 
@@ -46,7 +48,7 @@ export const getElementsFromBackend = async (
       }
     );
   } catch {
-    return {error: "Ошибка доступа к серверу"} 
+    return { error: 'Ошибка доступа к серверу' };
   }
 
   const elements = await response.json();
@@ -56,12 +58,11 @@ export const getElementsFromBackend = async (
       //временный костыль чтобы не посылать запрос токенов два раза - функция общая и вызывается одновременно для нескольких элементов
       const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
       if (tokens.error) return tokens;
-  
+
       storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
       localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
-      return; //так как есть watch
     }
-    return;
+    return; //так как есть watch, который вызовет функцию
   }
   return elements;
 };
@@ -81,7 +82,7 @@ export const deleteElementFromDB = async (
       },
     }
   );
-  const payload = await response.json();
+  let payload = await response.json();
 
   if (payload.error === 'Необходимо предоставить refreshToken') {
     const tokens = await getNewTokens(refreshToken);
@@ -90,13 +91,12 @@ export const deleteElementFromDB = async (
     const storeAuthContext = authContext();
     storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
     localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
-    await deleteElementFromDB(
+    payload = await deleteElementFromDB(
       elementsName,
       idElement,
       tokens.token,
       tokens.refreshToken
     );
-    return;
   }
 
   return payload;

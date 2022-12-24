@@ -13,13 +13,13 @@
 
   const props = defineProps({
     correctAdditionalValues: Object,
-    resourceAddress: Object
+    resourceAddress: Object,
   });
   const emits = defineEmits(['showError', 'closeCreateAdditionalForm']);
 
   const addAdditional = async () => {
     if (!props.resourceAddress.reportValidity()) return;
-    
+
     isCreate.value = true;
 
     const additional = {

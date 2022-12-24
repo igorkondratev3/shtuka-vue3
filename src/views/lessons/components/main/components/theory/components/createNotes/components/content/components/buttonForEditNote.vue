@@ -12,13 +12,13 @@
   const emits = defineEmits([
     'calucalateWidthAndHeightForNote',
     'showError',
-    'closeEditNoteForm'
+    'closeEditNoteForm',
   ]);
   const props = defineProps({
     textNotes: String,
     styleForNotesContent: Object,
     widthAndHeightForNote: Object,
-    editNoteID: String
+    editNoteID: String,
   });
 
   const isEdit = ref(false);

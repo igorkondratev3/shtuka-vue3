@@ -10,15 +10,9 @@
 
 <template>
   <div class="user-additionals__editor">
-    <DeleteAdditionalButton
-      :additionalID="props.additional._id"
-    />
-    <EditAdditionalButton
-      :additional="props.additional"
-    />
-    <CopyAdditionalButton 
-      :additionalID="props.additional._id"
-    />
+    <DeleteAdditionalButton :additionalID="props.additional._id" />
+    <EditAdditionalButton :additional="props.additional" />
+    <CopyAdditionalButton :additionalID="props.additional._id" />
   </div>
 </template>
 

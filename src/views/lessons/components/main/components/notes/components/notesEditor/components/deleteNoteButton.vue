@@ -6,8 +6,8 @@
   import { showErrorSymbol } from '@/views/lessons/components/main/components/notes/symbols.js';
 
   const props = defineProps({
-    noteID: String
-  })
+    noteID: String,
+  });
   const showError = inject(showErrorSymbol);
 
   const storeAuthContext = authContext();
@@ -45,7 +45,7 @@
   >
     <span
       class="material-symbols-outlined ghty"
-      style="font-size: 20px; line-height: 20px;"
+      style="font-size: 20px; line-height: 20px"
     >
       delete_forever
     </span>

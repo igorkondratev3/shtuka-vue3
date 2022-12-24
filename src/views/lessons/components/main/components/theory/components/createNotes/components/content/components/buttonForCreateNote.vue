@@ -43,7 +43,7 @@
     for (let key in props.styleForNotesContent) {
       note.textStyle[key] = props.styleForNotesContent[key];
     }
-    
+
     note.textStyle.width = props.widthAndHeightForNote.width + 'px';
     note.textStyle.height = props.widthAndHeightForNote.height + 'px';
 

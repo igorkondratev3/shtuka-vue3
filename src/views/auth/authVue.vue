@@ -15,9 +15,13 @@
 
   const storeAuthContext = authContext();
   const router = useRouter();
-  watch(storeAuthContext, () => {
-    if (storeAuthContext.user) goBack(window, router);
-  });
+
+  watch(
+    () => storeAuthContext.user,
+    () => {
+      if (storeAuthContext.user) goBack(window, router);
+    }
+  );
 </script>
 
 <template>

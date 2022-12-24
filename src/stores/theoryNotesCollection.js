@@ -16,9 +16,9 @@ export const theoryNotesCollection = defineStore({
   }),
   actions: {
     setTheoryNotes(theoryNotes) {
-        this[`circle${theoryNotes[0].circle}`][`grade${theoryNotes[0].grade}`][
-          `lesson${theoryNotes[0].lesson}`
-        ] = theoryNotes;
+      this[`circle${theoryNotes[0].circle}`][`grade${theoryNotes[0].grade}`][
+        `lesson${theoryNotes[0].lesson}`
+      ] = theoryNotes;
     },
     setTheoryNote(theoryNote) {
       if (theoryNote) {

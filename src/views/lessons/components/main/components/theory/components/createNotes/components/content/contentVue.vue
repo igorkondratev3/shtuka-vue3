@@ -10,7 +10,7 @@
     textForEditNote: String,
     editNoteID: String,
     editFormSeen: Boolean,
-    notesSeen: Boolean
+    notesSeen: Boolean,
   });
   const styleForNotesContent = computed(() => {
     return {
@@ -25,15 +25,18 @@
 
   const widthAndHeightForNote = ref({
     width: '',
-    height: ''
-  })
+    height: '',
+  });
   const textNotes = ref('');
   const notesContent = ref(null);
   const error = ref('');
 
-  watch(() => props.notesSeen, () => {
-    if (props.notesSeen) nextTick(() => notesContent.value.focus());
-  });
+  watch(
+    () => props.notesSeen,
+    () => {
+      if (props.notesSeen) nextTick(() => notesContent.value.focus());
+    }
+  );
 
   if (props.textForEditNote) textNotes.value = props.textForEditNote;
 
@@ -43,7 +46,7 @@
       notesContent.value.style.width = props.styleForNotesContent.width;
     } // если с помощью :style и computed, то почему-то при начале ввода возвращает блок к начальной ширине
     notesContent.value.focus();
-  })
+  });
 
   const calucalateWidthAndHeightForNote = () => {
     widthAndHeightForNote.value.width = notesContent.value.offsetWidth;

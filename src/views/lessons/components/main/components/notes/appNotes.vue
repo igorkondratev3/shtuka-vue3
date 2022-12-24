@@ -1,9 +1,9 @@
 <script setup>
-  import { ref, provide } from 'vue'
+  import { ref, provide } from 'vue';
   import CreateNotes from '../theory/components/createNotes/CreateNotes.vue';
   import NotesEditor from './components/notesEditor/notesEditor.vue';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
-  import { showErrorSymbol } from './symbols'
+  import { showErrorSymbol } from './symbols';
 
   const props = defineProps({
     note: Object,
@@ -13,10 +13,9 @@
   const editFormSeen = ref(false);
   const error = ref('');
 
-  function showError (errorValue) {
+  function showError(errorValue) {
     error.value = errorValue;
   }
-
 </script>
 
 <template>
@@ -25,12 +24,12 @@
       :noteForEdit="props.note"
       v-if="editFormSeen"
       :editFormSeen="editFormSeen"
-      @closeEditNoteForm="editFormSeen=false"
+      @closeEditNoteForm="editFormSeen = false"
     />
     <NotesEditor
       v-show="!editFormSeen"
       :noteID="props.note._id"
-      @openEditNoteForm="editFormSeen=true"
+      @openEditNoteForm="editFormSeen = true"
     />
     <div
       v-show="!editFormSeen"
@@ -43,7 +42,7 @@
       class="notes__error"
       v-if="error"
       :error="error"
-      @closeError="error=''"
+      @closeError="error = ''"
     />
   </div>
 </template>
@@ -55,7 +54,7 @@
     justify-content: flex-start;
   }
 
-  .note__content{
+  .note__content {
     overflow-wrap: break-word;
     white-space: pre-line;
     overflow-y: auto;

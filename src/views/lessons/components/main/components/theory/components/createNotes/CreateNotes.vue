@@ -6,7 +6,7 @@
   const props = defineProps({
     noteForEdit: Object,
     editFormSeen: Boolean,
-    notesSeen: Boolean
+    notesSeen: Boolean,
   });
 
   defineEmits(['closeEditNoteForm']);
@@ -24,13 +24,13 @@
     for (const key in props.noteForEdit.textStyle) {
       styleForNotesContent.value[key] = props.noteForEdit.textStyle[key];
     }
-  };
+  }
 
   const changeStyleForNotesContent = (changedParameter) => {
     for (let key in changedParameter) {
-      styleForNotesContent.value[key] = changedParameter[key]; 
-    } 
-  }; //вроде можно перерработать после того как удалил line-height или объединить с логикой выше
+      styleForNotesContent.value[key] = changedParameter[key];
+    }
+  };
 
   const flagClearStyleForNotesContent = ref(1);
 
@@ -41,7 +41,7 @@
     styleForNotesContent.value.fontWeight = '';
     styleForNotesContent.value.fontStyle = '';
     styleForNotesContent.value.textDecoration = '';
-    flagClearStyleForNotesContent.value++; 
+    flagClearStyleForNotesContent.value++;
   };
 </script>
 
@@ -58,7 +58,7 @@
       :editNoteID="props.noteForEdit?._id"
       :editFormSeen="editFormSeen"
       :notesSeen="notesSeen"
-      @closeEditNoteForm="$emit('closeEditNoteForm')" 
+      @closeEditNoteForm="$emit('closeEditNoteForm')"
       @clearStyleForNotesContent="clearStyleForNotesContent"
     />
   </div>
