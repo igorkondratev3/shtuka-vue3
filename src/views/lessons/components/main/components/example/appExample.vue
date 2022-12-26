@@ -3,10 +3,10 @@
   import { lessonNum } from '@/stores/lessonNum';
 
   const Circle1Lesson1 = defineAsyncComponent(() =>
-    import(`./components/circle1/lesson1/lesson1Vue.vue`)
+    import(/* @vite-ignore */`./components/circle1/lesson1/lesson1Vue.vue`)
   );
   const Circle1Lesson2 = defineAsyncComponent(() =>
-    import(`./components/circle1/lesson2/lesson2Vue.vue`)
+    import(/* @vite-ignore */`./components/circle1/lesson2/lesson2Vue.vue`)
   );
   const componentsList = {
     Circle1Lesson1,

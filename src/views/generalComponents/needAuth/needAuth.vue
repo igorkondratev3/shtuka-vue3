@@ -12,16 +12,17 @@
     @click="checkClose($event) ? $emit('closeNeedAuth') : undefined"
   >
     <div class="need-auth__content">
-      <div
+      <button
         class="need-auth__close-button"
         @click="$emit('closeNeedAuth')"
       >
         <span class="material-symbols-outlined"> close </span>
-      </div>
+    </button>
       Вам необходимо
       <router-link
         to="/auth?start=login"
         class="need-auth__login"
+
       >
         войти</router-link
       >
@@ -73,9 +74,14 @@
       right: 0;
       top: 0;
       cursor: default;
+      border: none;
+      border-radius: 10px;
     }
     &__close-button:hover {
       color: red;
+    }
+    &__close-button:focus {
+      outline: none;
     }
     &__login,
     &__signup {
@@ -88,6 +94,7 @@
     &__login:focus,
     &__signup:focus {
       outline: none;
+      color: red;
     }
   }
 </style>

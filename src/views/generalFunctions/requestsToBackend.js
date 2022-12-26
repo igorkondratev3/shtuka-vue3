@@ -28,6 +28,9 @@ export const getLessons = async (circleNumber, gradeNumber) => {
   }
 };
 
+
+let fetchRefreshToken = false;
+
 export const getElementsFromBackend = async (
   elementsName,
   circleNumber,
@@ -54,14 +57,15 @@ export const getElementsFromBackend = async (
   const elements = await response.json();
 
   if (elements.error === 'Необходимо предоставить refreshToken') {
-    if (elementsName === 'additionals') {
-      //временный костыль чтобы не посылать запрос токенов два раза - функция общая и вызывается одновременно для нескольких элементов
+    if (!fetchRefreshToken) {
+      fetchRefreshToken = true;
+      //чтобы не посылать запрос токенов два раза - функция общая и вызывается одновременно для нескольких элементов
       const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
       if (tokens.error) return tokens;
 
       storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
       localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
-    }
+    } else fetchRefreshToken = false;
     return; //так как есть watch, который вызовет функцию
   }
   return elements;

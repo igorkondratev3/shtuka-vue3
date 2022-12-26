@@ -22,6 +22,7 @@
     ][storeLessonNum.lesson];
   });
 
+  const isThereTheory = ref(true);
   const error = ref('');
   const visibilityControl = ref({
     titel: true,
@@ -32,7 +33,7 @@
   });
   const seenButtonsVisibilityControl = ref({
     titel: true,
-    theory: true,
+    theory: computed(() => isThereTheory.value),
     example: true,
     additionals: true,
     notes: computed(() => {
@@ -107,7 +108,10 @@
       v-show="visibilityControl.titel"
     />
     <div class="lesson-main__content">
-      <AppTheory v-show="visibilityControl.theory" />
+      <AppTheory 
+        v-show="visibilityControl.theory" 
+        @changeTheoryComponent="(isThereTheoryValue) => isThereTheory=isThereTheoryValue"  
+      />
       <AppExample v-show="visibilityControl.example" />
       <AppAdditionals v-show="visibilityControl.additionals" />
       <div

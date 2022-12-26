@@ -197,6 +197,7 @@
     .additionals__content {
       flex-direction: row;
       flex-wrap: wrap;
+      align-items: flex-end;
     }
     .additionals__title {
       margin-bottom: 0px;

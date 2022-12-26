@@ -1,10 +1,12 @@
 <script setup>
+import { ref } from 'vue'
   const props = defineProps({
     visibilityControl: Object,
     seenButtonsVisibilityControl: Object,
   });
-
   const emits = defineEmits(['changeVisibility']);
+
+  const seenVisibilityControl = ref(true);
   const visibilityControlButtons = {
     titel: 'Заголовок',
     theory: 'Теория',
@@ -17,14 +19,26 @@
 <template>
   <div class="lesson-main__visibility-control visibility-control">
     <div
-      class="visibility-control__button"
-      v-for="(button, keyButton) in visibilityControlButtons"
-      :key="button.id"
-      :class="{ button__pressed: props.visibilityControl[keyButton] }"
-      @click="emits('changeVisibility', keyButton)"
-      v-show="props.seenButtonsVisibilityControl[keyButton]"
+      class="visibility-control__seen"
+      @click="seenVisibilityControl = !seenVisibilityControl"
+      :title="seenVisibilityControl ? 'скрыть' : 'раскрыть панель видимости элементов'"
     >
-      {{ button }}
+      ...
+    </div>
+    <div 
+      class = "visibility-control__buttons"
+      v-show="seenVisibilityControl"
+    >
+      <div
+        class="visibility-control__button"
+        v-for="(button, keyButton) in visibilityControlButtons"
+        :key="button.id"
+        :class="{ button__pressed: props.visibilityControl[keyButton] }"
+        @click="emits('changeVisibility', keyButton)"
+        v-show="props.seenButtonsVisibilityControl[keyButton]"
+      >
+        {{ button }}
+      </div>
     </div>
   </div>
 </template>
@@ -36,9 +50,28 @@
     left: 50%;
     transform: translateX(-50%);
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 998;
+    overflow-x: auto;
+  }
+
+  .visibility-control__seen {
+    font-size: 20px;
+    cursor: default;
+    user-select: none;
+  }
+
+  .visibility-control__seen:hover {
+    color: rgb(27, 114, 107);
+    font-size: 40px;
+  }
+
+  .visibility-control__buttons {
+    display: flex;
     flex-direction: row;
     justify-content: center;
-    z-index: 998;
     overflow-x: auto;
   }
 
@@ -63,8 +96,13 @@
     color: white;
   }
 
-  @media (max-width: 444px) {
+  @media (max-width: 444px) { 
     .visibility-control {
+      width: 100%; /*три строчки для появления скролла*/
+      left: 0;
+      transform: none;
+    }
+    .visibility-control__buttons {
       padding-left: 75px; /*так как при появлении скролла первый блок обрезается*/
     }
   }
