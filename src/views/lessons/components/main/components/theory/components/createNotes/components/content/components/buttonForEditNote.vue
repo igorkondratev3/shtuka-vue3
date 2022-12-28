@@ -3,7 +3,7 @@
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
   import { authContext } from '@/stores/authContext';
   import { ref } from 'vue';
-  import { getNewTokens } from '@/views/generalFunctions/refreshToken';
+  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken';
 
   const storeLessonNum = lessonNum();
   const storeTheoryNotesCollection = theoryNotesCollection();
@@ -70,9 +70,7 @@
         isEdit.value = false;
         return;
       }
-
-      storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
-      localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
+      updateTokens(tokens);
       editNote();
       return;
     }

@@ -1,5 +1,5 @@
 import { authContext } from '@/stores/authContext';
-import { getNewTokens } from './refreshToken';
+import { getNewTokens, updateTokens } from './refreshToken';
 
 export const getLesson = async (circleNumber, gradeNumber, lessonNumber) => {
   const response = await fetch(
@@ -62,9 +62,7 @@ export const getElementsFromBackend = async (
       //чтобы не посылать запрос токенов два раза - функция общая и вызывается одновременно для нескольких элементов
       const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
       if (tokens.error) return tokens;
-
-      storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
-      localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
+      updateTokens(tokens);
     } else fetchRefreshToken = false;
     return; //так как есть watch, который вызовет функцию
   }
@@ -91,10 +89,7 @@ export const deleteElementFromDB = async (
   if (payload.error === 'Необходимо предоставить refreshToken') {
     const tokens = await getNewTokens(refreshToken);
     if (tokens.error) return tokens;
-
-    const storeAuthContext = authContext();
-    storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
-    localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
+    updateTokens(tokens);
     payload = await deleteElementFromDB(
       elementsName,
       idElement,

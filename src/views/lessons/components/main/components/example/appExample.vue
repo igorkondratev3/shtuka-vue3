@@ -1,6 +1,9 @@
 <script setup>
+  import { watchEffect } from 'vue'
   import { computed, defineAsyncComponent } from 'vue';
   import { lessonNum } from '@/stores/lessonNum';
+
+  const emits = defineEmits(['changeExampleComponent']);
 
   const Circle1Lesson1 = defineAsyncComponent(() =>
     import(/* @vite-ignore */`./components/circle1/lesson1/lesson1Vue.vue`)
@@ -17,11 +20,18 @@
   const exampleComponent = computed(() => {
     return componentsList[storeLessonNum.theoryComponentName];
   });
+
+  watchEffect(() => {
+    if (exampleComponent.value) emits('changeExampleComponent', true);
+    else emits('changeExampleComponent', false);
+  });
+
+
 </script>
 
 <template>
   <div class="lesson-main__example example">
-    <Suspense>
+    <Suspense v-if="exampleComponent"> <!--v-if чтобы не было предупреждений в консоли когда exampleComponent undefined-->
       <component :is="exampleComponent"></component>
 
       <template #fallback>

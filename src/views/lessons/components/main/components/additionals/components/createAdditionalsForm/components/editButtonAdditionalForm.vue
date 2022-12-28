@@ -21,7 +21,7 @@
 
     isEdit.value = true;
 
-    const editAdditional = {
+    const editAdditionalValue = {
       _id: props.additionalID,
       address: props.correctAdditionalValues.address,
       name: props.correctAdditionalValues.name,
@@ -32,7 +32,7 @@
       `${import.meta.env.VITE_BACKEND_URI}/lesson/additionals/`,
       {
         method: 'PATCH',
-        body: JSON.stringify(editAdditional),
+        body: JSON.stringify(editAdditionalValue),
         headers: {
           'Content-Type': 'application/json',
           authorization: `Bearer ${storeAuthContext.user?.token}`,

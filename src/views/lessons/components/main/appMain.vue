@@ -23,6 +23,7 @@
   });
 
   const isThereTheory = ref(true);
+  const isThereExample = ref(true);
   const error = ref('');
   const visibilityControl = ref({
     titel: true,
@@ -34,7 +35,7 @@
   const seenButtonsVisibilityControl = ref({
     titel: true,
     theory: computed(() => isThereTheory.value),
-    example: true,
+    example: computed(() => isThereExample.value),
     additionals: true,
     notes: computed(() => {
       if (error.value) return true;
@@ -99,10 +100,15 @@
       JSON.stringify(visibilityControl.value)
     );
   };
+
+  const rte = () => {
+    storeAuthContext.user.token = "ayJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzI2ZjIzNTNhOWIyZTdmOTVmMTk3MDYiLCJpYXQiOjE2NzIyMzA3NDUsImV4cCI6MTY3MjIzMTY0NX0.s231pvTwhecy1PajTIiuUjGbGFnW3RGFvYoNCih-6Io"
+  }
 </script>
 
 <template>
   <main class="lesson-layout__main lesson-main">
+    <div @click="rte()">df</div>
     <AppTitel
       class="lesson-main__titel"
       v-show="visibilityControl.titel"
@@ -112,7 +118,10 @@
         v-show="visibilityControl.theory" 
         @changeTheoryComponent="(isThereTheoryValue) => isThereTheory=isThereTheoryValue"  
       />
-      <AppExample v-show="visibilityControl.example" />
+      <AppExample 
+        v-show="visibilityControl.example && isThereExample"
+        @changeExampleComponent="(isThereExampleValue) => isThereExample=isThereExampleValue"  
+      />
       <AppAdditionals v-show="visibilityControl.additionals" />
       <div
         class="lesson-main__notes"

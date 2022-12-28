@@ -34,7 +34,7 @@
   watchEffect(() => {
     if (theoryComponent.value) emits('changeTheoryComponent', true);
     else emits('changeTheoryComponent', false);
-  })
+  });
 
   const notesSeen = ref(false);
   const dialogNeedAuth = ref(null);
@@ -99,6 +99,8 @@
 
   .suspense {
     color: red;
+    border: 0.5px solid black;
+    border-radius: 30px;
     padding: 100px 100px;
   }
 </style>

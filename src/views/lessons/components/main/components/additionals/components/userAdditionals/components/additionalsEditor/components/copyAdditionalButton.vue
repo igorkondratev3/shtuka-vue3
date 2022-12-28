@@ -2,7 +2,7 @@
   import { ref, inject } from 'vue';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
-  import { getNewTokens } from '@/views/generalFunctions/refreshToken';
+  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken';
   import { showErrorSymbol } from '@/views/lessons/components/main/components/additionals/symbols.js';
 
   const props = defineProps({
@@ -39,9 +39,7 @@
         isCopy.value = false;
         return;
       }
-
-      storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
-      localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
+      updateTokens(tokens);
       copyAdditional();
       return;
     }

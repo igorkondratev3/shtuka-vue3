@@ -3,7 +3,7 @@
   import { lessonNum } from '@/stores/lessonNum';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
-  import { getNewTokens } from '@/views/generalFunctions/refreshToken';
+  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken';
 
   const storeLessonNum = lessonNum();
   const storeAdditionalsCollection = additionalsCollection();
@@ -52,9 +52,7 @@
         isCreate.value = false;
         return;
       }
-
-      storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
-      localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
+      updateTokens(tokens);
       addAdditional();
       return;
     }
