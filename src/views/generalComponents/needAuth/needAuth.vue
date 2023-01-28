@@ -1,6 +1,6 @@
 <script setup>
   import { RouterLink } from 'vue-router';
-  import { checkClose } from '@/views/generalFunctions/checkClose';
+  import { checkClose } from '@/views/generalFunctions/checkClose.js';
 
   const prop = defineProps({ allowedAction: String });
   defineEmits(['closeNeedAuth']);
@@ -16,7 +16,10 @@
         class="need-auth__close-button"
         @click="$emit('closeNeedAuth')"
       >
-        <span class="material-symbols-outlined"> close </span>
+      <img
+        class="delete-icon_color" 
+        src='/src/assets/close.svg'
+      />
     </button>
       Вам необходимо
       <router-link
@@ -76,9 +79,7 @@
       cursor: default;
       border: none;
       border-radius: 10px;
-    }
-    &__close-button:hover {
-      color: red;
+      padding-top: 3px;
     }
     &__close-button:focus {
       outline: none;

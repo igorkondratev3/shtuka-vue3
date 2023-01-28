@@ -22,28 +22,20 @@ export const additionalsCollection = defineStore({
     },
     setAdditional(additional) {
       if (additional) {
-        if (
-          this[`circle${additional.circle}`][`grade${additional.grade}`][
-            `lesson${additional.lesson}`
-          ]
-        ) {
-          this[`circle${additional.circle}`][`grade${additional.grade}`][
-            `lesson${additional.lesson}`
-          ].push(additional);
-        } else {
-          this[`circle${additional.circle}`][`grade${additional.grade}`][
-            `lesson${additional.lesson}`
-          ] = [additional];
-        }
+        const additionals = this[`circle${additional.circle}`][`grade${additional.grade}`][
+          `lesson${additional.lesson}`];
+        if (additionals) additionals.push(additional);
+        else this[`circle${additional.circle}`][`grade${additional.grade}`][
+          `lesson${additional.lesson}`] = [additional];
       }
     },
     deleteAdditional(additional) {
-      const additionalsArr =
+      const additionals =
         this[`circle${additional.circle}`][`grade${additional.grade}`][
           `lesson${additional.lesson}`
         ];
-      additionalsArr.splice(
-        additionalsArr.findIndex((add) => add._id == additional._id),
+      additionals.splice(
+        additionals.findIndex((add) => add._id == additional._id),
         1
       );
     },

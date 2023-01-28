@@ -3,21 +3,21 @@ export const calculateLessonNumberForNextLesson = (
   numberOf
 ) => {
   if (
-    storeLessonNum.circleNumber == 2 &&
-    storeLessonNum.lessonNumber ==
+    storeLessonNum.circleNumber === 2 &&
+    storeLessonNum.lessonNumber ===
       numberOf.circle2Grade9Lessons +
         numberOf.grade10Lessons +
         numberOf.grade11Lessons
   ) {
     return [1, 7, 1];
   } else if (
-    (storeLessonNum.circleNumber == 1 &&
-      (storeLessonNum.lessonNumber == numberOf.grade7Lessons ||
-        storeLessonNum.lessonNumber ==
+    (storeLessonNum.circleNumber === 1 &&
+      (storeLessonNum.lessonNumber === numberOf.grade7Lessons ||
+        storeLessonNum.lessonNumber ===
           numberOf.grade7Lessons + numberOf.grade8Lessons)) ||
-    (storeLessonNum.circleNumber == 2 &&
-      (storeLessonNum.lessonNumber == numberOf.circle2Grade9Lessons ||
-        storeLessonNum.lessonNumber ==
+    (storeLessonNum.circleNumber === 2 &&
+      (storeLessonNum.lessonNumber === numberOf.circle2Grade9Lessons ||
+        storeLessonNum.lessonNumber ===
           numberOf.circle2Grade9Lessons + numberOf.grade10Lessons))
   ) {
     return [
@@ -26,8 +26,8 @@ export const calculateLessonNumberForNextLesson = (
       storeLessonNum.lessonNumber + 1,
     ];
   } else if (
-    storeLessonNum.circleNumber == 1 &&
-    storeLessonNum.lessonNumber ==
+    storeLessonNum.circleNumber === 1 &&
+    storeLessonNum.lessonNumber ===
       numberOf.grade7Lessons +
         numberOf.grade8Lessons +
         numberOf.circle1Grade9Lessons
@@ -46,7 +46,7 @@ export const calculateLessonNumberForPreviousLesson = (
   storeLessonNum,
   numberOf
 ) => {
-  if (storeLessonNum.lessonNumber == 1) {
+  if (storeLessonNum.lessonNumber === 1) {
     switch (storeLessonNum.gradeNumber) {
       case 7:
         return [
@@ -66,13 +66,13 @@ export const calculateLessonNumberForPreviousLesson = (
         ];
     }
   } else if (
-    (storeLessonNum.circleNumber == 1 &&
-      (storeLessonNum.lessonNumber == numberOf.grade7Lessons + 1 ||
-        storeLessonNum.lessonNumber ==
+    (storeLessonNum.circleNumber === 1 &&
+      (storeLessonNum.lessonNumber === numberOf.grade7Lessons + 1 ||
+        storeLessonNum.lessonNumber ===
           numberOf.grade7Lessons + numberOf.grade8Lessons + 1)) ||
-    (storeLessonNum.circleNumber == 2 &&
-      (storeLessonNum.lessonNumber == numberOf.circle2Grade9Lessons + 1 ||
-        storeLessonNum.lessonNumber ==
+    (storeLessonNum.circleNumber === 2 &&
+      (storeLessonNum.lessonNumber === numberOf.circle2Grade9Lessons + 1 ||
+        storeLessonNum.lessonNumber ===
           numberOf.circle2Grade9Lessons + numberOf.grade10Lessons + 1))
   ) {
     return [

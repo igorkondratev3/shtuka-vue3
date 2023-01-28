@@ -1,13 +1,13 @@
 <script setup>
   import { ref } from 'vue';
-  import { fetchAuth } from './fetchAuth';
-  import { authContext } from '@/stores/authContext';
-  import { shtukaChannel } from '@/shtukaChannel';
+  import { fetchAuth } from './fetchAuth.js';
+  import { authContext } from '@/stores/authContext.js';
+  import { shtukaChannel } from '@/shtukaChannel.js';
 
   const storeAuthContext = authContext();
   const email = ref('');
   const password = ref('');
-  const isLoading = ref(null);
+  const isLoading = ref(false);
   const formLogin = ref(null);
   const emailLogin = ref(null);
   const passwordLogin = ref(null);
@@ -37,31 +37,31 @@
       isPasswordEventListener.value = true;
       return false;
     }
-
     return true;
   };
 
-  const login = async (email, password) => {
-    if (!validate()) return;
-
-    isLoading.value = true;
-
-    const user = await fetchAuth('login', email, password);
-
+  const checkAuth = (user) => {
     if (user.error) {
       isLoading.value = false;
       if (user.error === 'Некорректный пароль') {
         passwordLogin.value.setCustomValidity('Некорректный пароль');
         passwordLogin.value.reportValidity();
         setTimeout(() => passwordLogin.value.setCustomValidity(''), 1500);
-        return;
+        return false;
       }
       emailLogin.value.setCustomValidity('Некорректный email');
       emailLogin.value.reportValidity();
       setTimeout(() => emailLogin.value.setCustomValidity(''), 1500);
-      return;
+      return false;
     }
+    return true;
+  }
 
+  const login = async (email, password) => {
+    if (!validate()) return;
+    isLoading.value = true;
+    const user = await fetchAuth('login', email, password);
+    if (!checkAuth(user)) return;
     localStorage.setItem('user', JSON.stringify(user));
     storeAuthContext.login(user);
     isLoading.value = false;

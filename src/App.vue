@@ -1,34 +1,23 @@
 <script setup>
-  import { watch } from 'vue';
   import { RouterView } from 'vue-router';
-  import { lessonNum } from './stores/lessonNum';
-  import { authContext } from './stores/authContext';
-  import { shtukaChannel } from '@/shtukaChannel';
-  import { deleteUserInformationFromStores } from '@/views/generalFunctions/deleteUserInformationFromStores';
+  import { lessonNum } from './stores/lessonNum.js';
+  import { authContext } from './stores/authContext.js';
+  import { shtukaChannel } from '@/shtukaChannel.js';
+  import { deleteUserInformationFromStores } from '@/views/generalFunctions/deleteUserInformationFromStores.js';
 
   const storeAuthContext = authContext();
   if (localStorage.getItem('user'))
-    storeAuthContext.user = JSON.parse(localStorage.getItem('user'));
+    storeAuthContext.login(JSON.parse(localStorage.getItem('user')));
 
   const storeLessonNum = lessonNum();
-  if (localStorage.lesson) {
-    let lessonParameters = JSON.parse(localStorage.getItem('lesson'));
+  if (localStorage.getItem('lesson')) {
+    const lessonParameters = JSON.parse(localStorage.getItem('lesson'));
     storeLessonNum.changeLessonNumber(
       lessonParameters.circleNumber,
       lessonParameters.gradeNumber,
       lessonParameters.lessonNumber
     );
   }
-  watch(storeLessonNum, () => {
-    localStorage.setItem(
-      'lesson',
-      JSON.stringify({
-        circleNumber: storeLessonNum.circleNumber,
-        lessonNumber: storeLessonNum.lessonNumber,
-        gradeNumber: storeLessonNum.gradeNumber,
-      })
-    );
-  });
 
   shtukaChannel.onmessage = (event) => {
     if (event.data === 'logout') deleteUserInformationFromStores();
@@ -38,14 +27,10 @@
 </script>
 
 <template>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0"
-  />
   <RouterView />
 </template>
 
 <style>
-  @import '@/assets/base.css';
   @import '@/assets/roundButton.css';
+  @import '@/assets/icons.css';
 </style>

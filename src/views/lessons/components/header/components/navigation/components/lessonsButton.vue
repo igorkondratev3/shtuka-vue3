@@ -6,9 +6,9 @@
     calculateLessonNumberForPreviousLesson,
   } from '@/views/generalFunctions/calculateLessonNumber.js';
   import { drawArrowRight, drawArrowLeft } from './functions.js';
-  import { changeLesson } from '@/views/generalFunctions/changeLesson';
+  import { changeLesson } from '@/views/generalFunctions/changeLesson.js';
   import { lessonsCollection } from '@/stores/lessonsCollection';
-  import { lessonNum } from '@/stores/lessonNum';
+  import { lessonNum } from '@/stores/lessonNum.js';
 
   const props = defineProps({ where: String });
   let drawArrow;

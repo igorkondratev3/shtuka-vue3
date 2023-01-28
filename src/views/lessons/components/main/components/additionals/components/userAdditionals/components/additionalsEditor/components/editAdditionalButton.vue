@@ -9,21 +9,17 @@
 
 <template>
   <button
-    class="additionals-link__button edit-button_color"
+    class="additionals-link__button"
     title="изменить"
     @click="openCreateAdditionalsForm('edit', props.additional)"
   >
-    <span
-      class="material-symbols-outlined"
-      style="font-size: 15px; line-height: 15px"
-    >
-      edit
-    </span>
+    <img
+      class="icon_small-size edit-icon_color"
+      src="/src/assets/edit.svg"
+    />
   </button>
 </template>
 
 <style>
-  .edit-button_color:hover {
-    color: rgb(64, 156, 156);
-  }
+
 </style>

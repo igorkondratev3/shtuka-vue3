@@ -19,6 +19,10 @@ export const lessonNum = defineStore({
       this.circleNumber = circleNumber;
       this.gradeNumber = gradeNumber;
       this.lessonNumber = lessonNumber;
+      localStorage.setItem(
+        'lesson',
+        JSON.stringify({circleNumber, lessonNumber, gradeNumber})
+      );
     },
   },
 });

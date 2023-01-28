@@ -1,7 +1,7 @@
 <script setup>
   import { watchEffect } from 'vue'
   import { computed, defineAsyncComponent } from 'vue';
-  import { lessonNum } from '@/stores/lessonNum';
+  import { lessonNum } from '@/stores/lessonNum.js';
 
   const emits = defineEmits(['changeExampleComponent']);
 
@@ -25,8 +25,6 @@
     if (exampleComponent.value) emits('changeExampleComponent', true);
     else emits('changeExampleComponent', false);
   });
-
-
 </script>
 
 <template>

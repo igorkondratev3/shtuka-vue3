@@ -1,6 +1,6 @@
 <script setup>
-  import { lessonsCollection } from '@/stores/lessonsCollection';
-  import { lessonNum } from '@/stores/lessonNum';
+  import { lessonsCollection } from '@/stores/lessonsCollection.js';
+  import { lessonNum } from '@/stores/lessonNum.js';
   import { computed } from 'vue';
 
   const storeLessonsCollection = lessonsCollection();

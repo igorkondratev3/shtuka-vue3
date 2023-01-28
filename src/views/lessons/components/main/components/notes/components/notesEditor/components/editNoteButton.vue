@@ -8,12 +8,10 @@
     title="изменить"
     @click="$emit('openEditNoteForm')"
   >
-    <span
-      class="material-symbols-outlined"
-      style="font-size: 18px; line-height: 18px"
-    >
-      edit
-    </span>
+    <img
+      class="icon_middle-size edit-icon_color"
+      src="/src/assets/edit.svg"
+    />
   </button>
 </template>
 

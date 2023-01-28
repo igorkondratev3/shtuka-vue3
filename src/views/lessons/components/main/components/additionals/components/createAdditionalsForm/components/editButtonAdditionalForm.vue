@@ -1,8 +1,8 @@
 <script setup>
   import { ref } from 'vue';
-  import { additionalsCollection } from '@/stores/additionalsCollection';
-  import { authContext } from '@/stores/authContext';
-  import { getNewTokens } from '@/views/generalFunctions/refreshToken';
+  import { additionalsCollection } from '@/stores/additionalsCollection.js';
+  import { authContext } from '@/stores/authContext.js';
+  import { getNewTokens } from '@/views/generalFunctions/refreshToken.js';
 
   const storeAdditionalsCollection = additionalsCollection();
   const storeAuthContext = authContext();

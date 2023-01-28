@@ -21,7 +21,12 @@
 </template>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+  @font-face {
+    font-family: "Raleway";
+    src: url(https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaorCMPrEHJA.woff2) format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    font-display: swap;
+  }
 
   .start-page {
     display: grid;
@@ -50,7 +55,6 @@
       justify-content: flex-start;
       font: bold 18px/25px 'Raleway', sans-serif;
       white-space: nowrap;
-      color: white;
       border-radius: 30px;
       background-color: rgba(35, 146, 85, 0.5);
       min-width: 200px;

@@ -7,12 +7,16 @@
     class="start-links__first-lesson"
     @click="$emit('goToFirstLesson')"
   >
-    <span class="material-symbols-outlined start-links_max-width">start</span
-    >Первый урок
+    <img
+      class="icon_large-size" 
+      src="/src/assets/start.svg"
+    />
+    Первый урок
   </div>
 </template>
 
 <style>
+
   .start-links__first-lesson {
     margin-bottom: 30px;
     overflow-y: hidden;

@@ -1,8 +1,8 @@
 <script setup>
   import { ref, inject } from 'vue';
-  import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
-  import { authContext } from '@/stores/authContext';
-  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken';
+  import { theoryNotesCollection } from '@/stores/theoryNotesCollection.js';
+  import { authContext } from '@/stores/authContext.js';
+  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken.js';
   import { showErrorSymbol } from '@/views/lessons/components/main/components/notes/symbols.js';
 
   const props = defineProps({
@@ -62,19 +62,14 @@
     title="копировать"
     @click="copyNote"
     :disabled="isCopy"
-    :class="{ 'note-editor__button_disabled': isCopy }"
   >
-    <span
-      class="material-symbols-outlined"
-      style="font-size: 18px; line-height: 18px"
-    >
-      file_copy
-    </span>
+    <img
+      :class="{'icon-disabled': isCopy, 'copy-icon_color': !isCopy }"
+      class="icon_middle-size"
+      src="/src/assets/copy.svg"
+    />
   </button>
 </template>
 
 <style>
-  .copy-button_color:hover {
-    color: rgb(160, 161, 75);
-  }
 </style>

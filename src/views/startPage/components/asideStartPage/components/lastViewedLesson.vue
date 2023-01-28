@@ -13,9 +13,10 @@
     v-show="isThereLessonInLocalStorage"
     @click="$emit('goToLastViewedLesson')"
   >
-    <span class="material-symbols-outlined start-links_max-width"
-      >arrow_right_alt</span
-    >
+    <img
+      class="icon_large-size"
+      src="/src/assets/arrow-right.svg"
+    />
     Последний просмотренный урок
   </div>
 </template>

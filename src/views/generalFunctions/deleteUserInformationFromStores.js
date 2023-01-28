@@ -1,6 +1,6 @@
 import { authContext } from '@/stores/authContext';
-import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
-import { additionalsCollection } from '@/stores/additionalsCollection';
+import { theoryNotesCollection } from '@/stores/theoryNotesCollection.js';
+import { additionalsCollection } from '@/stores/additionalsCollection.js';
 
 export const deleteUserInformationFromStores = () => {
   authContext().logout();

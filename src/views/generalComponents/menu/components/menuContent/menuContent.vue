@@ -1,7 +1,7 @@
 <script setup>
   import { ref, computed } from 'vue';
   import { useRouter } from 'vue-router';
-  import { authContext } from '@/stores/authContext';
+  import { authContext } from '@/stores/authContext.js';
 
   const router = useRouter();
   const storeAuthContext = authContext();

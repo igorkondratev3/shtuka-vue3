@@ -1,5 +1,5 @@
-import { lessonsCollection } from '@/stores/lessonsCollection';
-import { lessonNum } from '@/stores/lessonNum';
+import { lessonsCollection } from '@/stores/lessonsCollection.js';
+import { lessonNum } from '@/stores/lessonNum.js';
 
 export const changeLesson = (calculateLessonNumber) => {
   const storeLessonsCollection = lessonsCollection();

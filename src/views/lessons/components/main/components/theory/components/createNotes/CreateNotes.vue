@@ -46,7 +46,7 @@
 </script>
 
 <template>
-  <div class="Lesson-theory__notes notes">
+  <div class="lesson-theory__notes notes">
     <EditorVue
       @changeStyleForNotesContent="changeStyleForNotesContent"
       :flagClearStyleForNotesContent="flagClearStyleForNotesContent"

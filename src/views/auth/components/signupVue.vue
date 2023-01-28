@@ -1,14 +1,14 @@
 <script setup>
   import { ref } from 'vue';
-  import { fetchAuth } from './fetchAuth';
-  import { authContext } from '@/stores/authContext';
-  import { shtukaChannel } from '@/shtukaChannel';
+  import { fetchAuth } from './fetchAuth.js';
+  import { authContext } from '@/stores/authContext.js';
+  import { shtukaChannel } from '@/shtukaChannel.js';
 
   const storeAuthContext = authContext();
   const email = ref('');
   const password = ref('');
   const repeatPassword = ref('');
-  const isLoading = ref(null);
+  const isLoading = ref(false);
   const emailSignup = ref(null);
   const passwordSignup = ref(null);
   const repeatPasswordSignup = ref(null);
@@ -57,31 +57,31 @@
       isRepeatPasswordEventListener.value = true;
       return false;
     }
-
     return true;
   };
 
-  const signup = async (email, password) => {
-    if (!validate()) return;
-
-    isLoading.value = true;
-
-    const user = await fetchAuth('signup', email, password);
-
+  const checkAuth = (user) => {
     if (user.error) {
       isLoading.value = false;
       if (user.error === 'Пароль недостаточно надежный') {
         passwordSignup.value.setCustomValidity(user.error);
         passwordSignup.value.reportValidity();
         setTimeout(() => passwordSignup.value.setCustomValidity(''), 1500);
-        return;
+        return false;
       }
       emailSignup.value.setCustomValidity(user.error);
       emailSignup.value.reportValidity();
       setTimeout(() => emailSignup.value.setCustomValidity(''), 1500);
-      return;
+      return false;
     }
+    return true;
+  }
 
+  const signup = async (email, password) => {
+    if (!validate()) return;
+    isLoading.value = true;
+    const user = await fetchAuth('signup', email, password);
+    if (!checkAuth(user)) return;
     localStorage.setItem('user', JSON.stringify(user));
     storeAuthContext.login(user);
     isLoading.value = false;

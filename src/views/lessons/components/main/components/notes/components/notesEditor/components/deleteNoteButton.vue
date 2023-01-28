@@ -1,8 +1,8 @@
 <script setup>
   import { ref, inject } from 'vue';
-  import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
-  import { authContext } from '@/stores/authContext';
-  import { deleteElementFromDB } from '@/views/generalFunctions/requestsToBackend';
+  import { theoryNotesCollection } from '@/stores/theoryNotesCollection.js';
+  import { authContext } from '@/stores/authContext.js';
+  import { deleteElementFromDB } from '@/views/generalFunctions/requestsToBackend.js';
   import { showErrorSymbol } from '@/views/lessons/components/main/components/notes/symbols.js';
 
   const props = defineProps({
@@ -41,14 +41,12 @@
     title="удалить"
     @click="deleteNote"
     :disabled="isDelete"
-    :class="{ 'note-editor__button_disabled': isDelete }"
   >
-    <span
-      class="material-symbols-outlined ghty"
-      style="font-size: 20px; line-height: 20px"
-    >
-      delete_forever
-    </span>
+    <img 
+      :class="{'icon-disabled': isDelete, 'delete-icon_color': !isDelete }"
+      class="icon_middle-size"
+      src="/src/assets/close.svg"
+    />
   </button>
 </template>
 
@@ -60,14 +58,5 @@
     line-height: 0;
     border: 0;
     margin-right: 3px;
-  }
-
-  .delete-button_color:hover {
-    color: red;
-  }
-
-  .note-editor__button_disabled,
-  .note-editor__button_disabled:hover {
-    color: rgb(212, 208, 208);
   }
 </style>

@@ -1,9 +1,9 @@
 <script setup>
   import { ref } from 'vue';
-  import { lessonNum } from '@/stores/lessonNum';
-  import { additionalsCollection } from '@/stores/additionalsCollection';
-  import { authContext } from '@/stores/authContext';
-  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken';
+  import { lessonNum } from '@/stores/lessonNum.js';
+  import { additionalsCollection } from '@/stores/additionalsCollection.js';
+  import { authContext } from '@/stores/authContext.js';
+  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken.js';
 
   const storeLessonNum = lessonNum();
   const storeAdditionalsCollection = additionalsCollection();

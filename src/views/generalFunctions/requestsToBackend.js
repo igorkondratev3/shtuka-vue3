@@ -1,5 +1,5 @@
-import { authContext } from '@/stores/authContext';
-import { getNewTokens, updateTokens } from './refreshToken';
+import { authContext } from '@/stores/authContext.js';
+import { getNewTokens, updateTokens } from './refreshToken.js';
 
 export const getLesson = async (circleNumber, gradeNumber, lessonNumber) => {
   const response = await fetch(

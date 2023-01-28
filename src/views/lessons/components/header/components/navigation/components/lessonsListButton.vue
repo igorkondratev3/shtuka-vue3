@@ -19,7 +19,7 @@
       class="navigation__link"
       to="/lessonsList"
     >
-      <span class="material-symbols-outlined">library_books</span>
+      <img src="/src/assets/library.svg"/>
     </router-link>
   </div>
 </template>

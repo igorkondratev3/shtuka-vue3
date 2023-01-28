@@ -3,9 +3,9 @@
   import CreateNotes from './components/createNotes/CreateNotes.vue';
   import NeedAuth from '@/views/generalComponents/needAuth/needAuth.vue';
   import { ref, computed, watch, watchEffect, inject } from 'vue';
-  import { lessonNum } from '@/stores/lessonNum';
+  import { lessonNum } from '@/stores/lessonNum.js';
   import { defineAsyncComponent } from 'vue';
-  import { authContext } from '@/stores/authContext';
+  import { authContext } from '@/stores/authContext.js';
   import { openDialog, closeDialog } from '@/views/generalFunctions/dialog.js';
   import { changeCanChangeLessonSymbol } from '@/views/lessons/symbols.js';
 

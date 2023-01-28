@@ -1,4 +1,4 @@
-import { authContext } from '@/stores/authContext';
+import { authContext } from '@/stores/authContext.js';
 
 export const deleteRefreshTokenFromDB = async (refreshToken) => {
   fetch(`${import.meta.env.VITE_BACKEND_URI}/refreshToken/`, {

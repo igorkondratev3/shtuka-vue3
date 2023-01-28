@@ -1,8 +1,8 @@
 <script setup>
   import { ref, inject } from 'vue';
-  import { additionalsCollection } from '@/stores/additionalsCollection';
-  import { authContext } from '@/stores/authContext';
-  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken';
+  import { additionalsCollection } from '@/stores/additionalsCollection.js';
+  import { authContext } from '@/stores/authContext.js';
+  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken.js';
   import { showErrorSymbol } from '@/views/lessons/components/main/components/additionals/symbols.js';
 
   const props = defineProps({
@@ -64,12 +64,11 @@
     :disabled="isCopy"
     :class="{ 'note-editor__button_disabled': isCopy }"
   >
-    <span
-      class="material-symbols-outlined"
-      style="font-size: 14px; line-height: 14px"
-    >
-      file_copy
-    </span>
+    <img
+      :class="{'icon-disabled': isCopy, 'copy-icon_color': !isCopy }"
+      class="icon_small-size"
+      src="/src/assets/copy.svg"
+    />
   </button>
 </template>
 

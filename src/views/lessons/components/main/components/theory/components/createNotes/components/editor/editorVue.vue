@@ -83,6 +83,7 @@
   }
   .notes__editor {
     padding-left: 25px;
+    padding-right: 2px;
     margin-bottom: 1px;
   }
 

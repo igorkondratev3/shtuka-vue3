@@ -1,7 +1,7 @@
 <script setup>
   import { ref, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
-  import { drawCross } from '@/views/generalComponents/menu/components/menuButton/functions';
+  import { drawCross } from '@/views/generalComponents/menu/components/menuButton/functions.js';
 
   const router = useRouter();
 

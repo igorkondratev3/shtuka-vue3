@@ -22,28 +22,25 @@
   const error = ref('');
   const dialogCreateAdditionals = ref(null);
   const isCreateForm = ref(true);
-  let additionalForEdit = ref({});
+  const additionalForEdit = ref({});
   const additionals = computed(() => {
     return storeAdditionalsCollection[storeLessonNum.circle][
       storeLessonNum.grade
     ][storeLessonNum.lesson];
   });
 
-  const showError = (errorValue) => {
-    error.value = errorValue;
-  };
+  const showError = (errorValue) => error.value = errorValue;
   const changeCanChangeLesson = inject(changeCanChangeLessonSymbol);
   provide(showErrorSymbol, showError);
   provide('openCreateAdditionalsForm', openCreateAdditionalsForm);
 
-  if (storeAuthContext.user) {
+  if (storeAuthContext.user) 
     setAdditionalsInAdditionalsCollection();
-  }
+  
 
   watch(storeLessonNum, () => {
-    if (storeAuthContext.user) {
+    if (storeAuthContext.user)
       setAdditionalsInAdditionalsCollection();
-    }
   });
 
   watch(storeAuthContext, () => {

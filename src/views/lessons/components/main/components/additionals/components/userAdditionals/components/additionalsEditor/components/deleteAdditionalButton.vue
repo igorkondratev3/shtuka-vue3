@@ -1,9 +1,8 @@
 <script setup>
-  import crossSVG from '@/views/generalComponents/svg/crossSVG.vue';
   import { ref, inject } from 'vue';
-  import { additionalsCollection } from '@/stores/additionalsCollection';
-  import { authContext } from '@/stores/authContext';
-  import { deleteElementFromDB } from '@/views/generalFunctions/requestsToBackend';
+  import { additionalsCollection } from '@/stores/additionalsCollection.js';
+  import { authContext } from '@/stores/authContext.js';
+  import { deleteElementFromDB } from '@/views/generalFunctions/requestsToBackend.js';
   import { showErrorSymbol } from '@/views/lessons/components/main/components/additionals/symbols.js';
 
   const props = defineProps({
@@ -47,12 +46,11 @@
     class="additionals-link__button"
     title="удалить"
     @click="deleteAdditional"
-    @pointerover="isOverDeleteButton = true"
-    @pointerout="isOverDeleteButton = false"
   >
-    <crossSVG
-      :isOverDeleteButton="isOverDeleteButton"
-      :isDelete="isDelete"
+    <img 
+      :class="{'icon-disabled': isDelete, 'delete-icon_color': !isDelete }"
+      class="icon_small-size"
+      src="/src/assets/close.svg"
     />
   </button>
 </template>

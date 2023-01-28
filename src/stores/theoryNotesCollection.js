@@ -22,28 +22,20 @@ export const theoryNotesCollection = defineStore({
     },
     setTheoryNote(theoryNote) {
       if (theoryNote) {
-        if (
-          this[`circle${theoryNote.circle}`][`grade${theoryNote.grade}`][
-            `lesson${theoryNote.lesson}`
-          ]
-        ) {
-          this[`circle${theoryNote.circle}`][`grade${theoryNote.grade}`][
-            `lesson${theoryNote.lesson}`
-          ].push(theoryNote);
-        } else {
-          this[`circle${theoryNote.circle}`][`grade${theoryNote.grade}`][
-            `lesson${theoryNote.lesson}`
-          ] = [theoryNote];
-        }
+        const notes = this[`circle${theoryNote.circle}`][`grade${theoryNote.grade}`][
+          `lesson${theoryNote.lesson}`]
+        if (notes) notes.push(theoryNote);
+        else this[`circle${theoryNote.circle}`][`grade${theoryNote.grade}`][
+            `lesson${theoryNote.lesson}`] = [theoryNote];
       }
     },
     deleteTheoryNote(theoryNote) {
-      const notesArr =
+      const notes =
         this[`circle${theoryNote.circle}`][`grade${theoryNote.grade}`][
           `lesson${theoryNote.lesson}`
         ];
-      notesArr.splice(
-        notesArr.findIndex((note) => note._id == theoryNote._id),
+      notes.splice(
+        notes.findIndex((note) => note._id == theoryNote._id),
         1
       );
     },

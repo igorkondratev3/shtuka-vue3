@@ -3,7 +3,7 @@
   import CloseLessonsList from './components/closeLessonsList.vue';
   import LessonsVue from './components/lessonsVue.vue';
   import { ref } from 'vue';
-  import { lessonsCollection } from '../../stores/lessonsCollection';
+  import { lessonsCollection } from '../../stores/lessonsCollection.js';
 
   const storeLessonsCollection = lessonsCollection();
   const circleAndGrade = ref({
@@ -37,7 +37,7 @@
           storeLessonsCollection.numberOf.grade7Lessons;
         break;
       case 9:
-        if (circleAndGrade.value.circle == 1) {
+        if (circleAndGrade.value.circle === 1) {
           circleAndGrade.value.addForNumberOfLesson =
             storeLessonsCollection.numberOf.grade7Lessons +
             storeLessonsCollection.numberOf.grade8Lessons;

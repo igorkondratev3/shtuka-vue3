@@ -3,7 +3,7 @@ import LessonLayout from '@/views/lessons/lessonLayout.vue';
 import LessonsList from '@/views/lessonsList/lessonsList.vue';
 import AuthVue from '@/views/auth/authVue.vue';
 import StartPage from '@/views/startPage/startPage.vue';
-import { authContext } from '@/stores/authContext';
+import { authContext } from '@/stores/authContext.js';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

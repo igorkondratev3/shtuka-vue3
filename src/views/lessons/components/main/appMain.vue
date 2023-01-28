@@ -6,10 +6,10 @@
   import AppNotes from './components/notes/appNotes.vue';
   import VisibilityControl from './components/visibilityControl/visibilityControl.vue';
   import { ref, computed, watch } from 'vue';
-  import { theoryNotesCollection } from '@/stores/theoryNotesCollection';
-  import { authContext } from '@/stores/authContext';
-  import { lessonNum } from '@/stores/lessonNum';
-  import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend';
+  import { theoryNotesCollection } from '@/stores/theoryNotesCollection.js';
+  import { authContext } from '@/stores/authContext.js';
+  import { lessonNum } from '@/stores/lessonNum.js';
+  import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend.js';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
 
   const storeTheoryNotesCollection = theoryNotesCollection();
@@ -100,15 +100,10 @@
       JSON.stringify(visibilityControl.value)
     );
   };
-
-  const rte = () => {
-    storeAuthContext.user.token = "ayJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzI2ZjIzNTNhOWIyZTdmOTVmMTk3MDYiLCJpYXQiOjE2NzIyMzA3NDUsImV4cCI6MTY3MjIzMTY0NX0.s231pvTwhecy1PajTIiuUjGbGFnW3RGFvYoNCih-6Io"
-  }
 </script>
 
 <template>
   <main class="lesson-layout__main lesson-main">
-    <div @click="rte()">df</div>
     <AppTitel
       class="lesson-main__titel"
       v-show="visibilityControl.titel"

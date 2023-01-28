@@ -6,8 +6,6 @@
 </template>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
-
   .start-page__letter {
     font-family: 'Bad Script', cursive;
     text-align: center;

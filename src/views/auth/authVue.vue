@@ -4,14 +4,12 @@
   import AppMenu from '@/views/generalComponents/menu/appMenu.vue';
   import LoginVue from './components/loginVue.vue';
   import SignupVue from './components/signupVue.vue';
-  import { goBack } from '@/views/generalFunctions/goBack';
-  import { authContext } from '@/stores/authContext';
+  import { goBack } from '@/views/generalFunctions/goBack.js';
+  import { authContext } from '@/stores/authContext.js';
 
   const isSignup = ref(false);
   const urlSearchParams = new URLSearchParams(document.location.search);
-  if (urlSearchParams.get('start') === 'signup') {
-    isSignup.value = true;
-  }
+  if (urlSearchParams.get('start') === 'signup') isSignup.value = true;
 
   const storeAuthContext = authContext();
   const router = useRouter();

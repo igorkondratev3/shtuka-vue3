@@ -1,9 +1,9 @@
 <script setup>
   import { computed, watch, ref } from 'vue';
   import { useRouter } from 'vue-router';
-  import { lessonsCollection } from '@/stores/lessonsCollection';
-  import { lessonNum } from '@/stores/lessonNum';
-  import { getLessons } from '../../generalFunctions/requestsToBackend';
+  import { lessonsCollection } from '@/stores/lessonsCollection.js';
+  import { lessonNum } from '@/stores/lessonNum.js';
+  import { getLessons } from '../../generalFunctions/requestsToBackend.js';
   import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
 
   const props = defineProps({ circleAndGrade: Object });
@@ -58,9 +58,15 @@
     ];
   });
 
-  const getLessonHeadings = (numberOfLesson) => {
+  const getLessonHeadings = (numberOfLesson) => {//тут проблема когда в уоллекции уже имеется урок, но он не первый (например, 11 класс, 29 урок)
+    const lessonNumber = numberOfLesson + props.circleAndGrade.addForNumberOfLesson;
+    
+    if (lessonNumber != lessons.value[
+      `lesson${lessonNumber}`
+    ]?.lesson) return [''];
+
     return lessons.value[
-      `lesson${numberOfLesson + props.circleAndGrade.addForNumberOfLesson}`
+      `lesson${lessonNumber}`
     ]?.headings;
   };
 </script>
