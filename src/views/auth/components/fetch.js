@@ -1,5 +1,6 @@
 export const fetchAuth = async (action, email, password) => {
-  const response = await fetch(
+  try {
+    const response = await fetch(
     `${import.meta.env.VITE_BACKEND_URI}/user/${action}`,
     {
       method: 'POST',
@@ -10,4 +11,7 @@ export const fetchAuth = async (action, email, password) => {
 
   const payload = await response.json();
   return payload;
+  } catch(error) {
+    return { error: 'Ошибка доступа к серверу' }
+  }
 };

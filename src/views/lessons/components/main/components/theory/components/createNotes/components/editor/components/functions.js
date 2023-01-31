@@ -5,9 +5,14 @@ export const closeListOfPararmeterValues = (parameterTuningValues) => {
   parameterTuningValues.borderValue = '0.5px solid black';
 };
 
-export const changeSeenOfListOfParameterValues = async (
+export const changeSeenOfListOfParameterValues = (
   parameterTuningValues
 ) => {
+  if (!parameterTuningValues.listOfValuesSeen) {
+    const clickEvent = new Event('click');
+    document.dispatchEvent(clickEvent);
+  }
+
   parameterTuningValues.listOfValuesSeen =
     !parameterTuningValues.listOfValuesSeen;
   parameterTuningValues.choosenValueSeen =
@@ -15,11 +20,10 @@ export const changeSeenOfListOfParameterValues = async (
   parameterTuningValues.arrowOpenListOfValues =
     !parameterTuningValues.arrowOpenListOfValues;
 
-  if (parameterTuningValues.listOfValuesSeen) {
+  if (parameterTuningValues.listOfValuesSeen)
     parameterTuningValues.borderValue = 'none';
-  } else {
+  else
     parameterTuningValues.borderValue = '0.5px solid black';
-  }
 };
 
 export const changeListParameterValue = (

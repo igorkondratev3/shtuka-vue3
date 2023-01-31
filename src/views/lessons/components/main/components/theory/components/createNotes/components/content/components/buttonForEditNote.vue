@@ -52,19 +52,27 @@
     note.textStyle.width = props.widthAndHeightForNote.width + 'px';
     note.textStyle.height = props.widthAndHeightForNote.height + 'px';
 
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes`,
-      {
-        method: 'PATCH',
-        body: JSON.stringify(note),
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${storeAuthContext.user?.token}`,
-        },
-      }
-    );
+    let response;
+    let payload;
 
-    const payload = await response.json();
+    try{
+      response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes`,
+        {
+          method: 'PATCH',
+          body: JSON.stringify(note),
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${storeAuthContext.user?.token}`,
+          },
+        }
+      );
+      payload = await response.json();
+    } catch(error) {
+      emits('showError', 'Ошибка доступа к серверу');
+      isEdit.value = false;
+      return;
+    }
 
     if (payload.error === 'Необходимо предоставить refreshToken') {
       const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
@@ -96,6 +104,7 @@
     @click="editNote"
     class="create-note__button"
     :disabled="isEdit"
+    :class="{ disabled: isEdit }"
   >
     Сохранить изменения
   </button>

@@ -31,9 +31,8 @@
 </template>
 
 <style>
-  @import '@/assets/css/roundButton.css';
   @import '@/assets/css/icons.css';
-  @import '@/assets/css/disabled.css';
+  @import '@/assets/css/buttons.css';
   @import '@/assets/css/editorButton.css';
 
   @font-face {

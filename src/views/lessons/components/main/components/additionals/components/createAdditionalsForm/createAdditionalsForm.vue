@@ -48,12 +48,12 @@
     @click="checkClose($event) ? handleCloseFormFromButtons() : undefined"
   >
     <div class="create-additionals__form">
-      <div
+      <button
         class="create-additionals__close-button"
         @click="handleCloseFormFromButtons"
       >
         <img src="/src/assets/close.svg" />
-      </div>
+      </button>
       <form>
         <label for="address">Адрес ресурса</label>
         <input
@@ -138,6 +138,7 @@
     top: 0;
     overflow-x: hidden;
     cursor: default;
+    border: none;
     max-width: 34px;
     padding-top: 3px;
     padding-left: 1px;
@@ -160,22 +161,9 @@
   .create-additionals__input:focus {
     border: 1px solid rgb(12, 82, 87);
   }
-  .create-additionals__button {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
-    color: rgb(239, 240, 236);
-    background-color: rgb(25, 25, 136);
-    border-radius: 10px;
-    border: 0;
-    width: 60%;
-    margin-left: 20%;
-    padding: 3px 0px;
-  }
-  .create-additionals__button:hover {
-    background-color: rgb(88, 88, 165);
-  }
+
   .create-additionals__error {
     margin-top: 20px;
   }
-  /*disabled в app.vue*/
+  /*buttons в app.vue*/
 </style>

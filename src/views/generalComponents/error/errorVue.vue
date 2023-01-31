@@ -14,6 +14,7 @@
 
 <style>
   .error {
+    text-align: center;
     padding: 10px;
     color: #e7195a;
   }

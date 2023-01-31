@@ -2,6 +2,7 @@
   import LessonsHeader from './components/header/lessonsHeader.vue';
   import LeesonMain from './components/main/lessonMain.vue';
   import LessonsFooter from './components/footer/lessonsFooter.vue';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue'
   import { watch, onMounted, onBeforeUnmount, ref, provide } from 'vue';
   import { getLesson } from '../generalFunctions/requestsToBackend.js';
   import {
@@ -15,6 +16,8 @@
 
   const storeLessonsCollection = lessonsCollection();
   const storeLessonNum = lessonNum();
+
+  const error = ref('');
 
   const canChangeLesson = ref(true);
   const changeCanChangeLesson = (value) => (canChangeLesson.value = value);
@@ -69,9 +72,12 @@
         lessonNumber
       )
     ) {
-      storeLessonsCollection.setLesson(
-        await getLesson(circleNumber, gradeNumber, lessonNumber)
-      );
+      const lesson = await getLesson(circleNumber, gradeNumber, lessonNumber);
+      if (lesson.error) {
+        error.value = lesson.error;
+        return;
+      }
+      storeLessonsCollection.setLesson(lesson);
     }
   }
 
@@ -104,6 +110,12 @@
 <template>
   <div class="lesson-layout">
     <LessonsHeader />
+    <ErrorVue
+      class="lesson-layout__error"
+      v-if="error"
+      :error="error"
+      @closeError="error = ''"
+    />
     <LeesonMain />
     <LessonsFooter />
   </div>
@@ -116,5 +128,9 @@
     justify-content: space-between;
     width: 100%;
     min-height: 100vh;
+  }
+
+  .lesson-layout__error {
+    align-self: center;
   }
 </style>

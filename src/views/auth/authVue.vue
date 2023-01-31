@@ -4,6 +4,7 @@
   import MenuVue from '@/views/generalComponents/menu/menuVue.vue';
   import LoginAuth from './components/loginAuth.vue';
   import SignupAuth from './components/signupAuth.vue';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue'
   import { goBack } from '@/views/generalFunctions/goBack.js';
   import { authContext } from '@/stores/authContext.js';
 
@@ -13,6 +14,8 @@
 
   const storeAuthContext = authContext();
   const router = useRouter();
+
+  const error = ref('');
 
   watch(
     () => storeAuthContext.user,
@@ -27,7 +30,11 @@
     <MenuVue />
   </header>
   <div class="auth auth_margin">
-    <component :is="isSignup ? SignupAuth : LoginAuth"></component>
+    <component 
+      :is="isSignup ? SignupAuth : LoginAuth"
+      @showError="(message) => error=message"
+    >
+    </component>
     <a
       class="auth__link nav-auth__login"
       v-show="isSignup"
@@ -43,6 +50,12 @@
       Регистрация
     </a>
   </div>
+  <ErrorVue
+    class="auth-error"
+    v-if="error"
+    :error="error"
+    @closeError="error = ''"
+  />
 </template>
 
 <style scoped>
@@ -64,5 +77,11 @@
   .auth__link {
     top: 20px;
     cursor: pointer;
+  }
+
+  .auth-error {
+    display: block;
+    max-width: 400px;
+    margin: 40px auto;
   }
 </style>

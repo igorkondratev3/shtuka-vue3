@@ -5,7 +5,6 @@
 
   const router = useRouter();
   const storeAuthContext = authContext();
-  const emits = defineEmits(['closeMenu']);
 
   const userName = computed(() => {
     return storeAuthContext.user?.email;
@@ -36,19 +35,19 @@
   <transition name="changeSeenMenu">
     <div
       class="menu menu_position"
-      @pointerleave="emits('closeMenu')"
+      @click.stop
     >
       <div class="menu__sections menu__user-name">
         {{ userName }}
       </div>
-      <div
+      <button
         class="menu__sections"
         v-for="section in sections"
         :key="section.id"
         @click="chooseSection(section)"
       >
         {{ section }}
-      </div>
+    </button>
     </div>
   </transition>
 </template>

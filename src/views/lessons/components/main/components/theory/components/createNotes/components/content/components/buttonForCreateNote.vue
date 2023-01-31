@@ -47,20 +47,28 @@
     note.textStyle.width = props.widthAndHeightForNote.width + 'px';
     note.textStyle.height = props.widthAndHeightForNote.height + 'px';
 
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes`,
-      {
-        method: 'POST',
-        body: JSON.stringify(note),
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${storeAuthContext.user?.token}`,
-        },
-      }
-    );
+    let response;
+    let payload;
 
-    const payload = await response.json();
+    try {
+      response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URI}/lesson/theory-notes`,
+        {
+          method: 'POST',
+          body: JSON.stringify(note),
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${storeAuthContext.user?.token}`,
+          },
+        }
+      );
 
+      payload = await response.json();
+    } catch(error) {
+      emits('showError', 'Ошибка доступа к серверу');
+      isCreate.value = false;
+      return;
+    }
     if (payload.error === 'Необходимо предоставить refreshToken') {
       const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
       if (tokens.error) {
@@ -93,6 +101,7 @@
     @click="createNote"
     class="create-note__button"
     :disabled="isCreate"
+    :class="{ disabled: isCreate }"
   >
     Создать пометку
   </button>

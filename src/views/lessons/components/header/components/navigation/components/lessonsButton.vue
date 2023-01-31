@@ -62,7 +62,7 @@
 </script>
 
 <template>
-  <div
+  <button
     class="navigation__lesson-button round-button"
     ref="lessonButton"
     @click="changeLesson(calculateLessonNumber)"
@@ -74,12 +74,13 @@
       height="32"
     >
     </canvas>
-  </div>
+  </button>
 </template>
 
 <style>
   /*round-button в app.vue*/
   .navigation__lesson-button {
     border: 0;
+    background-color: transparent;
   }
 </style>

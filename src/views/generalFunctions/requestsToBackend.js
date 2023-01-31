@@ -1,15 +1,23 @@
 import { authContext } from '@/stores/authContext.js';
 import { getNewTokens, updateTokens } from './refreshToken.js';
 
+
 export const getLesson = async (circleNumber, gradeNumber, lessonNumber) => {
-  const response = await fetch(
-    `${
-      import.meta.env.VITE_BACKEND_URI
-    }/lesson/${circleNumber}/${gradeNumber}/${lessonNumber}`
-  );
-  const lesson = await response.json();
+  let response;
+  let lesson;
+  try {
+    response = await fetch(
+      `${
+        import.meta.env.VITE_BACKEND_URI
+      }/lesson/${circleNumber}/${gradeNumber}/${lessonNumber}`
+    );
+    lesson = await response.json();
+  } catch(error) {
+    return {error: 'Ошибка доступа к серверу'}
+  }
+
   if (!response.ok) {
-    return false;
+    return {error: 'Не удалось получить уроки'};
   }
   return lesson;
 };
@@ -74,16 +82,23 @@ export const deleteElementFromDB = async (
   token,
   refreshToken
 ) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_BACKEND_URI}/lesson/${elementsName}/${idElement}/`,
-    {
-      method: 'DELETE',
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  let payload = await response.json();
+  let payload;
+  let response;
+
+  try {
+    response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URI}/lesson/${elementsName}/${idElement}/`,
+      {
+        method: 'DELETE',
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    payload = await response.json();
+  } catch(error) {
+    payload = {error: 'Ошибка доступа к серверу'};
+  }
 
   if (payload.error === 'Необходимо предоставить refreshToken') {
     const tokens = await getNewTokens(refreshToken);
@@ -96,6 +111,5 @@ export const deleteElementFromDB = async (
       tokens.refreshToken
     );
   }
-
   return payload;
 };

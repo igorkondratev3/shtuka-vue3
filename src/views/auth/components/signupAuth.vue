@@ -4,6 +4,8 @@
   import { authContext } from '@/stores/authContext.js';
   import { shtukaChannel } from '@/shtukaChannel.js';
 
+  const emits = defineEmits(['showError'])
+
   const storeAuthContext = authContext();
   const email = ref('');
   const password = ref('');
@@ -67,6 +69,10 @@
         passwordSignup.value.setCustomValidity(user.error);
         passwordSignup.value.reportValidity();
         setTimeout(() => passwordSignup.value.setCustomValidity(''), 1500);
+        return false;
+      }
+      if (user.error === 'Ошибка доступа к серверу') {
+        emits('showError', user.error);
         return false;
       }
       emailSignup.value.setCustomValidity(user.error);
@@ -139,5 +145,5 @@
 
 <style>
   /*стили заданы в login*/
-  /*disabled в app.vue*/
+  /*buttons в app.vue*/
 </style>

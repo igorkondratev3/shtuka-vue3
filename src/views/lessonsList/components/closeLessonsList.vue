@@ -24,7 +24,7 @@
 </script>
 
 <template>
-  <div
+  <button
     @click="goToBack"
     class="lessons-list__close-button"
   >
@@ -34,7 +34,7 @@
       height="32"
     >
     </canvas>
-  </div>
+  </button>
 </template>
 
 <style>
@@ -44,7 +44,9 @@
     top: 5px;
     cursor: default;
     z-index: 2;
+    border: none;
     border-radius: 10px;
+    background-color: transparent;
     padding: 5px 5px 0px;
   }
   .lessons-list__close-button:hover {

@@ -5,7 +5,7 @@
 
   const emits = defineEmits(['changeMenuContentSeen']);
   const props = defineProps({ menuContentSeen: Boolean });
-  const button = ref(null);
+  const menuButton = ref(null);
   const areaForLinesAndCross = ref(null);
   let contextAreaForLinesAndCross;
 
@@ -16,7 +16,7 @@
       areaForLinesAndCross.value.width,
       areaForLinesAndCross.value.height
     );
-    changeColor(button.value);
+    changeColor(menuButton.value);
   });
 
   watch(
@@ -40,8 +40,8 @@
 </script>
 
 <template>
-  <div
-    ref="button"
+  <button
+    ref="menuButton"
     class="menu-button round-button menu-button_position"
     @click.stop="emits('changeMenuContentSeen')"
   >
@@ -51,11 +51,14 @@
       height="32"
     >
     </canvas>
-  </div>
+  </button>
 </template>
 
 <style>
   /*round-button в app.vue*/
+  .menu-button {
+    background-color: transparent;
+  }
 
   .menu-button_position {
     position: absolute;

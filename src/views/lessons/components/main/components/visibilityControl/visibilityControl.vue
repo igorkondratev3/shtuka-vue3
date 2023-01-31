@@ -18,7 +18,7 @@
 
 <template>
   <div class="lesson-main__visibility-control visibility-control">
-    <div
+    <button
       class="visibility-control__seen"
       @click="seenVisibilityControl = !seenVisibilityControl"
       :title="
@@ -26,12 +26,12 @@
       "
     >
       ...
-    </div>
+  </button>
     <div
       class="visibility-control__buttons"
       v-show="seenVisibilityControl"
     >
-      <div
+      <button
         class="visibility-control__button"
         v-for="(button, keyButton) in visibilityControlButtons"
         :key="button.id"
@@ -40,7 +40,7 @@
         v-show="props.seenButtonsVisibilityControl[keyButton]"
       >
         {{ button }}
-      </div>
+      </button>
     </div>
   </div>
 </template>
@@ -66,6 +66,8 @@
     font-size: 20px;
     cursor: default;
     user-select: none;
+    background-color: transparent;
+    border: none;
   }
 
   .visibility-control__seen:hover {

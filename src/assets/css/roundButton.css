@@ -1,9 +1,0 @@
-.round-button {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  cursor: default;
-  z-index: 9;
-  border: 1px solid black;
-  user-select: none;
-}

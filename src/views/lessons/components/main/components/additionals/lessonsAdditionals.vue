@@ -157,8 +157,11 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    align-self: center;
     flex-wrap: wrap;
+  }
+
+  .lesson-main__additionals {
+    margin-top: 150px;
     order: 3;
   }
 
@@ -185,11 +188,9 @@
   }
 
   @media (max-width: 1600px) {
-    .additionas {
-      order: 5;
-    }
     .lesson-main__additionals {
       margin-top: 15px;
+      order: 5;
     }
     .additionals__content {
       flex-direction: row;

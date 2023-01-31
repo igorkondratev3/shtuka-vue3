@@ -20,19 +20,27 @@
   const copyAdditional = async () => {
     isCopy.value = true;
 
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URI}/lesson/additionals/copy`,
-      {
-        method: 'POST',
-        body: JSON.stringify({ _id: props.additionalID }),
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${storeAuthContext.user?.token}`,
-        },
-      }
-    );
+    let response;
+    let payload;
 
-    const payload = await response.json();
+    try {
+      response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URI}/lesson/additionals/copy`,
+        {
+          method: 'POST',
+          body: JSON.stringify({ _id: props.additionalID }),
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${storeAuthContext.user?.token}`,
+          },
+        }
+      );
+      payload = await response.json();
+    } catch(error) {
+      showError('Ошибка доступа к серверу');
+      isCopy.value = false;
+      return;
+    }
 
     if (payload.error === 'Необходимо предоставить refreshToken') {
       const tokens = await getNewTokens(storeAuthContext.user.refreshToken);

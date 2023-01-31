@@ -4,6 +4,8 @@
   import { authContext } from '@/stores/authContext.js';
   import { shtukaChannel } from '@/shtukaChannel.js';
 
+  const emits = defineEmits(['showError'])
+
   const storeAuthContext = authContext();
   const email = ref('');
   const password = ref('');
@@ -47,6 +49,10 @@
         passwordLogin.value.setCustomValidity('Некорректный пароль');
         passwordLogin.value.reportValidity();
         setTimeout(() => passwordLogin.value.setCustomValidity(''), 1500);
+        return false;
+      }
+      if (user.error === 'Ошибка доступа к серверу') {
+        emits('showError', user.error);
         return false;
       }
       emailLogin.value.setCustomValidity('Некорректный email');
@@ -128,23 +134,9 @@
     border: 1px solid rgb(84, 207, 201);
   }
 
-  .form-auth__button {
-    background: #027a7e;
-    border: 0;
-    color: #fff;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
-  }
-
   input:valid {
     border-color: rgb(37, 5, 219);
   }
 
-  /*disabled в app.vue*/
+  /*buttons в app.vue*/
 </style>

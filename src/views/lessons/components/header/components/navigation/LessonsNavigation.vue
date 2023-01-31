@@ -16,13 +16,13 @@
       <LessonsListButton />
       <LessonsButton where="next" />
     </nav>
-    <div
+    <button
       class="navigation__seen"
       :title="seenNavigation ? 'скрыть' : 'раскрыть область навигации'"
       @click="seenNavigation = !seenNavigation"
     >
       ...
-    </div>
+  </button>
   </div>
 </template>
 
@@ -50,6 +50,7 @@
     line-height: 0;
     cursor: default;
     user-select: none;
+    border: none;
   }
 
   .navigation__seen:hover {

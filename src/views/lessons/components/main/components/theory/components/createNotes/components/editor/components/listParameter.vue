@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, computed, watch } from 'vue';
+  import { ref, onMounted, onUnmounted, computed, watch } from 'vue';
   import {
     drawArrowDown,
     changeListParameterValue,
@@ -43,6 +43,16 @@
   onMounted(() => {
     drawArrowDown(arrowOpenList.value.getContext('2d'));
   });
+
+  const closeListParameter = () => {
+    closeListOfPararmeterValues(parameterTuningValues.value)
+  }
+
+  document.addEventListener('click', closeListParameter);
+
+  onUnmounted(() => {
+    document.removeEventListener('click', closeListParameter);
+  });
 </script>
 
 <template>
@@ -77,7 +87,6 @@
         )
       "
       v-if="parameterTuningValues.listOfValuesSeen"
-      @pointerleave="closeListOfPararmeterValues(parameterTuningValues)"
     >
       <div
         class="list-of-values__value"

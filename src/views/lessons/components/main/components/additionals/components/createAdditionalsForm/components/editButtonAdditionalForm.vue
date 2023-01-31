@@ -28,19 +28,26 @@
       description: props.correctAdditionalValues.description,
     };
 
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URI}/lesson/additionals/`,
-      {
-        method: 'PATCH',
-        body: JSON.stringify(editAdditionalValue),
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${storeAuthContext.user?.token}`,
-        },
+    let response;
+    let payload;
+    try {
+      response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URI}/lesson/additionals/`,
+        {
+          method: 'PATCH',
+          body: JSON.stringify(editAdditionalValue),
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${storeAuthContext.user?.token}`,
+          },
+        }
+      );
+      payload = await response.json();
+      } catch(error) {
+        emits('showError', 'Ошибка доступа к серверу');
+        isEdit.value = false;
+        return;
       }
-    );
-
-    const payload = await response.json();
 
     if (payload.error === 'Необходимо предоставить refreshToken') {
       const tokens = await getNewTokens(storeAuthContext.user?.refreshToken);
@@ -82,5 +89,5 @@
 
 <style>
   /*основной класс в родителе*/
-  /*disabled в app.vue*/
+  /*buttons в app.vue*/
 </style>
