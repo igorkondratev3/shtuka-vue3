@@ -40,7 +40,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
   .need-auth {
     display: flex;
     flex-direction: row;
@@ -59,42 +59,39 @@
     top: 0;
   }
 
-  .need-auth {
-    &__content {
-      font: 22px 'Times New Roman';
-      color: rgb(6, 37, 63);
-      text-align: justify;
-      z-index: 999;
-      border: 1px solid rgb(0, 0, 0);
-      border-radius: 10px;
-      width: 400px;
-      height: 150px;
-      background-color: rgb(240, 238, 238);
-      padding: 30px 20px 20px 20px;
-      cursor: default;
-    }
-
-    &__close-button {
-      position: absolute;
-      right: 0;
-      top: 0;
-      cursor: default;
-      border: none;
-      border-radius: 10px;
-      padding-top: 3px;
-    }
-    &__close-button:focus {
-      outline: none;
-    }
-    &__link {
-      color: rgb(6, 37, 63);
-    }
-    &__link:hover {
-      color: red;
-    }
-    &__link:focus {
-      outline: none;
-      color: red;
-    }
+  .need-auth__content {
+    font: 22px 'Times New Roman';
+    color: rgb(6, 37, 63);
+    text-align: justify;
+    z-index: 999;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    width: 400px;
+    height: 150px;
+    background-color: rgb(240, 238, 238);
+    padding: 30px 20px 20px 20px;
+    cursor: default;
+  }
+  .need-auth__close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: default;
+    border: none;
+    border-radius: 10px;
+    padding-top: 3px;
+  }
+  .need-auth__close-button:focus {
+    outline: none;
+  }
+  .need-auth__link {
+    color: rgb(6, 37, 63);
+  }
+  .need-auth__link:hover {
+    color: red;
+  }
+  .need-auth__link:focus {
+    outline: none;
+    color: red;
   }
 </style>

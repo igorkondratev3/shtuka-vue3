@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
   @font-face {
     font-family: "Raleway";
     src: url(https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaorCMPrEHJA.woff2) format('woff2');
@@ -43,35 +43,33 @@
     padding: 5px 9px;
   }
 
-  .start-page {
-    &__header {
-      grid-area: header;
-    }
+  .start-page__header {
+    grid-area: header;
+  }
 
-    &__aside {
-      grid-area: aside;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      font: bold 18px/25px 'Raleway', sans-serif;
-      white-space: nowrap;
-      border-radius: 30px;
-      background-color: rgba(35, 146, 85, 0.5);
-      min-width: 200px;
-      max-width: 400px;
-      max-height: 300px;
-      padding: 30px 5px 5px;
-    }
+  .start-page__aside {
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font: bold 18px/25px 'Raleway', sans-serif;
+    white-space: nowrap;
+    border-radius: 30px;
+    background-color: rgba(35, 146, 85, 0.5);
+    min-width: 200px;
+    max-width: 400px;
+    max-height: 300px;
+    padding: 30px 5px 5px;
+  }
 
-    &__main {
-      grid-area: main;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding-right: 20%;
-      padding-top: 5%;
-    }
+  .start-page__main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 20%;
+    padding-top: 5%;
   }
 
   @media (max-width: 800px) {

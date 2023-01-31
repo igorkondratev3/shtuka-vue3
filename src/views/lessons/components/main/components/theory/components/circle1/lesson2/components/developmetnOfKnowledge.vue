@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
   .development-of-knowledge {
     display: flex;
     flex-direction: column;
@@ -42,26 +42,24 @@
     margin-top: 5px;
   }
 
-  .development-of-knowledge {
-    &__title {
-      text-align: left;
-      color: black;
-      align-self: center;
-    }
-    &__content {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      margin-left: 16px;
-      text-align: left;
-      color: black;
-    }
-    &__arrow {
-      align-self: flex-end;
-      margin-bottom: 3px;
-      margin-left: 3px;
-      margin-right: 3px;
-    }
+  .development-of-knowledge__title {
+    text-align: left;
+    color: black;
+    align-self: center;
+  }
+  .development-of-knowledge__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-left: 16px;
+    text-align: left;
+    color: black;
+  }
+  .development-of-knowledge__arrow {
+    align-self: flex-end;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
   }
 </style>

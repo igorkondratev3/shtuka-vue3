@@ -101,7 +101,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
   .lessons-list__lessons {
     display: flex;
     flex-direction: row;
@@ -125,7 +125,6 @@
     background-color: #c5c8cb;
   }
   
-
   .lesson {
     display: flex;
     flex-direction: column;

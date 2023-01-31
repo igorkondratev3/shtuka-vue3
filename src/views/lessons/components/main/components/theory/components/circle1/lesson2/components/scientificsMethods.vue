@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
   .scientifics-methods {
     font: oblique 18px 'Times New Roman';
     text-align: left;
@@ -34,29 +34,26 @@
     padding: 0px 5px 0px 16px;
   }
 
-  .scientifics-methods {
-    &__title {
-      text-align: center;
-    }
+  .scientifics-methods__title {
+    text-align: center;
+  }
 
-    &__methods {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      flex-wrap: wrap;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    &__methods p {
-      max-width: 300px;
-      margin: 0 5px;
-      margin-bottom: 5px;
-      border: 1px dotted black;
-      border-radius: 30px;
-    }
-    &__example {
-      max-width: 800px;
-    }
+  .scientifics-methods__methods {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .scientifics-methods__methods p {
+    max-width: 300px;
+    margin: 0 5px;
+    margin-bottom: 5px;
+    border: 1px dotted black;
+    border-radius: 30px;
+  }
+  .scientifics-methods__example {
+    max-width: 800px;
   }
 </style>

@@ -75,7 +75,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
   .theory-content__phenomenon {
     display: flex;
     flex-direction: column;
@@ -88,24 +88,20 @@
     margin-top: 15px;
   }
 
-  .phenomenon {
-    &__p {
-      font: oblique 18px 'Times New Roman';
-      text-align: left;
-      color: black;
-      padding: 0px 5px 0px 16px;
-    }
-
-    &__word {
-      align-self: center;
-      font-weight: bold;
-      padding: 0;
-    }
-
-    &__area-for-lines-between-words {
-      align-self: center;
-      line-height: 0; //помогает убрать 4 лишних пикселя в родителе(место для спусков: буква j)
-    }
+  .phenomenon__p {
+    font: oblique 18px 'Times New Roman';
+    text-align: left;
+    color: black;
+    padding: 0px 5px 0px 16px;
+  }
+  .phenomenon__word {
+    align-self: center;
+    font-weight: bold;
+    padding: 0;
+  }
+  .phenomenon__area-for-lines-between-words {
+    align-self: center;
+    line-height: 0; /*помогает убрать 4 лишних пикселя в родителе(место для спусков: буква j)*/
   }
 
   .nature-and-physics {
@@ -116,9 +112,7 @@
     font: oblique 18px Times New Roman;
     text-align: center;
   }
-  .nature-and-physics {
-    &__nature {
-      margin-right: 130px;
-    }
+  .nature-and-physics__nature {
+    margin-right: 130px;
   }
 </style>

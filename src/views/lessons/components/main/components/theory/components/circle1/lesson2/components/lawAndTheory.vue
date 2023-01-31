@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
   .law-and-theory {
     display: flex;
     flex-direction: row;

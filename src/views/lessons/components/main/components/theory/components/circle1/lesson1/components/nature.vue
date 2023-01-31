@@ -73,7 +73,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
   .theory-content__nature {
     display: flex;
     flex-direction: column;
@@ -85,24 +85,20 @@
     margin-top: 15px;
   }
 
-  .nature {
-    &__p {
-      font: oblique 18px Times New Roman;
-      text-align: left;
-      color: black;
-      padding: 0px 5px 0px 16px;
-    }
-
-    &__matter {
-      align-self: center;
-      font-weight: bold;
-      padding: 0;
-    }
-
-    &__area-for-lines-between-words {
-      align-self: center;
-      line-height: 0; //помогает убрать 4 лишних пикселя в родителе(место для спусков: буква j)
-    }
+  .nature__p {
+    font: oblique 18px Times New Roman;
+    text-align: left;
+    color: black;
+    padding: 0px 5px 0px 16px;
+  }
+  .nature__matter {
+    align-self: center;
+    font-weight: bold;
+    padding: 0;
+  }
+  .nature__area-for-lines-between-words {
+    align-self: center;
+    line-height: 0; /*помогает убрать 4 лишних пикселя в родителе(место для спусков: буква j)*/
   }
 
   .substance-and-field {
@@ -114,9 +110,7 @@
     text-align: center;
   }
 
-  .substance-and-field {
-    &__substance {
-      margin-right: 30px;
-    }
+  .substance-and-field__substance {
+    margin-right: 30px;
   }
 </style>

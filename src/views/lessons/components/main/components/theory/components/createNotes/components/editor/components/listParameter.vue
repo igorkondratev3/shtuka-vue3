@@ -90,75 +90,65 @@
   </div>
 </template>
 
-<style lang="scss">
-  .create-note-editor {
-    &__list {
-      font: 14px 'Times New Roman';
-      cursor: default;
-      user-select: none;
-      background-color: #c5c8cb;
-      border-radius: 30px;
-      z-index: 7;
-      width: 75px;
-      height: 18px;
-      margin-left: 3px;
-    }
-
-    &__list:hover {
-      background-color: #e0e0e6;
-    }
+<style>
+  .create-note-editor__list {
+    font: 14px 'Times New Roman';
+    cursor: default;
+    user-select: none;
+    background-color: #c5c8cb;
+    border-radius: 30px;
+    z-index: 7;
+    width: 75px;
+    height: 18px;
+    margin-left: 3px;
   }
 
-  .list {
-    &__choosen {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    &__choosen-value {
-      overflow-x: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      padding: 1px 0px 0px 3px;
-    }
-
-    &__open-list-of-values {
-      padding-right: 3px;
-    }
-
-    &__list-of-values {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      cursor: default;
-      user-select: none;
-      z-index: 7;
-      background-color: white; /*в мозиле красится скролл*/
-      border: 0.5px solid black;
-      border-radius: 10px 0px 0px 10px;
-      max-height: 75px;
-    }
+  .create-note-editor__list:hover {
+    background-color: #e0e0e6;
   }
 
-  .list-of-values {
-    &__value {
-      font: 14px 'Times New Roman';
-      text-align: left;
-      white-space: nowrap;
-      cursor: default;
-      user-select: none;
-      z-index: 7;
-      background-color: #c5c8cb;
-      width: 100%; /*позволит при увеличении экрана оставлять цвет скрола корректным*/
-      padding: 5px 0px 5px 3px;
-      transition: background-color linear;
-    }
+  .list__choosen {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .list__choosen-value {
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 1px 0px 0px 3px;
+  }
+  .list__open-list-of-values {
+    padding-right: 3px;
+  }
+  .list__list-of-values {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    cursor: default;
+    user-select: none;
+    z-index: 7;
+    background-color: white; /*в мозиле красится скролл*/
+    border: 0.5px solid black;
+    border-radius: 10px 0px 0px 10px;
+    max-height: 75px;
+  }
 
-    &__value:hover {
-      background-color: #e0e0e6;
-    }
+  .list-of-values__value {
+    font: 14px 'Times New Roman';
+    text-align: left;
+    white-space: nowrap;
+    cursor: default;
+    user-select: none;
+    z-index: 7;
+    background-color: #c5c8cb;
+    width: 100%; /*позволит при увеличении экрана оставлять цвет скрола корректным*/
+    padding: 5px 0px 5px 3px;
+    transition: background-color linear;
+  }
+  .list-of-values__value:hover {
+    background-color: #e0e0e6;
   }
 </style>

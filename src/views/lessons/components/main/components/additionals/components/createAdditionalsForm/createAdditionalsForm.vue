@@ -105,7 +105,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
   .create-additionals {
     display: flex;
     flex-direction: row;
@@ -124,64 +124,58 @@
     top: 0;
   }
 
-  .create-additionals {
-    &__form {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 18px;
-      max-width: 600px;
-      padding: 20px 20px;
-      border-radius: 10px;
-      background-color: rgb(239, 240, 236);
-    }
-
-    &__close-button {
-      position: absolute;
-      right: 0;
-      top: 0;
-      overflow-x: hidden;
-      cursor: default;
-      max-width: 34px;
-      padding-top: 3px;
-      padding-left: 1px;
-      width: 25px;
-      border-radius: 0px 10px 0px 0px;
-    }
-    &__close-button:hover {
-      background-color: rgb(116, 107, 107);
-    }
-
-    &__input {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 18px;
-      outline: none;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      width: 100%;
-      margin-bottom: 20px;
-      margin-top: 3px;
-    }
-    &__input:focus {
-      border: 1px solid rgb(12, 82, 87);
-    }
-
-    &__button {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 14px;
-      color: rgb(239, 240, 236);
-      background-color: rgb(25, 25, 136);
-      border-radius: 10px;
-      border: 0;
-      width: 60%;
-      margin-left: 20%;
-      padding: 3px 0px;
-    }
-    &__button:hover {
-      background-color: rgb(88, 88, 165);
-    }
-    &__error {
-      margin-top: 20px;
-    }
+  .create-additionals__form {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    max-width: 600px;
+    padding: 20px 20px;
+    border-radius: 10px;
+    background-color: rgb(239, 240, 236);
   }
-
+  .create-additionals__close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow-x: hidden;
+    cursor: default;
+    max-width: 34px;
+    padding-top: 3px;
+    padding-left: 1px;
+    width: 25px;
+    border-radius: 0px 10px 0px 0px;
+  }
+  .create-additionals__close-button:hover {
+    background-color: rgb(116, 107, 107);
+  }
+  .create-additionals__input {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 3px;
+  }
+  .create-additionals__input:focus {
+    border: 1px solid rgb(12, 82, 87);
+  }
+  .create-additionals__button {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+    color: rgb(239, 240, 236);
+    background-color: rgb(25, 25, 136);
+    border-radius: 10px;
+    border: 0;
+    width: 60%;
+    margin-left: 20%;
+    padding: 3px 0px;
+  }
+  .create-additionals__button:hover {
+    background-color: rgb(88, 88, 165);
+  }
+  .create-additionals__error {
+    margin-top: 20px;
+  }
   /*disabled в app.vue*/
 </style>
