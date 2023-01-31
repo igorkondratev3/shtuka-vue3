@@ -1,7 +1,7 @@
 <script setup>
   import { ref } from 'vue';
-  import EditorVue from './components/editor/editorVue.vue';
-  import ContentVue from './components/content/contentVue.vue';
+  import CreateNoteEditor from './components/editor/editor.vue';
+  import CreateNoteContent from './components/content/content.vue';
 
   const props = defineProps({
     noteForEdit: Object,
@@ -46,13 +46,13 @@
 </script>
 
 <template>
-  <div class="lesson-theory__notes notes">
-    <EditorVue
+  <div class="lesson-theory__create-note create-note">
+    <CreateNoteEditor
       @changeStyleForNotesContent="changeStyleForNotesContent"
       :flagClearStyleForNotesContent="flagClearStyleForNotesContent"
       :currentValuesForEditNote="props.noteForEdit?.textStyle"
     />
-    <ContentVue
+    <CreateNoteContent
       :styleForNotesContent="styleForNotesContent"
       :textForEditNote="props.noteForEdit?.text"
       :editNoteID="props.noteForEdit?._id"
@@ -65,12 +65,14 @@
 </template>
 
 <style>
-  .notes {
+  .create-note {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     max-height: 300px;
-    margin-top: 10px;
+  }
+
+  .lesson-theory__create-note {
     margin: 10px auto;
   }
 </style>

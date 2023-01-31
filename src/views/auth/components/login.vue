@@ -1,6 +1,6 @@
 <script setup>
   import { ref } from 'vue';
-  import { fetchAuth } from './fetchAuth.js';
+  import { fetchAuth } from './fetch.js';
   import { authContext } from '@/stores/authContext.js';
   import { shtukaChannel } from '@/shtukaChannel.js';
 
@@ -107,4 +107,44 @@
   </form>
 </template>
 
-<style></style>
+<style>
+  .auth__title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .form-auth__input {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .form-auth__input:focus {
+    border: 1px solid rgb(84, 207, 201);
+  }
+
+  .form-auth__button {
+    background: #027a7e;
+    border: 0;
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+  }
+
+  input:valid {
+    border-color: rgb(37, 5, 219);
+  }
+
+  /*disabled в app.vue*/
+</style>

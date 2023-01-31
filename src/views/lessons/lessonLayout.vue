@@ -1,7 +1,7 @@
 <script setup>
-  import AppHeader from './components/header/appHeader.vue';
-  import AppMain from './components/main/appMain.vue';
-  import AppFooter from './components/footer/appFooter.vue';
+  import HeaderVue from './components/header/header.vue';
+  import MainVue from './components/main/main.vue';
+  import FooterVue from './components/footer/footer.vue';
   import { watch, onMounted, onBeforeUnmount, ref, provide } from 'vue';
   import { getLesson } from '../generalFunctions/requestsToBackend.js';
   import {
@@ -103,9 +103,9 @@
 
 <template>
   <div class="lesson-layout">
-    <AppHeader />
-    <AppMain />
-    <AppFooter />
+    <HeaderVue />
+    <MainVue />
+    <FooterVue />
   </div>
 </template>
 

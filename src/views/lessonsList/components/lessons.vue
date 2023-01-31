@@ -4,7 +4,7 @@
   import { lessonsCollection } from '@/stores/lessonsCollection.js';
   import { lessonNum } from '@/stores/lessonNum.js';
   import { getLessons } from '../../generalFunctions/requestsToBackend.js';
-  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
+  import ErrorVue from '@/views/generalComponents/error/error.vue';
 
   const props = defineProps({ circleAndGrade: Object });
   const storeLessonsCollection = lessonsCollection();
@@ -94,7 +94,6 @@
       </div>
     </div>
     <ErrorVue
-      class="form-auth__error"
       v-if="error"
       :error="error"
       @closeError="error = ''"
@@ -110,23 +109,22 @@
     flex-wrap: wrap;
   }
 
-  .lessons {
-    &__lesson {
-      font: oblique 16px 'Times New Roman';
-      text-align: center;
-      user-select: none;
-      border: 0.5px dotted black;
-      border-radius: 30px;
-      width: 330px;
-      height: 95px;
-      margin: 10px;
-      padding: 5px;
-    }
-
-    &__lesson:hover {
-      background-color: #c5c8cb;
-    }
+  .lessons__lesson {
+    font: oblique 16px 'Times New Roman';
+    text-align: center;
+    user-select: none;
+    border: 0.5px dotted black;
+    border-radius: 30px;
+    width: 330px;
+    height: 95px;
+    margin: 10px;
+    padding: 5px;
   }
+
+  .lessons__lesson:hover {
+    background-color: #c5c8cb;
+  }
+  
 
   .lesson {
     display: flex;

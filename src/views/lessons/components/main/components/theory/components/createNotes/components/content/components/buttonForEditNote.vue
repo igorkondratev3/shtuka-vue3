@@ -91,13 +91,13 @@
 <template>
   <button
     @click="editNote"
-    class="notes__button"
+    class="create-note__button"
     :disabled="isEdit"
   >
     Сохранить изменения
   </button>
   <button
-    class="notes__button"
+    class="create-note__button"
     @click="emits('closeEditNoteForm')"
   >
     Отменить
@@ -105,11 +105,5 @@
 </template>
 
 <style>
-  .notes__button {
-    font: 14px 'Times New Roman';
-    border-radius: 20px;
-    max-width: 150px;
-    margin-left: 25px;
-    margin-top: 1px;
-  }
+  /*create-note__button в родителе*/
 </style>

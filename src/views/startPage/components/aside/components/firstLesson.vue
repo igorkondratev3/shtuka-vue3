@@ -16,13 +16,9 @@
 </template>
 
 <style>
-
+  /*icon в app.vue*/
   .start-links__first-lesson {
     margin-bottom: 30px;
     overflow-y: hidden;
-  }
-  .start-links_max-width {
-    max-width: 25px;
-    overflow: hidden;
   }
 </style>

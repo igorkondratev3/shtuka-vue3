@@ -5,7 +5,7 @@
   import CreateAdditionalsForm from './components/createAdditionalsForm/createAdditionalsForm.vue';
   import UserAdditionals from './components/userAdditionals/userAdditionals.vue';
   import NeedAuth from '@/views/generalComponents/needAuth/needAuth.vue';
-  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
+  import ErrorVue from '@/views/generalComponents/error/error.vue';
   import { ref, computed, watch, provide, inject } from 'vue';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
@@ -152,7 +152,9 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
+  @import './additionalsLink.css';
+
   .additionals {
     display: flex;
     flex-direction: column;
@@ -163,33 +165,34 @@
     order: 3;
   }
 
-  .additionals {
-    &__content {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      max-height: 500px;
-      overflow: auto;
-      padding-right: 7px;
-    }
-
-    &__title {
-      font: oblique 18px Times New Roman;
-      text-align: center;
-      color: black;
-      margin-bottom: 10px;
-      max-width: 150px;
-    }
+  .additionals__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-height: 500px;
+    overflow: auto;
+    padding-right: 7px;
   }
+
+  .additionals__title {
+    font: oblique 18px Times New Roman;
+    text-align: center;
+    color: black;
+    margin-bottom: 10px;
+    max-width: 150px;
+  }
+
   .additionals__error {
     width: 170px;
   }
 
   @media (max-width: 1600px) {
-    .additionals {
-      margin-top: 15px;
+    .additionas {
       order: 5;
+    }
+    .lesson-main__additionals {
+      margin-top: 15px;
     }
     .additionals__content {
       flex-direction: row;

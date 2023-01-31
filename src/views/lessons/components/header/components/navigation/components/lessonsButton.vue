@@ -78,6 +78,7 @@
 </template>
 
 <style>
+  /*round-button в app.vue*/
   .navigation__lesson-button {
     border: 0;
   }

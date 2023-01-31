@@ -13,14 +13,9 @@
   const storeAuthContext = authContext();
   const storeAdditionalsCollection = additionalsCollection();
 
-  const isOverDeleteButton = ref(false);
   const isDelete = ref(false);
 
   const deleteAdditional = async () => {
-    if (isDelete.value) {
-      return;
-    }
-
     isDelete.value = true;
 
     const deletedAdditional = await deleteElementFromDB(
@@ -43,12 +38,13 @@
 
 <template>
   <button
-    class="additionals-link__button"
+    class="additionals-editor__button editor-button"
     title="удалить"
     @click="deleteAdditional"
+    :disabled="isDelete"
   >
     <img 
-      :class="{'icon-disabled': isDelete, 'delete-icon_color': !isDelete }"
+      :class="{'icon_disabled-color': isDelete, 'icon_delete-color': !isDelete }"
       class="icon_small-size"
       src="/src/assets/close.svg"
     />
@@ -56,12 +52,5 @@
 </template>
 
 <style>
-  .additionals-link__button {
-    color: black;
-    background-color: transparent;
-    cursor: default;
-    line-height: 0;
-    border: 0;
-    margin-right: 3px;
-  }
+/*icon в app.vue*/
 </style>

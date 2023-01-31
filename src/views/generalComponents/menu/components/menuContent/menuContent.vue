@@ -35,7 +35,7 @@
 <template>
   <transition name="changeSeenMenu">
     <div
-      class="menu"
+      class="menu menu_position"
       @pointerleave="emits('closeMenu')"
     >
       <div class="menu__sections menu__user-name">
@@ -53,7 +53,52 @@
   </transition>
 </template>
 
-<style lang="scss">
+<style>
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: transparent;
+  }
+
+  .menu_position {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    z-index: 8;
+  }
+
+  .menu__sections {
+    font: 18px 'Times New Roman';
+    text-align: center;
+    box-sizing: content-box;
+    cursor: default;
+    color: white;
+    background-color: rgb(89, 90, 97);
+    border: 0.5px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 5px;
+    animation: anim 1s linear forwards;
+    transition: background-color 1s linear;
+  }
+
+  .menu__sections:hover {
+    background-color: white;
+    color: black;
+  }
+
+  .menu__user-name {
+    text-align: left;
+    overflow-x: hidden;
+    color: black;
+    background-color: transparent;
+    border: 0;
+    min-height: 15px;
+    max-width: 80px;
+    padding-left: 3px;
+  }
+
   .changeSeenMenu-leave-to {
     opacity: 0;
   }
@@ -70,50 +115,6 @@
     }
     to {
       margin-top: 5px;
-    }
-  }
-
-  .menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    position: absolute;
-    background-color: transparent;
-    top: -5px;
-    right: -5px;
-    z-index: 8;
-  }
-
-  .menu {
-    &__sections {
-      font: 18px 'Times New Roman';
-      text-align: center;
-      box-sizing: content-box;
-      cursor: default;
-      color: white;
-      background-color: rgb(89, 90, 97);
-      border: 0.5px solid black;
-      border-radius: 10px;
-      padding: 10px;
-      margin-top: 5px;
-      animation: anim 1s linear forwards;
-      transition: background-color 1s linear;
-    }
-
-    &__sections:hover {
-      background-color: white;
-      color: black;
-    }
-
-    &__sections:first-child {
-      text-align: left;
-      overflow-x: hidden;
-      color: black;
-      background-color: transparent;
-      border: 0;
-      min-height: 15px;
-      max-width: 80px;
-      padding-left: 3px;
     }
   }
 </style>

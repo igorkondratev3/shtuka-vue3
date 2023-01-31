@@ -1,7 +1,7 @@
 <script setup>
   import PhysicDefinition from './components/physicDefinition.vue';
   import PhenomenonVue from './components/phenomenonVue.vue';
-  import NatureVue from './components/natureVue.vue';
+  import NatureVue from './components/nature.vue';
   import HeadThemesOfPhysic from './components/headThemesOfPhysic.vue';
   import OtherThemesOfPhysic from './components/otherThemesOfPhysic.vue';
 </script>
@@ -21,14 +21,8 @@
 </template>
 
 <style>
-  .lesson-theory__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: rgba(231, 229, 229, 0.548);
-    padding: 0px 5px;
-    border-radius: 30px;
-  }
+  /*lesson-theory__content в родителе*/
+  
   .theory-content__blocks {
     display: flex;
     flex-direction: row;

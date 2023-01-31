@@ -1,16 +1,16 @@
 <script setup>
-  import AppTheory from './components/theory/appTheory.vue';
-  import AppExample from './components/example/appExample.vue';
-  import AppAdditionals from './components/additionals/appAdditionals.vue';
-  import AppTitel from './components/appTitel.vue';
-  import AppNotes from './components/notes/appNotes.vue';
+  import LessonTheory from './components/theory/theory.vue';
+  import LessonExample from './components/example/example.vue';
+  import LessonAdditionals from './components/additionals/additionals.vue';
+  import LessonTitel from './components/titel.vue';
+  import LessonNote from './components/notes/note.vue';
   import VisibilityControl from './components/visibilityControl/visibilityControl.vue';
   import { ref, computed, watch } from 'vue';
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection.js';
   import { authContext } from '@/stores/authContext.js';
   import { lessonNum } from '@/stores/lessonNum.js';
   import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend.js';
-  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
+  import ErrorVue from '@/views/generalComponents/error/error.vue';
 
   const storeTheoryNotesCollection = theoryNotesCollection();
   const storeLessonNum = lessonNum();
@@ -104,31 +104,30 @@
 
 <template>
   <main class="lesson-layout__main lesson-main">
-    <AppTitel
+    <LessonTitel
       class="lesson-main__titel"
       v-show="visibilityControl.titel"
     />
     <div class="lesson-main__content">
-      <AppTheory 
+      <LessonTheory
         v-show="visibilityControl.theory" 
         @changeTheoryComponent="(isThereTheoryValue) => isThereTheory=isThereTheoryValue"  
       />
-      <AppExample 
+      <LessonExample 
         v-show="visibilityControl.example && isThereExample"
         @changeExampleComponent="(isThereExampleValue) => isThereExample=isThereExampleValue"  
       />
-      <AppAdditionals v-show="visibilityControl.additionals" />
+      <LessonAdditionals v-show="visibilityControl.additionals" />
       <div
         class="lesson-main__notes"
         v-show="visibilityControl.notes && seenButtonsVisibilityControl.notes"
       >
-        <AppNotes
-          :note="note"
+        <LessonNote
           v-for="note in notes"
           :key="note.id"
+          :note="note"
         />
         <ErrorVue
-          class="form-auth__error"
           v-if="error"
           :error="error"
           @closeError="error = ''"
@@ -143,38 +142,41 @@
   </main>
 </template>
 
-<style lang="scss">
+<style>
   .lesson-main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .lesson-layout__main {
     margin: 0px 16px;
   }
 
-  .lesson-main {
-    &__titel {
-      align-self: flex-start;
-      margin-bottom: 50px;
-    }
-    &__content {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    &__notes {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      flex-wrap: wrap;
-      order: 4;
-      overflow-x: auto; //уменьшает блок при уменьшении экрана
-      margin-top: 10px;
-    }
+  .lesson-main__titel {
+    align-self: flex-start;
+    margin-bottom: 50px;
   }
 
+  .lesson-main__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .lesson-main__notes {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    order: 4;
+    overflow-x: auto; /*уменьшает блок при уменьшении экрана*/
+    margin-top: 10px;
+  }
+  
   @media (max-width: 1420px) {
     .lesson-main__content {
       justify-content: center;

@@ -47,7 +47,7 @@
 
 <template>
   <div
-    class="editor__list list"
+    class="create-note-editor__list list"
     :style="border"
     @click.stop="changeSeenOfListOfParameterValues(parameterTuningValues)"
   >
@@ -91,7 +91,7 @@
 </template>
 
 <style lang="scss">
-  .editor {
+  .create-note-editor {
     &__list {
       font: 14px 'Times New Roman';
       cursor: default;

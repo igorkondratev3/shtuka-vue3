@@ -67,7 +67,7 @@
 
 <template>
   <div
-    class="editor__button"
+    class="create-note-editor__button"
     @pointerover="parameterOver(parameterTuningValues, parameterPressed)"
     @pointerout="parameterOut(parameterTuningValues, parameterPressed)"
     @click="changeStyleForNotesContent"
@@ -78,7 +78,7 @@
 </template>
 
 <style>
-  .editor__button {
+  .create-note-editor__button {
     font-family: 'Times New Roman';
     text-align: center;
     line-height: 13px;

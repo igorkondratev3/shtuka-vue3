@@ -22,6 +22,7 @@
 </template>
 
 <style>
+  /*icon в app.vue*/
   .start-links__last-viewed-lesson {
     margin-bottom: 30px;
     overflow-y: hidden;

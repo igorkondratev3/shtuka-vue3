@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <div class="user-additionals__editor">
+  <div class="user-additionals__editor additionals-editor">
     <DeleteAdditionalButton :additionalID="props.additional._id" />
     <EditAdditionalButton :additional="props.additional" />
     <CopyAdditionalButton :additionalID="props.additional._id" />

@@ -24,25 +24,23 @@
   </div>
 </template>
 
-<style lang="scss">
-  .head-themes-of-physic {
+<style>
+  .theory-content__head-themes-of-physic {
     margin-right: 15px;
     margin-top: 15px;
   }
-  .head-themes-of-physic {
-    &__title {
+  .head-themes-of-physic__title {
       text-align: left;
       padding: 0px 5px 0px 16px;
       color: black;
       font: oblique 18px Times New Roman;
     }
 
-    &__content {
-      font: oblique 18px Times New Roman;
-      text-align: left;
-      list-style: Circle inside;
-      padding-left: 16px;
-      color: black;
-    }
+  .head-themes-of-physic__content {
+    font: oblique 18px Times New Roman;
+    text-align: left;
+    list-style: Circle inside;
+    padding-left: 16px;
+    color: black;
   }
 </style>

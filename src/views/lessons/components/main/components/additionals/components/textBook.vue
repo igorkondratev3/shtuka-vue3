@@ -32,31 +32,6 @@
   </a>
 </template>
 
-<style lang="scss">
-  .additionals__link {
-    margin-top: 10px;
-    text-decoration: none;
-  }
-
-  .additionals-link {
-    &__content {
-      font: oblique 18px Times New Roman;
-      text-align: center;
-      overflow-x: hidden;
-      text-overflow: ellipsis;
-      color: black;
-      cursor: default;
-      border: 0.5px dashed black;
-      border-radius: 30px;
-      padding: 5px;
-      width: 170px;
-      height: 33px;
-      transition-property: border, background;
-      transition-duration: 6s, 3s;
-    }
-    &__content:hover {
-      border: 0.5px solid black;
-      background: radial-gradient(transparent 50%, #8695a5);
-    }
-  }
+<style>
+  /*стили в родителе*/
 </style>

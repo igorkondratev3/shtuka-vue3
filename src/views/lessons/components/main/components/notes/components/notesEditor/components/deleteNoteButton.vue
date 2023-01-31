@@ -37,13 +37,13 @@
 
 <template>
   <button
-    class="note-editor__button delete-button_color"
+    class="note-editor__button editor-button"
     title="удалить"
     @click="deleteNote"
     :disabled="isDelete"
   >
     <img 
-      :class="{'icon-disabled': isDelete, 'delete-icon_color': !isDelete }"
+      :class="{'icon_disabled-color': isDelete, 'icon_delete-color': !isDelete }"
       class="icon_middle-size"
       src="/src/assets/close.svg"
     />
@@ -51,12 +51,5 @@
 </template>
 
 <style>
-  .note-editor__button {
-    color: black;
-    cursor: default;
-    background-color: transparent;
-    line-height: 0;
-    border: 0;
-    margin-right: 3px;
-  }
+/*editor-button, icon в app.vue*/
 </style>

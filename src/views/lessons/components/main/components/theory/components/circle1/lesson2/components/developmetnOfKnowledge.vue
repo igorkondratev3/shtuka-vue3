@@ -35,6 +35,9 @@
     flex-direction: column;
     justify-content: flex-start;
     font: oblique 18px 'Times New Roman';
+  }
+
+  .theory-content__development-of-knowledge {
     margin-bottom: 10px;
     margin-top: 5px;
   }

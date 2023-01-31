@@ -91,7 +91,7 @@
 <template>
   <button
     @click="createNote"
-    class="notes__button"
+    class="create-note__button"
     :disabled="isCreate"
   >
     Создать пометку
@@ -99,11 +99,5 @@
 </template>
 
 <style>
-  .notes__button {
-    font: 14px 'Times New Roman';
-    border-radius: 20px;
-    max-width: 150px;
-    margin-left: 25px;
-    margin-top: 1px;
-  }
+/*create-note__button в родителе*/
 </style>

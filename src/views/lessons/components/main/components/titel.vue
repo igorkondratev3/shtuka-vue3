@@ -28,23 +28,21 @@
   </div>
 </template>
 
-<style lang="scss">
-  .theme {
+<style>
+  .lesson-main__theme {
     padding: 2px 10px;
     margin-right: 10px;
     margin-top: 5px;
     max-height: 34px;
   }
 
-  .theme {
-    &__value {
+  .theme__value {
       display: inline;
       font: oblique 22px 'Times New Roman';
       text-align: left;
       font-weight: bold;
       padding: 0px 0px 2px 5px;
     }
-  }
 
   @media (max-width: 700px) {
     h1.lesson1:nth-child(4) {

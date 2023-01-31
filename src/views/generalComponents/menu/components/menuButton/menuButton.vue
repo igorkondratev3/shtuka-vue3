@@ -42,7 +42,7 @@
 <template>
   <div
     ref="button"
-    class="menu-button round-button"
+    class="menu-button round-button menu-button_position"
     @click.stop="emits('changeMenuContentSeen')"
   >
     <canvas
@@ -55,7 +55,9 @@
 </template>
 
 <style>
-  .menu-button {
+  /*round-button в app.vue*/
+ 
+  .menu-button_position {
     position: absolute;
     top: 0;
     right: 0;

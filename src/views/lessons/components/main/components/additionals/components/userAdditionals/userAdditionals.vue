@@ -25,19 +25,10 @@
 </template>
 
 <style>
+  /*content, additionals__link в родителе*/
   .additionals__user-additionals {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-  }
-
-  .user-additionals__link {
-    margin-top: 0;
-  }
-
-  @media (max-width: 1600px) {
-    .additionals__link {
-      margin-left: 5px;
-    }
   }
 </style>

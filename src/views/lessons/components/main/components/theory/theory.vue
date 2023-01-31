@@ -12,10 +12,10 @@
   const emits = defineEmits(['changeTheoryComponent']);
 
   const Circle1Lesson1 = defineAsyncComponent(() =>
-    import(/* @vite-ignore */`./components/circle1/lesson1/lesson1Vue.vue`)
+    import(/* @vite-ignore */`./components/circle1/lesson1/lesson1.vue`)
   );
   const Circle1Lesson2 = defineAsyncComponent(() =>
-    import(/* @vite-ignore */`./components/circle1/lesson2/lesson2Vue.vue`)
+    import(/* @vite-ignore */`./components/circle1/lesson2/lesson2.vue`)
   );
 
   const componentsList = {
@@ -68,7 +68,7 @@
     <Suspense v-if="theoryComponent">
       <component :is="theoryComponent"></component>
       <template #fallback>
-        <div class="suspense">Загрузка теории...</div>
+        <div class="lesson-theory__suspense">Загрузка теории...</div>
       </template>
     </Suspense>
     <ButtonShowCreateNotes @click="handleShowCreateNotes" />
@@ -97,10 +97,19 @@
     order: 1;
   }
 
-  .suspense {
+  .lesson-theory__suspense {
     color: red;
     border: 0.5px solid black;
     border-radius: 30px;
     padding: 100px 100px;
+  }
+
+  .lesson-theory__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: rgba(231, 229, 229, 0.548);
+    padding: 0px 5px;
+    border-radius: 30px;
   }
 </style>

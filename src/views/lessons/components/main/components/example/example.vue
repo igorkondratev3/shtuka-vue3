@@ -6,10 +6,10 @@
   const emits = defineEmits(['changeExampleComponent']);
 
   const Circle1Lesson1 = defineAsyncComponent(() =>
-    import(/* @vite-ignore */`./components/circle1/lesson1/lesson1Vue.vue`)
+    import(/* @vite-ignore */`./components/circle1/lesson1/lesson1.vue`)
   );
   const Circle1Lesson2 = defineAsyncComponent(() =>
-    import(/* @vite-ignore */`./components/circle1/lesson2/lesson2Vue.vue`)
+    import(/* @vite-ignore */`./components/circle1/lesson2/lesson2.vue`)
   );
   const componentsList = {
     Circle1Lesson1,
@@ -46,6 +46,13 @@
     line-height: 0;
   }
 
+  .example__suspense {
+    color: blue;
+    border: 0.5px solid black;
+    border-radius: 30px;
+    padding: 100px 100px;
+  }
+
   @media (max-width: 1172px) {
     .lesson-main__example {
       margin-right: 60px;
@@ -62,12 +69,5 @@
       order: 3;
       margin-top: 10px;
     }
-  }
-
-  .example__suspense {
-    color: blue;
-    border: 0.5px solid black;
-    border-radius: 30px;
-    padding: 100px 100px;
   }
 </style>

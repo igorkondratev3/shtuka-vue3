@@ -7,9 +7,9 @@
 </script>
 
 <template>
-  <div class="header__navigation-wrapper navigation-wrapper">
+  <div class="lesson-layout__navigation navigation">
     <nav 
-      class="header__navigation navigation"
+      class="navigation__options"
       v-show="seenNavigation"
     >
       <LessonsButton where="previous" />
@@ -17,7 +17,7 @@
       <LessonsButton where="next" />
     </nav>
     <div
-      class="navigation-wrapper__seen-navigation"
+      class="navigation__seen"
       :title="seenNavigation ? 'скрыть' : 'раскрыть область навигации'"
       @click = "seenNavigation = !seenNavigation"
     >
@@ -27,7 +27,7 @@
 </template>
 
 <style>
-  .header__navigation-wrapper {
+  .lesson-layout__navigation {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -39,21 +39,21 @@
     top: 5px;
   }
 
-  .navigation-wrapper__seen-navigation {
+  .navigation__options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .navigation__seen {
     font-size: 20px;
     line-height: 0;
     cursor: default;
     user-select: none;
   }
 
-  .navigation-wrapper__seen-navigation:hover {
+  .navigation__seen:hover {
     font-size: 30px;
     color: #0f7b9c
-  }
-
-  .header__navigation {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
   }
 </style>

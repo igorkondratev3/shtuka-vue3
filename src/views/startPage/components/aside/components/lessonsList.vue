@@ -16,6 +16,7 @@
 </template>
 
 <style>
+  /*icon в app.vue*/
   .start-links__lessons-list {
     color: black;
     text-decoration: none;

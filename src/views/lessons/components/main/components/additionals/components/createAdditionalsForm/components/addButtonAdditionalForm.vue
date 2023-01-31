@@ -81,4 +81,7 @@
   </button>
 </template>
 
-<style></style>
+<style>
+  /*основной класс в родителе*/
+  /*disabled в app.vue*/
+</style>

@@ -20,6 +20,9 @@
     justify-content: center;
     flex-wrap: wrap;
     font: oblique 18px 'Times New Roman';
+  }
+
+  .theory-content__law-and-theory {
     margin-top: 10px;
   }
 

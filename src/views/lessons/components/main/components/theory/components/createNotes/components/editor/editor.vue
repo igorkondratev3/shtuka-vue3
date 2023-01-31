@@ -35,7 +35,7 @@
 </script>
 
 <template>
-  <div class="notes__editor editor">
+  <div class="create-note__editor create-note-editor">
     <ColorEditor
       @changeStyleForNotesContent="changeStyleForNotesContent"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
@@ -50,7 +50,7 @@
     <ListParameter
       @changeStyleForNotesContent="changeStyleForNotesContent"
       :parameterListValue="familiesList"
-      class="editor__family-list-parameter_width"
+      class="create-note-editor__family-list-parameter_width"
       :flagClearStyleForNotesContent="props.flagClearStyleForNotesContent"
       :startValueForEditNote="props.currentValuesForEditNote?.fontFamily"
     />
@@ -76,23 +76,23 @@
 </template>
 
 <style>
-  .editor {
+  .create-note-editor {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
   }
-  .notes__editor {
+  .create-note__editor {
     padding-left: 25px;
     padding-right: 2px;
     margin-bottom: 1px;
   }
 
-  .editor__family-list-parameter_width {
+  .create-note-editor__family-list-parameter_width {
     width: 135px;
   }
 
   @media (max-width: 465px) {
-    .editor__family-list-parameter_width {
+    .create-note-editor__family-list-parameter_width {
       width: 75px;
     }
   }

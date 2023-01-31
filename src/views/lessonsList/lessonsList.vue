@@ -1,7 +1,7 @@
 <script setup>
   import LessonsNavigation from './components/lessonsNavigation/lessonsNavigation.vue';
   import CloseLessonsList from './components/closeLessonsList.vue';
-  import LessonsVue from './components/lessonsVue.vue';
+  import LessonsVue from './components/lessons.vue';
   import { ref } from 'vue';
   import { lessonsCollection } from '../../stores/lessonsCollection.js';
 

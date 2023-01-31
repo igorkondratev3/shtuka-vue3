@@ -14,7 +14,7 @@
 
 <template>
   <div
-    class="lesson-theory__button-show-create-notes round-button round-button_align-self"
+    class="lesson-theory__button-show-create-notes round-button"
     ref="buttonShowCreateNotes"
   >
     <canvas
@@ -26,8 +26,9 @@
   </div>
 </template>
 
-<style lang="scss">
-  .round-button_align-self {
+<style>
+  /*round-button в app.vue*/
+  .lesson-theory__button-show-create-notes {
     align-self: center;
   }
 </style>

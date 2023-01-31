@@ -14,7 +14,7 @@
 
 <template>
   <a
-    class="additionals__link additionals__video-lesson-UTL additionals-link"
+    class="additionals__link additionals__video-lesson-URL additionals-link"
     :href="videoLessonURL"
     target="_blank"
   >
@@ -22,4 +22,6 @@
   </a>
 </template>
 
-<style></style>
+<style>
+/*стили в родителе*/
+</style>

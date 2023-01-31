@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LessonLayout from '@/views/lessons/lessonLayout.vue';
-import LessonsList from '@/views/lessonsList/lessonsList.vue';
-import AuthVue from '@/views/auth/authVue.vue';
 import StartPage from '@/views/startPage/startPage.vue';
+import LessonLayout from '@/views/lessons/lessonLayout.vue';
 import { authContext } from '@/stores/authContext.js';
 
 const router = createRouter({
@@ -22,12 +20,12 @@ const router = createRouter({
     {
       path: '/lessonsList',
       name: 'LessonsList',
-      component: LessonsList,
+      component: () => import('@/views/lessonsList/lessonsList.vue'),
     },
     {
       path: '/auth',
       name: 'auth',
-      component: AuthVue,
+      component: () => import('@/views/auth/auth.vue'),
     },
   ],
 });

@@ -20,22 +20,20 @@
   </div>
 </template>
 
-<style lang="scss">
-  .other-themes-of-physic {
-    &__title {
-      text-align: left;
-      padding: 0px 5px 0px 16px;
-      color: black;
-      font: oblique 18px Times New Roman;
-      margin-top: 15px;
-    }
+<style>
+  .other-themes-of-physic__title {
+    text-align: left;
+    padding: 0px 5px 0px 16px;
+    color: black;
+    font: oblique 18px Times New Roman;
+    margin-top: 15px;
+  }
 
-    &__content {
-      font: oblique 18px Times New Roman;
-      text-align: left;
-      list-style: Circle inside;
-      padding-left: 16px;
-      color: black;
-    }
+  .other-themes-of-physic__content {
+    font: oblique 18px Times New Roman;
+    text-align: left;
+    list-style: Circle inside;
+    padding-left: 16px;
+    color: black;
   }
 </style>

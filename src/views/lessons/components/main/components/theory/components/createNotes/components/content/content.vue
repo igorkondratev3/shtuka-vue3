@@ -1,7 +1,7 @@
 <script setup>
   import { computed, ref, onMounted, watch, nextTick } from 'vue';
   import ButtonForCreateNote from './components/buttonForCreateNote.vue';
-  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
+  import ErrorVue from '@/views/generalComponents/error/error.vue';
   import ButtonForEditNote from './components/buttonForEditNote.vue';
 
   const emits = defineEmits(['clearStyleForNotesContent', 'closeEditNoteForm']);
@@ -62,7 +62,7 @@
 <template>
   <textarea
     v-model="textNotes"
-    class="notes__content"
+    class="create-note__content"
     :style="styleForNotesContent"
     ref="notesContent"
   ></textarea>
@@ -86,7 +86,7 @@
     @showError="(errorValue) => (error = errorValue)"
   />
   <ErrorVue
-    class="notes__error"
+    class="create-note__error"
     v-if="error"
     :error="error"
     @closeError="error = ''"
@@ -94,7 +94,7 @@
 </template>
 
 <style>
-  .notes__content {
+  .create-note__content {
     font: 16px 'Times New Roman';
     text-align: left;
     overflow-wrap: break-word;
@@ -109,12 +109,20 @@
   }
 
   @media (max-width: 650px) {
-    .notes__content {
+    .create-note__content {
       max-width: 400px;
     }
   }
 
-  .notes__error {
+  .create-note__button {
+    font: 14px 'Times New Roman';
+    border-radius: 20px;
+    max-width: 150px;
+    margin-left: 25px;
+    margin-top: 1px;
+  }
+
+  .create-note__error {
     max-width: 350px;
     margin-top: 20px;
   }

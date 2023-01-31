@@ -15,12 +15,5 @@
 </template>
 
 <style>
-  .lesson-theory__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: rgba(231, 229, 229, 0.548);
-    padding: 0px 5px;
-    border-radius: 30px;
-  }
+/*lesson-theory__content в родителе*/
 </style>

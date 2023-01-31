@@ -19,16 +19,16 @@
 
 <template>
   <input
+    class="create-note-editor__color"
     type="color"
     v-model="color"
     ref="colorElement"
     @input="$emit('changeStyleForNotesContent', { color })"
-    class="editor__color"
   />
 </template>
 
 <style>
-  .editor__color {
+  .create-note-editor__color {
     width: 50px;
     height: 18px;
   }

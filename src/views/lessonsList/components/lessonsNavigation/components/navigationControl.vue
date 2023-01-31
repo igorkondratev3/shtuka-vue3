@@ -100,7 +100,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
   .navigation__control {
     display: flex;
     flex-direction: column;
@@ -109,26 +109,25 @@
     font: 18px 'Times New Roman';
   }
 
-  .navigation-control {
-    &__circles {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      border: 0.5px solid black;
-      border-radius: 30px;
-      margin: 0px auto;
-    }
-
-    &__grades {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-self: center;
-      border: 0.5px solid black;
-      border-radius: 30px;
-      margin-top: 20px;
-    }
+  .navigation-control__circles {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 0.5px solid black;
+    border-radius: 30px;
+    margin: 0px auto;
   }
+
+  .navigation-control__grades {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-self: center;
+    border: 0.5px solid black;
+    border-radius: 30px;
+    margin-top: 20px;
+  }
+  
 
   .circles__circle,
   .grades__grade {

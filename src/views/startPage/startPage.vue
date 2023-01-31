@@ -1,21 +1,21 @@
 <script setup>
   import AuthNav from '@/views/generalComponents/authNav/authNav.vue';
-  import AppMenu from '@/views/generalComponents/menu/appMenu.vue';
-  import AppAside from './components/asideStartPage/asideStartPage.vue';
-  import AppMain from './components/mainStartPage.vue';
+  import MenuVue from '@/views/generalComponents/menu/menu.vue';
+  import AsideStartPage from './components/aside/aside.vue';
+  import MainStartPage from './components/main.vue';
 </script>
 
 <template>
   <div class="start-page">
     <header class="start-page__header">
       <AuthNav />
-      <AppMenu />
+      <MenuVue />
     </header>
     <aside class="start-page__aside">
-      <AppAside />
+      <AsideStartPage />
     </aside>
     <main class="start-page__main">
-      <AppMain />
+      <MainStartPage />
     </main>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-  import TitleAside from './components/titleAside.vue';
+  import TitleAside from './components/title.vue';
   import FirstLesson from './components/firstLesson.vue';
   import LastViewedLesson from './components/lastViewedLesson.vue';
   import LessonsList from './components/lessonsList.vue';

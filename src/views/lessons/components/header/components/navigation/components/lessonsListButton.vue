@@ -19,12 +19,16 @@
       class="navigation__link"
       to="/lessonsList"
     >
-      <img src="/src/assets/library.svg"/>
+      <img
+        class="icon_large-size"
+        src="/src/assets/library.svg"
+      />
     </router-link>
   </div>
 </template>
 
 <style>
+  /*round-button, icon_large-size в app.vue*/
   .navigation__lessons-list-button {
     text-decoration: none;
     overflow-x: hidden;

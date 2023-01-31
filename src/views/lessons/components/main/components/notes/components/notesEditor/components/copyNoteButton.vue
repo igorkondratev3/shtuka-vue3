@@ -58,13 +58,13 @@
 
 <template>
   <button
-    class="note-editor__button copy-button_color"
+    class="note-editor__button editor-button"
     title="копировать"
     @click="copyNote"
     :disabled="isCopy"
   >
     <img
-      :class="{'icon-disabled': isCopy, 'copy-icon_color': !isCopy }"
+      :class="{'icon_disabled-color': isCopy, 'icon_copy-color': !isCopy }"
       class="icon_middle-size"
       src="/src/assets/copy.svg"
     />
@@ -72,4 +72,5 @@
 </template>
 
 <style>
+/*editor-button, icon в app.vue*/
 </style>

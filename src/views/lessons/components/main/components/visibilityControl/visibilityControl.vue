@@ -45,16 +45,19 @@ import { ref } from 'vue'
 
 <style>
   .visibility-control {
-    position: fixed;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 998;
     overflow-x: auto;
+  }
+
+  .lesson-main__visibility-control {
+    position: fixed;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .visibility-control__seen {
@@ -99,9 +102,13 @@ import { ref } from 'vue'
   @media (max-width: 444px) { 
     .visibility-control {
       width: 100%; /*три строчки для появления скролла*/
+    }
+
+    .lesson-main__visibility-control {
       left: 0;
       transform: none;
     }
+
     .visibility-control__buttons {
       padding-left: 75px; /*так как при появлении скролла первый блок обрезается*/
     }

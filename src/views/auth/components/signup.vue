@@ -1,6 +1,6 @@
 <script setup>
   import { ref } from 'vue';
-  import { fetchAuth } from './fetchAuth.js';
+  import { fetchAuth } from './fetch.js';
   import { authContext } from '@/stores/authContext.js';
   import { shtukaChannel } from '@/shtukaChannel.js';
 
@@ -137,4 +137,7 @@
   </form>
 </template>
 
-<style></style>
+<style>
+/*стили заданы в login*/
+/*disabled в app.vue*/
+</style>

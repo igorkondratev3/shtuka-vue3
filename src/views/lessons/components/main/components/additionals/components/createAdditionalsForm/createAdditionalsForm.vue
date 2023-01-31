@@ -1,6 +1,6 @@
 <script setup>
   import { ref, computed, watch } from 'vue';
-  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
+  import ErrorVue from '@/views/generalComponents/error/error.vue';
   import { checkClose } from '@/views/generalFunctions/checkClose.js';
   import AddButtonAdditionalForm from './components/addButtonAdditionalForm.vue';
   import EditButtonAdditionalForm from './components/editButtonAdditionalForm.vue';
@@ -107,18 +107,21 @@
 
 <style lang="scss">
   .create-additionals {
-    position: fixed;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    left: 0;
-    top: 0;
     height: 100vh;
     width: 100vw;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.788);
     backdrop-filter: blur(5px);
+  }
+
+  .additionals__create-additionals {
+    position: fixed;
+    left: 0;
+    top: 0;
   }
 
   .create-additionals {
@@ -180,8 +183,5 @@
     }
   }
 
-  .disabled,
-  .disabled:hover {
-    background-color: rgb(212, 208, 208);
-  }
+  /*disabled в app.vue*/
 </style>

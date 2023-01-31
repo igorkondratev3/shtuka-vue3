@@ -4,15 +4,17 @@
 
 <template>
   <button
-    class="note-editor__button edit-button_color"
+    class="note-editor__button editor-button"
     title="изменить"
     @click="$emit('openEditNoteForm')"
   >
     <img
-      class="icon_middle-size edit-icon_color"
+      class="icon_middle-size icon_edit-color"
       src="/src/assets/edit.svg"
     />
   </button>
 </template>
 
-<style></style>
+<style>
+/*editor-button, icon в app.vue*/
+</style>
