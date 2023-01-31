@@ -12,10 +12,10 @@
   const emits = defineEmits(['changeTheoryComponent']);
 
   const Circle1Lesson1 = defineAsyncComponent(() =>
-    import(/* @vite-ignore */`./components/circle1/lesson1/lesson1.vue`)
+    import(/* @vite-ignore */ `./components/circle1/lesson1/lesson1Vue.vue`)
   );
   const Circle1Lesson2 = defineAsyncComponent(() =>
-    import(/* @vite-ignore */`./components/circle1/lesson2/lesson2.vue`)
+    import(/* @vite-ignore */ `./components/circle1/lesson2/lesson2Vue.vue`)
   );
 
   const componentsList = {
@@ -26,7 +26,7 @@
   const changeCanChangeLesson = inject(changeCanChangeLessonSymbol);
 
   const storeLessonNum = lessonNum();
-  
+
   const theoryComponent = computed(() => {
     return componentsList[storeLessonNum.theoryComponentName];
   });

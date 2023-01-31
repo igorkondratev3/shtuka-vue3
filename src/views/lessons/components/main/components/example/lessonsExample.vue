@@ -1,15 +1,15 @@
 <script setup>
-  import { watchEffect } from 'vue'
+  import { watchEffect } from 'vue';
   import { computed, defineAsyncComponent } from 'vue';
   import { lessonNum } from '@/stores/lessonNum.js';
 
   const emits = defineEmits(['changeExampleComponent']);
 
   const Circle1Lesson1 = defineAsyncComponent(() =>
-    import(/* @vite-ignore */`./components/circle1/lesson1/lesson1.vue`)
+    import(/* @vite-ignore */ `./components/circle1/lesson1/lesson1Vue.vue`)
   );
   const Circle1Lesson2 = defineAsyncComponent(() =>
-    import(/* @vite-ignore */`./components/circle1/lesson2/lesson2.vue`)
+    import(/* @vite-ignore */ `./components/circle1/lesson2/lesson2Vue.vue`)
   );
   const componentsList = {
     Circle1Lesson1,
@@ -29,7 +29,8 @@
 
 <template>
   <div class="lesson-main__example example">
-    <Suspense v-if="exampleComponent"> <!--v-if чтобы не было предупреждений в консоли когда exampleComponent undefined-->
+    <Suspense v-if="exampleComponent">
+      <!--v-if чтобы не было предупреждений в консоли когда exampleComponent undefined-->
       <component :is="exampleComponent"></component>
 
       <template #fallback>

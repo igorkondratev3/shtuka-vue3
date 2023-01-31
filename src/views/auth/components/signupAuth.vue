@@ -75,7 +75,7 @@
       return false;
     }
     return true;
-  }
+  };
 
   const signup = async (email, password) => {
     if (!validate()) return;
@@ -138,6 +138,6 @@
 </template>
 
 <style>
-/*стили заданы в login*/
-/*disabled в app.vue*/
+  /*стили заданы в login*/
+  /*disabled в app.vue*/
 </style>

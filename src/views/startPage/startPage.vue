@@ -1,8 +1,8 @@
 <script setup>
   import AuthNav from '@/views/generalComponents/authNav/authNav.vue';
-  import MenuVue from '@/views/generalComponents/menu/menu.vue';
-  import AsideStartPage from './components/aside/aside.vue';
-  import MainStartPage from './components/main.vue';
+  import MenuVue from '@/views/generalComponents/menu/menuVue.vue';
+  import StartPageAside from './components/aside/startPageAside.vue';
+  import StartPageMain from './components/startPageMain.vue';
 </script>
 
 <template>
@@ -12,18 +12,19 @@
       <MenuVue />
     </header>
     <aside class="start-page__aside">
-      <AsideStartPage />
+      <StartPageAside />
     </aside>
     <main class="start-page__main">
-      <MainStartPage />
+      <StartPageMain />
     </main>
   </div>
 </template>
 
 <style>
   @font-face {
-    font-family: "Raleway";
-    src: url(https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaorCMPrEHJA.woff2) format('woff2');
+    font-family: 'Raleway';
+    src: url(https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaorCMPrEHJA.woff2)
+      format('woff2');
     unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
     font-display: swap;
   }

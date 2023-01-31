@@ -43,8 +43,11 @@
     @click="deleteAdditional"
     :disabled="isDelete"
   >
-    <img 
-      :class="{'icon_disabled-color': isDelete, 'icon_delete-color': !isDelete }"
+    <img
+      :class="{
+        'icon_disabled-color': isDelete,
+        'icon_delete-color': !isDelete,
+      }"
       class="icon_small-size"
       src="/src/assets/close.svg"
     />
@@ -52,5 +55,5 @@
 </template>
 
 <style>
-/*icon в app.vue*/
+  /*icon в app.vue*/
 </style>

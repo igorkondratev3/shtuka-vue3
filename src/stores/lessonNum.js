@@ -21,7 +21,7 @@ export const lessonNum = defineStore({
       this.lessonNumber = lessonNumber;
       localStorage.setItem(
         'lesson',
-        JSON.stringify({circleNumber, lessonNumber, gradeNumber})
+        JSON.stringify({ circleNumber, lessonNumber, gradeNumber })
       );
     },
   },

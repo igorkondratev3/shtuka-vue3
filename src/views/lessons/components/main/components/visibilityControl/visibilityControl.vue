@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+  import { ref } from 'vue';
   const props = defineProps({
     visibilityControl: Object,
     seenButtonsVisibilityControl: Object,
@@ -21,12 +21,14 @@ import { ref } from 'vue'
     <div
       class="visibility-control__seen"
       @click="seenVisibilityControl = !seenVisibilityControl"
-      :title="seenVisibilityControl ? 'скрыть' : 'раскрыть панель видимости элементов'"
+      :title="
+        seenVisibilityControl ? 'скрыть' : 'раскрыть панель видимости элементов'
+      "
     >
       ...
     </div>
-    <div 
-      class = "visibility-control__buttons"
+    <div
+      class="visibility-control__buttons"
       v-show="seenVisibilityControl"
     >
       <div
@@ -99,7 +101,7 @@ import { ref } from 'vue'
     color: white;
   }
 
-  @media (max-width: 444px) { 
+  @media (max-width: 444px) {
     .visibility-control {
       width: 100%; /*три строчки для появления скролла*/
     }

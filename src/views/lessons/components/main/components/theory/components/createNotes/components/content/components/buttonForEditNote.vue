@@ -3,7 +3,10 @@
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection.js';
   import { authContext } from '@/stores/authContext.js';
   import { ref } from 'vue';
-  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken.js';
+  import {
+    getNewTokens,
+    updateTokens,
+  } from '@/views/generalFunctions/refreshToken.js';
 
   const storeLessonNum = lessonNum();
   const storeTheoryNotesCollection = theoryNotesCollection();

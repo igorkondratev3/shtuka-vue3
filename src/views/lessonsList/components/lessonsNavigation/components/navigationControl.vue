@@ -127,7 +127,6 @@
     border-radius: 30px;
     margin-top: 20px;
   }
-  
 
   .circles__circle,
   .grades__grade {

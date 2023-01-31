@@ -55,7 +55,7 @@
       return false;
     }
     return true;
-  }
+  };
 
   const login = async (email, password) => {
     if (!validate()) return;
@@ -123,7 +123,7 @@
     border-radius: 4px;
     outline: none;
   }
-  
+
   .form-auth__input:focus {
     border: 1px solid rgb(84, 207, 201);
   }

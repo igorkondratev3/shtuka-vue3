@@ -1,6 +1,6 @@
 <script setup>
-  import MenuVue from '@/views/generalComponents/menu/menu.vue';
-  import LessonNavigation from './components/navigation/navigation.vue';
+  import MenuVue from '@/views/generalComponents/menu/menuVue.vue';
+  import LessonNavigation from './components/navigation/LessonsNavigation.vue';
   import AuthNav from '@/views/generalComponents/authNav/authNav.vue';
 </script>
 

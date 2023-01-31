@@ -5,7 +5,7 @@
   import CreateAdditionalsForm from './components/createAdditionalsForm/createAdditionalsForm.vue';
   import UserAdditionals from './components/userAdditionals/userAdditionals.vue';
   import NeedAuth from '@/views/generalComponents/needAuth/needAuth.vue';
-  import ErrorVue from '@/views/generalComponents/error/error.vue';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import { ref, computed, watch, provide, inject } from 'vue';
   import { additionalsCollection } from '@/stores/additionalsCollection';
   import { authContext } from '@/stores/authContext';
@@ -29,18 +29,15 @@
     ][storeLessonNum.lesson];
   });
 
-  const showError = (errorValue) => error.value = errorValue;
+  const showError = (errorValue) => (error.value = errorValue);
   const changeCanChangeLesson = inject(changeCanChangeLessonSymbol);
   provide(showErrorSymbol, showError);
   provide('openCreateAdditionalsForm', openCreateAdditionalsForm);
 
-  if (storeAuthContext.user) 
-    setAdditionalsInAdditionalsCollection();
-  
+  if (storeAuthContext.user) setAdditionalsInAdditionalsCollection();
 
   watch(storeLessonNum, () => {
-    if (storeAuthContext.user)
-      setAdditionalsInAdditionalsCollection();
+    if (storeAuthContext.user) setAdditionalsInAdditionalsCollection();
   });
 
   watch(storeAuthContext, () => {

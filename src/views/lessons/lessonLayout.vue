@@ -1,7 +1,7 @@
 <script setup>
-  import HeaderVue from './components/header/header.vue';
-  import MainVue from './components/main/main.vue';
-  import FooterVue from './components/footer/footer.vue';
+  import LessonsHeader from './components/header/lessonsHeader.vue';
+  import LeesonMain from './components/main/lessonMain.vue';
+  import LessonsFooter from './components/footer/lessonsFooter.vue';
   import { watch, onMounted, onBeforeUnmount, ref, provide } from 'vue';
   import { getLesson } from '../generalFunctions/requestsToBackend.js';
   import {
@@ -17,11 +17,11 @@
   const storeLessonNum = lessonNum();
 
   const canChangeLesson = ref(true);
-  const changeCanChangeLesson = (value) => canChangeLesson.value = value;
+  const changeCanChangeLesson = (value) => (canChangeLesson.value = value);
   provide(changeCanChangeLessonSymbol, changeCanChangeLesson);
 
   if (!localStorage.lesson) storeLessonNum.changeLessonNumber(1, 7, 1);
-    //на случай если загружается страница урока напрямую и если раньше не был на сайте
+  //на случай если загружается страница урока напрямую и если раньше не был на сайте
 
   setLesson(
     storeLessonNum.circleNumber,
@@ -103,9 +103,9 @@
 
 <template>
   <div class="lesson-layout">
-    <HeaderVue />
-    <MainVue />
-    <FooterVue />
+    <LessonsHeader />
+    <LeesonMain />
+    <LessonsFooter />
   </div>
 </template>
 

@@ -30,11 +30,11 @@
     margin-top: 15px;
   }
   .head-themes-of-physic__title {
-      text-align: left;
-      padding: 0px 5px 0px 16px;
-      color: black;
-      font: oblique 18px Times New Roman;
-    }
+    text-align: left;
+    padding: 0px 5px 0px 16px;
+    color: black;
+    font: oblique 18px Times New Roman;
+  }
 
   .head-themes-of-physic__content {
     font: oblique 18px Times New Roman;

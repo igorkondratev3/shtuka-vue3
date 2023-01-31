@@ -22,11 +22,15 @@ export const additionalsCollection = defineStore({
     },
     setAdditional(additional) {
       if (additional) {
-        const additionals = this[`circle${additional.circle}`][`grade${additional.grade}`][
-          `lesson${additional.lesson}`];
+        const additionals =
+          this[`circle${additional.circle}`][`grade${additional.grade}`][
+            `lesson${additional.lesson}`
+          ];
         if (additionals) additionals.push(additional);
-        else this[`circle${additional.circle}`][`grade${additional.grade}`][
-          `lesson${additional.lesson}`] = [additional];
+        else
+          this[`circle${additional.circle}`][`grade${additional.grade}`][
+            `lesson${additional.lesson}`
+          ] = [additional];
       }
     },
     deleteAdditional(additional) {

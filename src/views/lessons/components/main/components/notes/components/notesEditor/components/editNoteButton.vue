@@ -16,5 +16,5 @@
 </template>
 
 <style>
-/*editor-button, icon в app.vue*/
+  /*editor-button, icon в app.vue*/
 </style>

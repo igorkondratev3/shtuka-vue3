@@ -1,7 +1,7 @@
 <script setup>
   import { ref } from 'vue';
-  import CreateNoteEditor from './components/editor/editor.vue';
-  import CreateNoteContent from './components/content/content.vue';
+  import CreateNoteEditor from './components/editor/editorVue.vue';
+  import CreateNoteContent from './components/content/contentVue.vue';
 
   const props = defineProps({
     noteForEdit: Object,

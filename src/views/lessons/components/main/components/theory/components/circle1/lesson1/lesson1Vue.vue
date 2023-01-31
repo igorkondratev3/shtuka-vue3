@@ -1,7 +1,7 @@
 <script setup>
   import PhysicDefinition from './components/physicDefinition.vue';
   import PhenomenonVue from './components/phenomenonVue.vue';
-  import NatureVue from './components/nature.vue';
+  import NatureVue from './components/natureVue.vue';
   import HeadThemesOfPhysic from './components/headThemesOfPhysic.vue';
   import OtherThemesOfPhysic from './components/otherThemesOfPhysic.vue';
 </script>
@@ -22,7 +22,7 @@
 
 <style>
   /*lesson-theory__content в родителе*/
-  
+
   .theory-content__blocks {
     display: flex;
     flex-direction: row;

@@ -16,11 +16,11 @@
         class="need-auth__close-button"
         @click="$emit('closeNeedAuth')"
       >
-      <img
-        class="icon icon_delete-color icon_large-size" 
-        src='/src/assets/close.svg'
-      />
-    </button>
+        <img
+          class="icon icon_delete-color icon_large-size"
+          src="/src/assets/close.svg"
+        />
+      </button>
       Вам необходимо
       <router-link
         to="/auth?start=login"

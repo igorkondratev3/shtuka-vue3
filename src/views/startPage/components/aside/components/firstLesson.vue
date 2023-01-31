@@ -8,7 +8,7 @@
     @click="$emit('goToFirstLesson')"
   >
     <img
-      class="icon_large-size" 
+      class="icon_large-size"
       src="/src/assets/start.svg"
     />
     Первый урок

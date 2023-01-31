@@ -1,16 +1,16 @@
 <script setup>
-  import LessonTheory from './components/theory/theory.vue';
-  import LessonExample from './components/example/example.vue';
-  import LessonAdditionals from './components/additionals/additionals.vue';
-  import LessonTitel from './components/titel.vue';
-  import LessonNote from './components/notes/note.vue';
+  import LessonTheory from './components/theory/lessonTheory.vue';
+  import LessonExample from './components/example/lessonsExample.vue';
+  import LessonAdditionals from './components/additionals/lessonsAdditionals.vue';
+  import LessonTitel from './components/lessonsTitel.vue';
+  import LessonNote from './components/notes/lessonsNote.vue';
   import VisibilityControl from './components/visibilityControl/visibilityControl.vue';
   import { ref, computed, watch } from 'vue';
   import { theoryNotesCollection } from '@/stores/theoryNotesCollection.js';
   import { authContext } from '@/stores/authContext.js';
   import { lessonNum } from '@/stores/lessonNum.js';
   import { getElementsFromBackend } from '@/views/generalFunctions/requestsToBackend.js';
-  import ErrorVue from '@/views/generalComponents/error/error.vue';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
 
   const storeTheoryNotesCollection = theoryNotesCollection();
   const storeLessonNum = lessonNum();
@@ -110,12 +110,16 @@
     />
     <div class="lesson-main__content">
       <LessonTheory
-        v-show="visibilityControl.theory" 
-        @changeTheoryComponent="(isThereTheoryValue) => isThereTheory=isThereTheoryValue"  
+        v-show="visibilityControl.theory"
+        @changeTheoryComponent="
+          (isThereTheoryValue) => (isThereTheory = isThereTheoryValue)
+        "
       />
-      <LessonExample 
+      <LessonExample
         v-show="visibilityControl.example && isThereExample"
-        @changeExampleComponent="(isThereExampleValue) => isThereExample=isThereExampleValue"  
+        @changeExampleComponent="
+          (isThereExampleValue) => (isThereExample = isThereExampleValue)
+        "
       />
       <LessonAdditionals v-show="visibilityControl.additionals" />
       <div
@@ -176,7 +180,7 @@
     overflow-x: auto; /*уменьшает блок при уменьшении экрана*/
     margin-top: 10px;
   }
-  
+
   @media (max-width: 1420px) {
     .lesson-main__content {
       justify-content: center;

@@ -2,7 +2,10 @@
   import { ref, inject } from 'vue';
   import { additionalsCollection } from '@/stores/additionalsCollection.js';
   import { authContext } from '@/stores/authContext.js';
-  import { getNewTokens, updateTokens } from '@/views/generalFunctions/refreshToken.js';
+  import {
+    getNewTokens,
+    updateTokens,
+  } from '@/views/generalFunctions/refreshToken.js';
   import { showErrorSymbol } from '@/views/lessons/components/main/components/additionals/symbols.js';
 
   const props = defineProps({
@@ -64,7 +67,7 @@
     :disabled="isCopy"
   >
     <img
-      :class="{'icon_disabled-color': isCopy, 'icon_copy-color': !isCopy }"
+      :class="{ 'icon_disabled-color': isCopy, 'icon_copy-color': !isCopy }"
       class="icon_small-size"
       src="/src/assets/copy.svg"
     />
@@ -72,5 +75,5 @@
 </template>
 
 <style>
-/*icon в app.vue*/
+  /*icon в app.vue*/
 </style>

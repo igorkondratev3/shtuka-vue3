@@ -56,7 +56,7 @@
 
 <style>
   /*round-button в app.vue*/
- 
+
   .menu-button_position {
     position: absolute;
     top: 0;

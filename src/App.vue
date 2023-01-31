@@ -35,10 +35,11 @@
   @import '@/assets/css/icons.css';
   @import '@/assets/css/disabled.css';
   @import '@/assets/css/editorButton.css';
-  
+
   @font-face {
-    font-family: "Pacifico";
-    src: url(https://fonts.gstatic.com/s/pacifico/v22/FwZY7-Qmy14u9lezJ-6D6MmTpA.woff2) format('woff2');
+    font-family: 'Pacifico';
+    src: url(https://fonts.gstatic.com/s/pacifico/v22/FwZY7-Qmy14u9lezJ-6D6MmTpA.woff2)
+      format('woff2');
     unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
     font-display: swap;
   }

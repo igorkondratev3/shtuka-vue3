@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
   import LessonsListButton from './components/lessonsListButton.vue';
   import LessonsButton from './components/lessonsButton.vue';
 
@@ -8,7 +8,7 @@
 
 <template>
   <div class="lesson-layout__navigation navigation">
-    <nav 
+    <nav
       class="navigation__options"
       v-show="seenNavigation"
     >
@@ -19,7 +19,7 @@
     <div
       class="navigation__seen"
       :title="seenNavigation ? 'скрыть' : 'раскрыть область навигации'"
-      @click = "seenNavigation = !seenNavigation"
+      @click="seenNavigation = !seenNavigation"
     >
       ...
     </div>
@@ -54,6 +54,6 @@
 
   .navigation__seen:hover {
     font-size: 30px;
-    color: #0f7b9c
+    color: #0f7b9c;
   }
 </style>

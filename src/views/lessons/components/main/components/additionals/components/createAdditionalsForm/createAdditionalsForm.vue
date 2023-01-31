@@ -1,6 +1,6 @@
 <script setup>
   import { ref, computed, watch } from 'vue';
-  import ErrorVue from '@/views/generalComponents/error/error.vue';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import { checkClose } from '@/views/generalFunctions/checkClose.js';
   import AddButtonAdditionalForm from './components/addButtonAdditionalForm.vue';
   import EditButtonAdditionalForm from './components/editButtonAdditionalForm.vue';
@@ -52,7 +52,7 @@
         class="create-additionals__close-button"
         @click="handleCloseFormFromButtons"
       >
-        <img src="/src/assets/close.svg">
+        <img src="/src/assets/close.svg" />
       </div>
       <form>
         <label for="address">Адрес ресурса</label>

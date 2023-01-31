@@ -34,7 +34,7 @@ export const lessonsCollection = defineStore({
   }),
   actions: {
     setLesson(lesson) {
-      if (lesson) 
+      if (lesson)
         this[`circle${lesson.circle}`][`grade${lesson.grade}`][
           `lesson${lesson.lesson}`
         ] = lesson;
@@ -51,8 +51,9 @@ export const lessonsCollection = defineStore({
       if (
         this[`circle${circleNumber}`][`grade${gradeNumber}`][
           `lesson${lessonNumber}`
-        ]) 
-      return true;
+        ]
+      )
+        return true;
       else return false;
     },
   },

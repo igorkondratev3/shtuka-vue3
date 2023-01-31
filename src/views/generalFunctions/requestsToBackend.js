@@ -28,7 +28,6 @@ export const getLessons = async (circleNumber, gradeNumber) => {
   }
 };
 
-
 let fetchRefreshToken = false;
 
 export const getElementsFromBackend = async (

@@ -1,7 +1,7 @@
 <script setup>
   import { computed, ref, onMounted, watch, nextTick } from 'vue';
   import ButtonForCreateNote from './components/buttonForCreateNote.vue';
-  import ErrorVue from '@/views/generalComponents/error/error.vue';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import ButtonForEditNote from './components/buttonForEditNote.vue';
 
   const emits = defineEmits(['clearStyleForNotesContent', 'closeEditNoteForm']);

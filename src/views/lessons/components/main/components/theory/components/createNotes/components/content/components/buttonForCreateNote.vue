@@ -99,5 +99,5 @@
 </template>
 
 <style>
-/*create-note__button в родителе*/
+  /*create-note__button в родителе*/
 </style>

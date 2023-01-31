@@ -15,5 +15,5 @@
 </template>
 
 <style>
-/*lesson-theory__content в родителе*/
+  /*lesson-theory__content в родителе*/
 </style>

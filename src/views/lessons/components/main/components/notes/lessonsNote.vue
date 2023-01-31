@@ -2,7 +2,7 @@
   import { ref, provide } from 'vue';
   import CreateNotes from '../theory/components/createNotes/CreateNotes.vue';
   import NotesEditor from './components/notesEditor/notesEditor.vue';
-  import ErrorVue from '@/views/generalComponents/error/error.vue';
+  import ErrorVue from '@/views/generalComponents/error/errorVue.vue';
   import { showErrorSymbol } from './symbols';
 
   const props = defineProps({

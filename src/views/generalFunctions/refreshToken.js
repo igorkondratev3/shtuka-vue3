@@ -27,4 +27,4 @@ export const updateTokens = (tokens) => {
   const storeAuthContext = authContext();
   storeAuthContext.updateTokens(tokens.token, tokens.refreshToken);
   localStorage.setItem('user', JSON.stringify(storeAuthContext.user));
-}
+};

@@ -1,9 +1,9 @@
 <script setup>
   import { ref, watch } from 'vue';
   import { useRouter } from 'vue-router';
-  import MenuVue from '@/views/generalComponents/menu/menu.vue';
-  import LoginVue from './components/login.vue';
-  import SignupVue from './components/signup.vue';
+  import MenuVue from '@/views/generalComponents/menu/menuVue.vue';
+  import LoginAuth from './components/loginAuth.vue';
+  import SignupAuth from './components/signupAuth.vue';
   import { goBack } from '@/views/generalFunctions/goBack.js';
   import { authContext } from '@/stores/authContext.js';
 
@@ -27,18 +27,18 @@
     <MenuVue />
   </header>
   <div class="auth auth_margin">
-    <component :is="isSignup ? SignupVue : LoginVue"></component>
+    <component :is="isSignup ? SignupAuth : LoginAuth"></component>
     <a
       class="auth__link nav-auth__login"
       v-show="isSignup"
-      @click="isSignup=false"
+      @click="isSignup = false"
     >
       Вход
     </a>
     <a
       class="auth__link nav-auth__signup"
       v-show="!isSignup"
-      @click="isSignup=true"
+      @click="isSignup = true"
     >
       Регистрация
     </a>
