@@ -166,7 +166,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
   }
 
@@ -176,6 +176,7 @@
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
+    width: 100%;
     order: 4;
     overflow-x: auto; /*уменьшает блок при уменьшении экрана*/
     margin-top: 10px;

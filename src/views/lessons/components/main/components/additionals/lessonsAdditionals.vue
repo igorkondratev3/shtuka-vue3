@@ -161,7 +161,6 @@
   }
 
   .lesson-main__additionals {
-    margin-top: 150px;
     order: 3;
   }
 
